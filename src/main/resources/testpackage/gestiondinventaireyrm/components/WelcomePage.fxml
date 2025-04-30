@@ -14,7 +14,7 @@
       <children>
          <AnchorPane fx:id="ConnexionStyle" layoutX="440.0" layoutY="100.0" prefHeight="500.0" prefWidth="400.0" stylesheets="@Styles/WelcomePageStyle.css">
             <children>
-               <TextField layoutX="58.0" layoutY="142.0" prefHeight="65.0" prefWidth="247.0" text="username" />
+               <TextField fx:id="textfield1" layoutX="58.0" layoutY="142.0" prefHeight="65.0" prefWidth="247.0" text="username" />
                <Label fx:id="ConnexionLabel" alignment="TOP_LEFT" layoutX="19.0" layoutY="30.0" prefHeight="58.0" prefWidth="203.0" stylesheets="@Styles/WelcomePageStyle.css" text="Connexion">
                   <font>
                      <Font size="40.0" />
