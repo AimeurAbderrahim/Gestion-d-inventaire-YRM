@@ -1,0 +1,26 @@
+#Background{
+    -fx-background-color:
+        linear-gradient(to bottom right, #40c9c9 0%, #005b5b 100%),
+
+        linear-gradient(to bottom right,
+            transparent 20%, rgba(255,255,255,0.05) 25%, transparent 30%,
+            transparent 70%, rgba(255,255,255,0.05) 75%, transparent 80%);
+
+    -fx-background-insets: 0, 0;
+    -fx-background-radius: 0, 0;
+}
+#ConnexionStyle{
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.2, 0, 4);
+
+}
+#ConnexionLabel{
+    -fx-font-weight: bold;
+    -fx-font-family: Inter;
+    -fx-text-fill: linear-gradient(from 0% 0% to 0% 100%, #037F90, #01252A);
+    -fx-background-clip: text;
+    -fx-webkit-background-clip: text;
+    -fx-webkit-text-fill-color: transparent;
+}
