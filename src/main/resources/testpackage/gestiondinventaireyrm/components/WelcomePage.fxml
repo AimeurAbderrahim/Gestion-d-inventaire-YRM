@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<Scene stylesheets="@Styles/WelcomePageStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane fx:id="Background" prefHeight="720.0" prefWidth="1280.0" stylesheets="@Styles/WelcomePageStyle.css">
+      <children>
+         <AnchorPane fx:id="ConnexionStyle" layoutX="440.0" layoutY="100.0" prefHeight="500.0" prefWidth="400.0" stylesheets="@Styles/WelcomePageStyle.css">
+            <children>
+               <TextField layoutX="58.0" layoutY="142.0" prefHeight="65.0" prefWidth="247.0" text="username" />
+               <Label fx:id="ConnexionLabel" alignment="TOP_LEFT" layoutX="19.0" layoutY="30.0" prefHeight="58.0" prefWidth="203.0" stylesheets="@Styles/WelcomePageStyle.css" text="Connexion">
+                  <font>
+                     <Font size="40.0" />
+                  </font>
+                  <textFill>
+                     <LinearGradient endX="0.8199052132701422" endY="1.0" startX="0.8151658767772513">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color red="0.004800000227987766" green="0.14189332723617554" blue="0.1599999964237213" />
+                              </color>
+                           </Stop>
+                           <Stop offset="0.327733671632018">
+                              <color>
+                                 <Color red="0.004800000227987766" green="0.14189332723617554" blue="0.1599999964237213" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="0.0117647061124444" green="0.49803921580314636" blue="0.5647059082984924" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </textFill>
+               </Label>
+            </children>
+         </AnchorPane>
+      </children></AnchorPane>
+</Scene>

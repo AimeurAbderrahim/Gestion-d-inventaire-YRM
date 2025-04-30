@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="321.0" style="-fx-border-radius: 5px; -fx-background-color: linear-gradient(to bottom, #01252A 60.9%, #037F90 100%);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane prefHeight="740.0" prefWidth="321.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="321.0" style="-fx-background-color: transparent;">
+               <children>
+                  <Button layoutY="-6.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="321.0" style="-fx-background-color: transparent;" />
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="2.5" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/package.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="83.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="228.0" text="Produit" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="321.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
+               <children>
+                  <Button layoutY="-6.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="321.0" style="-fx-background-color: transparent;" />
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="2.5" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/package_car.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="83.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="228.0" text="Fournisseur" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="321.0" style="-fx-background-color: transparent;" GridPane.rowIndex="2">
+               <children>
+                  <Button layoutY="-6.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="321.0" style="-fx-background-color: transparent;" />
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="2.5" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/package_box_alt.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="83.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="228.0" text="Bone" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="321.0" style="-fx-background-color: transparent;" GridPane.rowIndex="3">
+               <children>
+                  <Button layoutY="-6.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="321.0" style="-fx-background-color: transparent;" />
+                  <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="2.5" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/Location%20icon.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="83.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="228.0" text="Emplacement" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
