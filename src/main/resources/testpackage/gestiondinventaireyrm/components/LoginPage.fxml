@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 <Scene stylesheets="@Styles/LoginPageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane minHeight="720.0" minWidth="1280.0" prefHeight="740.0" prefWidth="1350.0" stylesheets="@Styles/LoginPageStyles.css">
+   <AnchorPane minHeight="720.0" minWidth="1280.0" prefHeight="740.0" prefWidth="1350.0" stylesheets="@Styles/LoginPageStyles.css">
       <children>
          <ImageView fx:id="Background" fitHeight="775.0" fitWidth="1356.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
             <image>
