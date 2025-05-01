@@ -10,10 +10,10 @@ import java.io.IOException;
 public class testBone extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("pages/bone.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("pages/popUps/addAndModBoneReception.fxml"));
 
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        Scene scene = fxmlLoader.load();
+        stage.setTitle("YRM");
         stage.setScene(scene);
         stage.show();
     }
