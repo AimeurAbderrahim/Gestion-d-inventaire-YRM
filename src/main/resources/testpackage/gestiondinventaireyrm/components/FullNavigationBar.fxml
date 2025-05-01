@@ -28,7 +28,7 @@
                   <Button layoutY="-6.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="321.0" style="-fx-background-color: transparent;" />
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="2.5" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/package.png" />
+                        <Image url="@images/ProduitIcon.png" />
                      </image>
                   </ImageView>
                   <Label alignment="CENTER" layoutX="83.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="228.0" text="Produit" textAlignment="CENTER" textFill="WHITE">
@@ -43,7 +43,7 @@
                   <Button layoutY="-6.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="321.0" style="-fx-background-color: transparent;" />
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="2.5" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/package_car.png" />
+                        <Image url="@images/FourniseurIcon.png" />
                      </image>
                   </ImageView>
                   <Label alignment="CENTER" layoutX="83.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="228.0" text="Fournisseur" textAlignment="CENTER" textFill="WHITE">
@@ -58,7 +58,7 @@
                   <Button layoutY="-6.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="321.0" style="-fx-background-color: transparent;" />
                   <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="2.5" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/package_box_alt.png" />
+                        <Image url="@images/BonsIcon.png" />
                      </image>
                   </ImageView>
                   <Label alignment="CENTER" layoutX="83.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="228.0" text="Bone" textAlignment="CENTER" textFill="WHITE">

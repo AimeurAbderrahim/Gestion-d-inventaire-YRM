@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<Scene stylesheets="@Styles/LoginPageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane minHeight="720.0" minWidth="1280.0" prefHeight="740.0" prefWidth="1350.0" stylesheets="@Styles/LoginPageStyles.css">
+      <children>
+         <ImageView fx:id="Background" fitHeight="775.0" fitWidth="1356.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/WelcomPageBackground.png" />
+            </image>
+         </ImageView>
+         <AnchorPane fx:id="ConnexionStyle" layoutX="456.0" layoutY="168.0" minHeight="500.0" minWidth="400.0" stylesheets="@Styles/LoginPageStyles.css" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="456.0" AnchorPane.rightAnchor="494.0" AnchorPane.topAnchor="168.0">
+            <children>
+               <HBox layoutX="35.0" layoutY="158.0" minHeight="75.0" minWidth="322.0" styleClass="UsernameContainer" stylesheets="@Styles/LoginPageStyles.css">
+                  <children>
+                     <ImageView fitHeight="52.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@images/UsernameIcon.png" />
+                        </image>
+                        <HBox.margin>
+                           <Insets left="15.0" top="15.0" />
+                        </HBox.margin>
+                     </ImageView>
+                     <TextField id="PasswordTextFeild" alignment="CENTER" focusTraversable="false" prefHeight="62.0" prefWidth="249.0" promptText="Nom d'utilisateur" styleClass="PasswordTextFeild" stylesheets="@Styles/LoginPageStyles.css">
+                        <font>
+                           <Font name="Arabic Typesetting" size="10.0" />
+                        </font>
+                        <opaqueInsets>
+                           <Insets top="10.0" />
+                        </opaqueInsets>
+                        <HBox.margin>
+                           <Insets top="5.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+               </HBox>
+               <Label fx:id="ConnexionLabel" alignment="TOP_LEFT" layoutX="99.0" layoutY="39.0" prefHeight="58.0" prefWidth="203.0" stylesheets="@Styles/LoginPageStyles.css" text="Connexion">
+                  <font>
+                     <Font size="40.0" />
+                  </font>
+                  <textFill>
+                     <LinearGradient endX="0.8199052132701422" endY="1.0" startX="0.8151658767772513">
+                        <stops>
+                           <Stop>
+                              <color>
+                                 <Color red="0.004800000227987766" green="0.14189332723617554" blue="0.1599999964237213" />
+                              </color>
+                           </Stop>
+                           <Stop offset="0.327733671632018">
+                              <color>
+                                 <Color red="0.004800000227987766" green="0.14189332723617554" blue="0.1599999964237213" />
+                              </color>
+                           </Stop>
+                           <Stop offset="1.0">
+                              <color>
+                                 <Color red="0.0117647061124444" green="0.49803921580314636" blue="0.5647059082984924" />
+                              </color>
+                           </Stop>
+                        </stops>
+                     </LinearGradient>
+                  </textFill>
+               </Label>
+               <HBox fx:id="UsernameContainer1" layoutX="35.0" layoutY="268.0" minHeight="75.0" minWidth="322.0" styleClass="UsernameContainer" stylesheets="@Styles/LoginPageStyles.css">
+                  <children>
+                     <ImageView fitHeight="50.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@images/MotDePasseIcon.png" />
+                        </image>
+                        <HBox.margin>
+                           <Insets left="10.0" top="14.0" />
+                        </HBox.margin>
+                     </ImageView>
+                     <TextField id="PasswordTextFeild" fx:id="PasswordTextFeild1" alignment="CENTER" focusTraversable="false" minHeight="60.0" minWidth="207.0" prefHeight="60.0" prefWidth="207.0" promptText="Mot de passe" styleClass="PasswordTextFeild" stylesheets="@Styles/LoginPageStyles.css">
+                        <font>
+                           <Font name="Arabic Typesetting" size="10.0" />
+                        </font>
+                        <opaqueInsets>
+                           <Insets top="10.0" />
+                        </opaqueInsets>
+                        <HBox.margin>
+                           <Insets top="5.0" />
+                        </HBox.margin>
+                     </TextField>
+                  </children>
+               </HBox>
+               <Button fx:id="ConnexionButton" layoutX="39.0" layoutY="375.0" minHeight="75.0" minWidth="322.0" mnemonicParsing="false" stylesheets="@Styles/LoginPageStyles.css" text="Se Connecter" textFill="WHITE">
+                  <font>
+                     <Font name="System Bold" size="27.0" />
+                  </font>
+               </Button>
+            </children>
+         </AnchorPane>
+         <ImageView fitHeight="115.0" fitWidth="126.0" layoutX="6.0" layoutY="623.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/UstoLogo.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="104.0" fitWidth="123.0" layoutX="110.0" layoutY="627.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/InfoLogo.png" />
+            </image>
+         </ImageView>
+         <ImageView fitHeight="112.0" fitWidth="146.0" layoutX="6.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@images/InfoLogo.png" />
+            </image>
+         </ImageView>
+      </children></AnchorPane>
+</Scene>

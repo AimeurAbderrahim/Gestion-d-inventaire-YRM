@@ -1,47 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Scene?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<Scene stylesheets="@Styles/WelcomePageStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <AnchorPane fx:id="Background" prefHeight="720.0" prefWidth="1280.0" stylesheets="@Styles/WelcomePageStyle.css">
-      <children>
-         <AnchorPane fx:id="ConnexionStyle" layoutX="440.0" layoutY="100.0" prefHeight="500.0" prefWidth="400.0" stylesheets="@Styles/WelcomePageStyle.css">
-            <children>
-               <TextField fx:id="textfield1" layoutX="58.0" layoutY="142.0" prefHeight="65.0" prefWidth="247.0" text="username" />
-               <Label fx:id="ConnexionLabel" alignment="TOP_LEFT" layoutX="19.0" layoutY="30.0" prefHeight="58.0" prefWidth="203.0" stylesheets="@Styles/WelcomePageStyle.css" text="Connexion">
-                  <font>
-                     <Font size="40.0" />
-                  </font>
-                  <textFill>
-                     <LinearGradient endX="0.8199052132701422" endY="1.0" startX="0.8151658767772513">
-                        <stops>
-                           <Stop>
-                              <color>
-                                 <Color red="0.004800000227987766" green="0.14189332723617554" blue="0.1599999964237213" />
-                              </color>
-                           </Stop>
-                           <Stop offset="0.327733671632018">
-                              <color>
-                                 <Color red="0.004800000227987766" green="0.14189332723617554" blue="0.1599999964237213" />
-                              </color>
-                           </Stop>
-                           <Stop offset="1.0">
-                              <color>
-                                 <Color red="0.0117647061124444" green="0.49803921580314636" blue="0.5647059082984924" />
-                              </color>
-                           </Stop>
-                        </stops>
-                     </LinearGradient>
-                  </textFill>
-               </Label>
-            </children>
-         </AnchorPane>
-      </children></AnchorPane>
+<Scene xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testpackage.gestiondinventaireyrm.components.WelcomePage">
+   <root>
+      <AnchorPane prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <ImageView pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/WelcomPageBackground.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="475.0" layoutY="262.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="321.0" stylesheets="@Styles/WelcomePageStyles.css">
+               <children>
+                  <HBox id="ProduitContainer" fx:id="ProduitContainer" prefHeight="88.0" prefWidth="321.0" stylesheets="@Styles/WelcomePageStyles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/ProduitIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="ProduitButton" alignment="CENTER" mnemonicParsing="false" prefHeight="93.0" prefWidth="242.0" stylesheets="@Styles/WelcomePageStyles.css" text="Button" textAlignment="CENTER">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </root>
 </Scene>
