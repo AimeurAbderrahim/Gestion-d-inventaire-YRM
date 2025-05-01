@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.layout.AnchorPane?>
-
-
-<AnchorPane id="ConnexionLayout" fx:id="ConnexionLayout" prefHeight="560.0" prefWidth="440.0" stylesheets="@Styles/ConnexionLayoutStyle.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testpackage.gestiondinventaireyrm.components.ConnexionLayout">
-
-</AnchorPane>
