@@ -17,30 +17,32 @@
  *  @author Souane Abdenour , Berrached Maroua
  */
 // TODO: initialisation of tables independent on application
-package src.main.db.configuration;
+package db.configuration;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.Statement;
+import java.sql.SQLException;
 
-import src.main.db.configuration.ConfigDatabase;
-import src.main.db.errors.ConnectionFailedException;
-import src.main.db.errors.ReadSQLTableFileException;
-import src.main.db.errors.ExecuteStatementException;
+import db.configuration.ConfigDatabase;
+import db.errors.ConnectionFailedException;
+import db.errors.ReadSQLTableFileException;
+import db.errors.ExecuteStatementException;
 
 public class DatabaseInitializer {
 	private final ConfigDatabase conn;
-	private final String fileName;
+	private static final String fileName = "/tables.sql";
 
 	/**
 	 * Constructs a new DatabaseInitializer
 	 * @param conn Valid ConfigDatabase connection handler
 	 * @param fileName Path to the SQL file containing table definitions
 	 */
-	public DatabaseInitializer(ConfigDatabase conn , String fileName){
+	public DatabaseInitializer(ConfigDatabase conn){
 		this.conn = conn;
-		this.fileName = fileName;
 	}
 	/**
 	 * Main initialization routine - loads all tables from the SQL file
@@ -48,21 +50,29 @@ public class DatabaseInitializer {
 	 * @throws ConnectionFailedException If database connection fails
 	 */
 	private void loadTables() throws ReadSQLTableFileException , ConnectionFailedException {
-		BufferedReader br = new BufferedReader(new FileReader(this.fileName));
-		StringBuilder tab = new StringBuilder();
-		Statement stmt = conn.createStatement();
-		String line;
+		BufferedReader br = null;
+		try(Connection connection = conn.getConnection()){
+			InputStream input = getClass().getResourceAsStream(this.fileName);
+			InputStreamReader reader = new InputStreamReader(input);
+			br = new BufferedReader(reader);
+			StringBuilder tab = new StringBuilder();
+			Statement stmt = connection.createStatement();
+			String line;
 
-		while((line = br.readLine()) != null) {
-			tab.append(line);
-			if(line.trim().endsWith(";")) {
-				String sqlCommand = sqlBuilder.toString();
-				loadTable(stmt, sqlCommand);
-				sqlBuilder.setLength(0);
+			while((line = br.readLine()) != null) {
+				tab.append(line);
+				if(line.trim().endsWith(";")) {
+					loadTable(stmt, tab.toString());
+					tab.setLength(0);
+				}
 			}
-		}
-
-		br.close();
+		}catch(SQLException e)
+		{
+			throw new ConnectionFailedException("database operation failed" , e);
+		}catch(Exception error)
+		{
+			throw new ReadSQLTableFileException("read sql file Failed" , error);
+		}	
 	}
 	/**
 	 * Executes a single table creation command
@@ -72,10 +82,10 @@ public class DatabaseInitializer {
 	 */
 	private void loadTable(Statement statement , String table) throws ExecuteStatementException {
 		try {
-			stmt.execute(table);
-		} catch (ExecuteStatementException e) {
+			statement.execute(table);
+		} catch (SQLException e) {
 			if (!e.getMessage().contains("already exists")) {
-				throw e;
+				throw new ExecuteStatementException("Execute SQL" , e);
 			}
 		}
 	}

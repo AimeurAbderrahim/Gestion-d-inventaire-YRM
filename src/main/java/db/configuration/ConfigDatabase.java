@@ -21,26 +21,28 @@
  *   @author Souane Abdenour , Berrached Maroua
  */
 
-package src.main.db.configuration;
+package db.configuration;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
-import src.main.db.errors.ConnectionFailedException;
-import src.main.db.errors.CloseConnectionException;
+import db.errors.ConnectionFailedException;
+import db.errors.CloseConnectionException;
 
 public class ConfigDatabase {
 	private final String username;
 	private final String password;
 	private final String url;
+	private Connection connection;
 
 	public ConfigDatabase(){
-		this.username 	= "jdbc:mysql://localhost:3306/project";
+		this.url 	= "jdbc:mysql://localhost:3306/project";
 		//  TODO: use separate DB users with minimal required privileges
 		//  TODO: Replace with secure credential loading mechanism
 		//  Current implementation is for DEVELOPMENT ONLY
 		this.password 	= "marvi";
-		this.url 	= "marvi";
+		this.username 	= "marvi";
 	}
 	/**
 	 * Establishes a new database connection
@@ -48,7 +50,15 @@ public class ConfigDatabase {
 	 * @throws ConnectionFailedException If connection cannot be established
 	 */
 	public Connection getConnection() throws ConnectionFailedException {
-		return DriverManager.getConnection(this.url, this.username, this.password);
+		try{
+			if(this.connection == null || this.connection.isClosed())
+			{
+				this.connection = DriverManager.getConnection(this.url, this.username, this.password);
+			}
+			return this.connection;
+		}catch(SQLException error) {
+			throw new ConnectionFailedException("Connection failed : " + error.getMessage() , error);
+		}
 	}
 	/**
 	 * Tests if database is reachable with current credentials
@@ -56,8 +66,8 @@ public class ConfigDatabase {
 	 */
 	public boolean testConnection() {
 		try (Connection conn = this.getConnection()) {
-			return true;
-		} catch (ConnectionFailedException e) {
+			return !conn.isClosed();
+		} catch (Exception e) {
 			return false;
 		}
 	}
@@ -66,8 +76,12 @@ public class ConfigDatabase {
 	 * @throws CloseConnectionException If closing fails
 	 */
 	public void closeConnection() throws CloseConnectionException  {
-		if (connection != null) {
-			connection.close();
+		if (this.connection != null) {
+			try{
+				this.connection.close();
+			}catch(SQLException e){
+				throw new CloseConnectionException("Failed to close connection " , e);
+			}
 		}
 	}
 }
