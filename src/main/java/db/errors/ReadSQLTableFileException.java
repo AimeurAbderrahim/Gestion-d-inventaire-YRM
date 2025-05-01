@@ -1,10 +1,14 @@
-package src.main.db.errors;
+package db.errors;
 
 import java.io.IOException;
 
-public ReadSQLTableFileException extends IOException {
+public class ReadSQLTableFileException extends IOException {
 	public ReadSQLTableFileException(String msg) {
 		super(msg);
+	}
+
+	public ReadSQLTableFileException(String msg , Throwable cause) {
+		super(msg , cause);
 	}
 
 	@Override

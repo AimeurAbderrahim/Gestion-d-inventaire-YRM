@@ -1,10 +1,14 @@
-package src.main.db.errors;
+package db.errors;
 
 import java.sql.SQLException;
 
-public ConnectionFailedException extends SQLException {
+public class ConnectionFailedException extends SQLException {
 	public ConnectionFailedException(String msg) {
 		super(msg);
+	}
+
+	public ConnectionFailedException(String msg , Throwable cause) {
+		super(msg , cause);
 	}
 
 	@Override

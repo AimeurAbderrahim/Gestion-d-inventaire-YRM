@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <center>
+                <!-- Add your center content here -->
+                <AnchorPane BorderPane.alignment="CENTER" />
+            </center>
+         <top>
+            <AnchorPane prefHeight="90.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to right, #01252A 60.9%, #037F90 100%);" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane alignment="CENTER" minHeight="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="300.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="300.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="300.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="150.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <GridPane GridPane.columnIndex="2">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.halignment="CENTER">
+                                 <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/notification.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                 <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/settings.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                 <graphic>
+                                    <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/exit.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <ImageView fitHeight="150.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/faculter%20Logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Administrateur" textFill="WHITE" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold Italic" size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane style="-fx-background-color: linear-gradient(to bottom, #01252A 60.9%, #037F90 100%); -fx-border-radius: 5px;" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane minWidth="98.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="98.0" prefWidth="98.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/package.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
+                           <graphic>
+                              <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/package_car.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="2">
+                           <graphic>
+                              <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/package_box_alt.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="3">
+                           <graphic>
+                              <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Location%20icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </left>
+        </BorderPane>
+    </children>
+</AnchorPane>

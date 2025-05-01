@@ -4,21 +4,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="88.0" prefWidth="321.0" style="-fx-background-color: #01252A;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Button layoutY="-6.0" mnemonicParsing="false" prefHeight="99.0" prefWidth="321.0" style="-fx-background-color: transparent;" />
-      <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="2.5" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/BonsIcon.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="83.0" layoutY="15.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="228.0" text="temp" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="32.0" />
-         </font>
-      </Label>
-   </children>
-</AnchorPane>
+
+<Button mnemonicParsing="false" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <graphic>
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Location%20icon.png" />
+               </image>
+            </ImageView>
+            <Label text="temp" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </graphic>
+</Button>
