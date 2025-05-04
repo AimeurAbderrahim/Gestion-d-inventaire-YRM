@@ -1,0 +1,60 @@
+/* Base styles */
+.main-container {
+    -fx-background-color: transparent;
+}
+
+/* Login container styling */
+.login-container {
+    -fx-background-color: white;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+    -fx-padding: 20px;
+}
+
+/* Input field containers */
+.UsernameContainer {
+    -fx-background-color: #f2f2f2;
+    -fx-background-radius: 15px;
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);
+}
+
+/* Input field styling */
+.PasswordTextFeild {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 18px;
+    -fx-padding: 5px;
+}
+
+/* Login button styling */
+.login-button {
+    -fx-background-color: linear-gradient(to right, #03090A, #0399C8);
+    -fx-background-radius: 15px;
+    -fx-cursor: hand;
+    -fx-padding: 10px;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 8, 0, 0, 0);
+}
+
+.login-button:hover {
+    -fx-background-color: linear-gradient(to right, #031418, #03C8D4);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
+}
+
+/* Animation for text fields focus */
+.PasswordTextFeild:focused {
+    -fx-effect: dropshadow(three-pass-box, #03C8D4, 3, 0, 0, 0);
+}
+
+/* Responsive design adjustments */
+@media (max-width: 800px) {
+    .login-container {
+        -fx-padding: 15px;
+    }
+
+    .login-button {
+        -fx-font-size: 16px;
+    }
+}

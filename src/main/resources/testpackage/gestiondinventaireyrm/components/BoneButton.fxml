@@ -14,7 +14,7 @@
          <children>
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/package_box_alt.png" />
+                  <Image url="@images/package_box_alt.png" />
                </image>
             </ImageView>
             <Label text="Bone" textFill="WHITE">
