@@ -13,7 +13,7 @@
          <children>
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/package.png" />
+                  <Image url="@images/package.png" />
                </image>
             </ImageView>
             <Label text="Produit" textFill="WHITE">
@@ -25,3 +25,4 @@
       </HBox>
    </graphic>
 </Button>
+
