@@ -1,0 +1,75 @@
+/* Header styles */
+.header-pane {
+    -fx-background-color: linear-gradient(to right, #01252A 60.9%, #037F90 100%);
+}
+
+.admin-label {
+    -fx-text-fill: white;
+    -fx-font-family: "System";
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+}
+
+/* Sidebar styles */
+.sidebar-pane {
+    -fx-background-color: linear-gradient(to bottom, #01252A 60.9%, #037F90 100%);
+    -fx-border-radius: 5px;
+}
+
+/* Content area styles */
+.content-pane {
+    -fx-background-color: #D9D9D9;
+}
+
+/* Button styles */
+.icon-button {
+    -fx-background-color: transparent;
+}
+
+.nav-button {
+    -fx-background-color: #01252A;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+}
+
+.action-button {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 50;
+    -fx-font-weight: bold;
+}
+
+.cancel-button {
+    -fx-background-color: #CCCCCC;
+    -fx-background-radius: 5;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.confirm-button {
+    -fx-background-color: #4CAF50;
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+/* Table styles */
+.table-scroll-pane {
+    -fx-background-color: linear-gradient(to bottom, #1F4D54 0%, #44ABBA 20.19%);
+}
+
+.main-table {
+    -fx-background-color: linear-gradient(to bottom, #1F4D54 0%, #44ABBA 20.19%);
+}
+
+.checkbox-column {
+    -fx-background-color: transparent;
+}
+
+/* Search field styles */
+.search-field {
+    -fx-background-radius: 50;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}

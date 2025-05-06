@@ -10,4 +10,7 @@ module testpackage.gestiondinventaireyrm {
 
     opens testpackage.gestiondinventaireyrm to javafx.fxml;
     exports testpackage.gestiondinventaireyrm;
+    requires javafx.graphics;
+
+    exports stateMachin to javafx.graphics;
 }
