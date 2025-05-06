@@ -35,7 +35,7 @@
                         <children>
                            <Label fx:id="ConnexionLabel" alignment="CENTER" prefHeight="58.0" prefWidth="203.0" stylesheets="@../Styles/LoginPageStyles.css" text="Connexion">
                               <font>
-                                 <Font size="40.0" />
+                                 <Font name="System Bold" size="40.0" />
                               </font>
                               <textFill>
                                  <LinearGradient endX="0.8199052132701422" endY="1.0" startX="0.8151658767772513">
@@ -76,7 +76,7 @@
                                  </ImageView>
                                  <TextField alignment="CENTER" focusTraversable="false" promptText="Nom d'utilisateur" styleClass="PasswordTextFeild" stylesheets="@../Styles/LoginPageStyles.css" HBox.hgrow="ALWAYS">
                                     <font>
-                                       <Font name="Arabic Typesetting" size="10.0" />
+                                       <Font size="34.0" />
                                     </font>
                                     <opaqueInsets>
                                        <Insets top="10.0" />
@@ -98,9 +98,9 @@
                                        <Insets left="10.0" />
                                     </HBox.margin>
                                  </ImageView>
-                                 <TextField fx:id="PasswordTextFeild" alignment="CENTER" focusTraversable="false" minHeight="60.0" promptText="Mot de passe" styleClass="PasswordTextFeild" stylesheets="@../Styles/LoginPageStyles.css" HBox.hgrow="ALWAYS">
+                                 <TextField fx:id="PasswordTextFeild" alignment="CENTER" focusTraversable="false" promptText="Mot de passe" styleClass="PasswordTextFeild" stylesheets="@../Styles/LoginPageStyles.css" HBox.hgrow="ALWAYS">
                                     <font>
-                                       <Font name="Arabic Typesetting" size="10.0" />
+                                       <Font size="10.0" />
                                     </font>
                                     <opaqueInsets>
                                        <Insets top="10.0" />
@@ -111,7 +111,7 @@
                                  </TextField>
                               </children>
                            </HBox>
-
+      
                            <Button fx:id="ConnexionButton" maxWidth="1.7976931348623157E308" minHeight="60.0" mnemonicParsing="false" styleClass="login-button" stylesheets="@../Styles/LoginPageStyles.css" text="Se Connecter" textFill="WHITE">
                               <font>
                                  <Font name="System Bold" size="27.0" />
@@ -127,7 +127,7 @@
          <!-- Bottom logos -->
          <HBox alignment="BOTTOM_LEFT" maxHeight="125.0" maxWidth="250.0" prefHeight="125.0" prefWidth="250.0" spacing="10.0" StackPane.alignment="BOTTOM_LEFT">
             <children>
-               <ImageView fitHeight="115.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="105.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../components/images/UstoLogo.png" />
                   </image>

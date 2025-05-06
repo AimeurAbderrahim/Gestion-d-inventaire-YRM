@@ -21,7 +21,7 @@
 
 <Scene xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <root>
-      <AnchorPane>
+      <AnchorPane stylesheets="@../Styles/BoneStyles.css">
          <children>
             <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
@@ -47,9 +47,9 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.halignment="CENTER">
+                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="44.0" prefWidth="59.0" style="-fx-background-color: transparent;" GridPane.halignment="CENTER">
                                        <graphic>
-                                          <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="38.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../components/images/notification.png" />
                                              </image>
@@ -58,7 +58,7 @@
                                     </Button>
                                     <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                        <graphic>
-                                          <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../components/images/settings.png" />
                                              </image>
@@ -67,7 +67,7 @@
                                     </Button>
                                     <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                                        <graphic>
-                                          <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../components/images/exit.png" />
                                              </image>
@@ -78,7 +78,7 @@
                               </GridPane>
                               <ImageView fitHeight="90.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/faculter%20Logo.png" />
+                                    <Image url="@../components/images/InfoLogo.png" />
                                  </image>
                               </ImageView>
                               <Label text="Administrateur" textFill="WHITE" GridPane.columnIndex="1">
@@ -136,7 +136,7 @@
                                  <graphic>
                                     <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/Location%20icon.png" />
+                                          <Image url="@../components/images/Location%20icon.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -164,9 +164,9 @@
                                           <RowConstraints minHeight="40.0" prefHeight="60.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <HBox alignment="CENTER_LEFT" spacing="1.0" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BASELINE" GridPane.vgrow="ALWAYS">
+                                          <HBox alignment="CENTER_LEFT" spacing="1.0" stylesheets="@../Styles/BoneStyles.css" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BASELINE" GridPane.vgrow="ALWAYS">
                                              <children>
-                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #01252A;" text="Reception" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="TopBarButton" stylesheets="@../Styles/BoneStyles.css" text="Reception" textFill="WHITE" HBox.hgrow="ALWAYS">
                                                    <HBox.margin>
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
@@ -226,7 +226,7 @@
                                  <children>
                                     <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: linear-gradient(to bottom, #1F4D54 0%, #44ABBA 20.19%);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
                                        <content>
-                                          <TableView prefHeight="417.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to bottom, #1F4D54 0%, #44ABBA 20.19%);">
+                                          <TableView prefHeight="417.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to bottom, #1F4D54 0%, #44ABBA 20.19%);" styleClass="FourniseurTable">
                                              <columns>
                                                 <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Code" />
                                                 <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Category" />

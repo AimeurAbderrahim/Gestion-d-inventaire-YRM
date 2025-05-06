@@ -23,7 +23,7 @@
 .PasswordTextFeild {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-font-size: 18px;
+    -fx-font-size: 30px;
     -fx-padding: 5px;
 }
 
@@ -43,10 +43,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
-/* Animation for text fields focus */
-.PasswordTextFeild:focused {
-    -fx-effect: dropshadow(three-pass-box, #03C8D4, 3, 0, 0, 0);
-}
 
 /* Responsive design adjustments */
 @media (max-width: 800px) {
