@@ -13,7 +13,7 @@
          <children>
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/package_car.png" />
+                  <Image url="@images/package_car.png" />
                </image>
             </ImageView>
             <Label text="Fournisseur" textFill="WHITE">

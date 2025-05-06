@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../Styles/ProduitPageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testpackage.gestiondinventaireyrm.components.ProduitPage">
+    <children>
+        <AnchorPane layoutY="118.0" prefHeight="620.0" prefWidth="98.0" style="-fx-background-color: linear-gradient(to bottom, #01252A 60.9%, #037F90 100%); -fx-border-radius: 5px;">
+            <children>
+                <GridPane minWidth="98.0" prefHeight="620.0" prefWidth="98.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="98.0" prefWidth="98.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;">
+                            <graphic>
+                                <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../components/images/ProduitIconWhileEntered.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
+                            <graphic>
+                                <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../components/images/FourniseurIcon.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="2">
+                            <graphic>
+                                <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../components/images/BonsIcon.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="3">
+                            <graphic>
+                                <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../components/images/Location%20icon.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </GridPane>
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="90.0" prefWidth="1280.0" style="-fx-background-color: linear-gradient(to right, #01252A 60.9%, #037F90 100%);">
+            <children>
+                <GridPane alignment="CENTER" minHeight="120.0" prefHeight="120.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="300.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="300.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="300.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="150.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <GridPane GridPane.columnIndex="2">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.halignment="CENTER">
+                                    <graphic>
+                                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../components/images/notification.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                    <graphic>
+                                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../components/images/settings.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                    <graphic>
+                                        <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../components/images/exit.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </GridPane>
+                        <ImageView fitHeight="150.0" fitWidth="127.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../components/images/InfoLogo.png" />
+                            </image>
+                        </ImageView>
+                        <Label text="Administrateur" textFill="WHITE" GridPane.columnIndex="1">
+                            <font>
+                                <Font name="System Bold Italic" size="32.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </GridPane>
+            </children>
+        </AnchorPane>
+        <HBox layoutX="1047.0" layoutY="187.0" prefHeight="50.0" prefWidth="219.0">
+            <children>
+                <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" prefWidth="247.0" styleClass="Buttons" text="Supprimer">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+        <TextField fx:id="RechercheTextFeild" alignment="CENTER" layoutX="115.0" layoutY="187.0" prefHeight="50.0" prefWidth="442.0" promptText="Recherche" stylesheets="@../Styles/ProduitPageStyles.css">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </TextField>
+        <HBox layoutX="579.0" layoutY="187.0" prefHeight="50.0" prefWidth="219.0">
+            <children>
+                <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="50.0" prefWidth="219.0" styleClass="Buttons" stylesheets="@../Styles/ProduitPageStyles.css" text="Ajouter">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+        <HBox layoutX="815.0" layoutY="187.0" prefHeight="50.0" prefWidth="219.0">
+            <children>
+                <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="0.0" prefWidth="219.0" styleClass="Buttons" text="Modifier">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Button>
+            </children>
+        </HBox>
+        <ImageView fitHeight="39.0" fitWidth="47.0" layoutX="126.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../components/images/Search.png" />
+            </image>
+        </ImageView>
+        <Label layoutX="126.0" layoutY="131.0" prefHeight="50.0" prefWidth="199.0" text="Produit Type">
+            <font>
+                <Font name="System Bold" size="32.0" />
+            </font>
+        </Label>
+        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="115.0" layoutY="254.0" prefHeight="456.0" prefWidth="1146.0" styleClass="ProduitScrollPane">
+            <content>
+                <TableView prefHeight="417.0" prefWidth="700.0" scaleShape="false">
+                    <columns>
+                        <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Code" />
+                        <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Category" />
+                        <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Type" />
+                        <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="Quantity" />
+                        <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="f/d" />
+                        <TableColumn editable="false" minWidth="110.0" prefWidth="-1.0" text="date de command" />
+                        <TableColumn minWidth="30.0" prefWidth="-1.0" style="-fx-background-color: transparent;" text="">
+                            <graphic>
+                                <CheckBox mnemonicParsing="false" styleClass="CheckBox" />
+                            </graphic>
+                        </TableColumn>
+                    </columns>
+                    <padding>
+                        <Insets top="10.0" />
+                    </padding>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+                </TableView>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
