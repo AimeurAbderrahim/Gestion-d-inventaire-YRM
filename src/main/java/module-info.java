@@ -11,12 +11,17 @@ module testpackage.gestiondinventaireyrm {
     requires org.kordamp.bootstrapfx.core;
 
     opens testpackage.gestiondinventaireyrm to javafx.fxml;
+    exports testpackage.model to javafx.fxml;
+    exports testpackage.model.core to javafx.fxml;
+    exports testpackage.model.enumeration to javafx.fxml;
+    exports testpackage.model.errors to javafx.fxml;
+    exports testpackage.model.generator to javafx.fxml;
     opens db.configuration to javafx.fxml;
     opens db.errors to javafx.fxml;
     opens db.test to javafx.fxml;
 
     exports testpackage.gestiondinventaireyrm;
-    exports db.configuration;
-    exports db.errors;
-    exports db.test;
+    requires javafx.graphics;
+
+    exports stateMachin to javafx.graphics;
 }

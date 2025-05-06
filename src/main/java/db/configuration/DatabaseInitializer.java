@@ -14,15 +14,20 @@
  *   Typical Use Case:
  *   - Application startup initialization
  *   - Test environment setup
+ *
+ *   WARNING : this class is not executed by default , 
+ *   	this class is used if it was a problem with tables or deleted table by mistake , 
+ *   	this class will initialized all tables this database require a hight prevligies user to execute DROP CREATE databases and tables,
+ *   	this class should not be visible to others
  *  @author Souane Abdenour , Berrached Maroua
  */
-// TODO: initialisation of tables independent on application
 package db.configuration;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;
@@ -34,22 +39,26 @@ import db.errors.ExecuteStatementException;
 
 public class DatabaseInitializer {
 	private final ConfigDatabase conn;
-	private static final String fileName = "/tables.sql";
+	private static final String fileName = "/db/gestiondinventaireyrm/tables.sql";
 
 	/**
 	 * Constructs a new DatabaseInitializer
 	 * @param conn Valid ConfigDatabase connection handler
 	 * @param fileName Path to the SQL file containing table definitions
 	 */
-	public DatabaseInitializer(ConfigDatabase conn){
+	public DatabaseInitializer(ConfigDatabase conn) throws ExecuteStatementException{
 		this.conn = conn;
+		Statement statement = this.conn.createStatement();
+		if(!statment.execute("DROP DATABASE IF EXISTS project")){
+			throw new ExecuteStatementException("cannot drop database project");
+		}
 	}
 	/**
 	 * Main initialization routine - loads all tables from the SQL file
 	 * @throws ReadSQLTableFileException If the SQL file cannot be read
 	 * @throws ConnectionFailedException If database connection fails
 	 */
-	private void loadTables() throws ReadSQLTableFileException , ConnectionFailedException {
+	public void loadTables() throws ReadSQLTableFileException , ConnectionFailedException {
 		BufferedReader br = null;
 		try(Connection connection = conn.getConnection()){
 			InputStream input = getClass().getResourceAsStream(this.fileName);

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.geometry.Insets?>
 
-<Scene stylesheets="@addModPopUp.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Scene stylesheets="@AddEmplacementPopUp.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <AnchorPane minHeight="500.0" minWidth="400.0" prefHeight="550.0" prefWidth="450.0">
       <children>
          <GridPane hgap="10" vgap="15" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
@@ -22,14 +22,16 @@
                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+               <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
                <RowConstraints percentHeight="20.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-               <ComboBox editable="true" maxWidth="1.7976931348623157E308" promptText="Category" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-               <ComboBox editable="true" maxWidth="1.7976931348623157E308" promptText="Type" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-               <ComboBox editable="true" maxWidth="1.7976931348623157E308" promptText="Quantity" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-               <ComboBox editable="true" maxWidth="1.7976931348623157E308" promptText="Fourniser" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-               <GridPane alignment="CENTER" GridPane.rowIndex="5">
+               <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Code de salle" styleClass="Text-Field" GridPane.rowIndex="1" />
+               <TextField maxWidth="1.7976931348623157E308" promptText="Nom de servide" styleClass="Text-Field" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+               <TextField maxWidth="1.7976931348623157E308" promptText="Responsable " styleClass="Text-Field" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+               <TextField maxWidth="1.7976931348623157E308" promptText="Type" styleClass="Text-Field" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+               <TextField maxWidth="1.7976931348623157E308" promptText="Superficie" styleClass="Text-Field" GridPane.rowIndex="5" />
+               <GridPane alignment="CENTER" GridPane.rowIndex="6">
                   <columnConstraints>
                      <ColumnConstraints hgrow="SOMETIMES" percentWidth="40.0" />
                      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
