@@ -21,13 +21,7 @@ module testpackage.gestiondinventaireyrm {
     opens db.test to javafx.fxml;
 
     exports testpackage.gestiondinventaireyrm;
-    exports testpackage.model;
-    exports testpackage.model.core;
-    exports testpackage.model.enumeration;
-    exports testpackage.model.errors;
-    exports testpackage.model.generator;
+    requires javafx.graphics;
 
-    exports db.configuration;
-    exports db.errors;
-    exports db.test;
+    exports stateMachin to javafx.graphics;
 }
