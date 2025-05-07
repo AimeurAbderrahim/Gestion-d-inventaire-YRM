@@ -26,23 +26,33 @@ package db.configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import db.errors.ConnectionFailedException;
 import db.errors.CloseConnectionException;
+import db.errors.LoadPropertiesException;
 
 public class ConfigDatabase {
 	private final String username;
 	private final String password;
 	private final String url;
 	private Connection connection;
+	private Properties proptiesFile;
 
-	public ConfigDatabase(){
-		this.url 	= "jdbc:mysql://localhost:3306/project";
-		//  TODO: use separate DB users with minimal required privileges
-		//  TODO: Replace with secure credential loading mechanism
-		//  Current implementation is for DEVELOPMENT ONLY
-		this.password 	= "marvi";
-		this.username 	= "marvi";
+	public ConfigDatabase() throws LoadPropertiesException{
+		this.proptiesFile = new Properties();
+		// TODO: use separate DB users with minimal required privileges
+		try(InputStream inputProp = getClass().getClassLoader().getResourceAsStream("db/gestiondinventaireyrm/db.properties")){
+			this.proptiesFile.load(inputProp);
+			this.url 	= this.proptiesFile.getProperty("db.url");
+			this.username 	= this.proptiesFile.getProperty("db.user");
+			this.password 	= this.proptiesFile.getProperty("db.user");
+		}catch(IOException error) {
+			throw new LoadPropertiesException("cannot load property file");
+		}
 	}
 	/**
 	 * Establishes a new database connection

@@ -1,0 +1,72 @@
+/* Main Popup Styling */
+.root {
+  -fx-border-radius: 25px;
+  -fx-background-radius: 25px;
+  -fx-border-width: 1px;
+  -fx-border-color: #000;
+  -fx-background-color: linear-gradient(to bottom, #C0C9CA 17.79%, rgba(95, 100, 100, 0.70) 95.67%);
+  -fx-padding: 20px;
+}
+
+/* TextField Styling */
+.Text-Field {
+    -fx-background-color: #008b9c;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-min-width: 200px;
+    -fx-pref-width: 240px;
+    -fx-min-height: 45px;
+    -fx-pref-height: 50px;
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+    -fx-alignment: center;
+    -fx-prompt-text-fill: white;
+}
+
+/* Button Styling */
+.button {
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-min-width: 110px;
+    -fx-pref-width: 130px;
+    -fx-min-height: 38px;
+    -fx-pref-height: 38px;
+}
+
+/* Cancel Button */
+.button:first-child {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333333;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+}
+
+.button:first-child:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+/* Confirm Button */
+.button:last-child {
+    -fx-background-color: #008b9c;
+    -fx-text-fill: white;
+}
+
+.button:last-child:hover {
+    -fx-background-color: #007a89;
+}
+
+/* GridPane Styling */
+.grid-pane {
+    -fx-hgap: 10px;
+    -fx-vgap: 20px;
+    -fx-alignment: center;
+}
+
+/* AnchorPane Styling */
+.anchor-pane {
+    -fx-background-radius: 25px;
+}

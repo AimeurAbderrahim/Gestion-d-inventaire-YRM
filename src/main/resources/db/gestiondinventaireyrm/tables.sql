@@ -19,7 +19,7 @@
  * Created: 2025-04-25
 */
 
-CREATE database IF NOT EXISTS project;
+CREATE DATABASE IF NOT EXISTS project;
 USE project;
 
 /**

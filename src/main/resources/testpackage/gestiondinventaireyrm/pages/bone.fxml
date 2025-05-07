@@ -19,13 +19,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<Scene xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Scene xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@bone.css">
    <root>
-      <AnchorPane>
+      <AnchorPane stylesheets="@../Styles/BoneStyles.css">
          <children>
             <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <top>
-                  <AnchorPane minHeight="90.0" style="-fx-background-color: linear-gradient(to right, #01252A 60.9%, #037F90 100%);" BorderPane.alignment="CENTER">
+                  <AnchorPane minHeight="90.0" styleClass="header-pane" BorderPane.alignment="CENTER">
                      <children>
                         <GridPane alignment="CENTER" minHeight="90.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columnConstraints>
@@ -46,30 +46,30 @@
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
-                                 <children>
-                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.halignment="CENTER">
+                                 <children><<<<<<< ayoub
+                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" styleClass="icon-button" GridPane.halignment="CENTER">
                                        <graphic>
-                                          <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="38.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../images/notification.png" />
+                                                <Image url="@../components/images/notification.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" styleClass="icon-button" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                                        <graphic>
-                                          <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../images/settings.png" />
+                                                <Image url="@../components/images/settings.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" styleClass="icon-button" GridPane.columnIndex="2" GridPane.halignment="CENTER">
                                        <graphic>
-                                          <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../images/exit.png" />
+                                                <Image url="@../components/images/exit.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
@@ -78,10 +78,10 @@
                               </GridPane>
                               <ImageView fitHeight="90.0" fitWidth="243.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/faculter%20Logo.png" />
+                                    <Image url="@../components/images/InfoLogo.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Administrateur" textFill="WHITE" GridPane.columnIndex="1">
+                              <Label styleClass="admin-label" text="Administrateur" GridPane.columnIndex="1">
                                  <font>
                                     <Font name="System Bold Italic" size="32.0" />
                                  </font>
@@ -92,7 +92,7 @@
                   </AnchorPane>
                </top>
                <left>
-                  <AnchorPane style="-fx-background-color: linear-gradient(to bottom, #01252A 60.9%, #037F90 100%); -fx-border-radius: 5px;" BorderPane.alignment="CENTER">
+                  <AnchorPane styleClass="sidebar-pane" BorderPane.alignment="CENTER">
                      <children>
                         <GridPane minWidth="98.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columnConstraints>
@@ -105,38 +105,38 @@
                               <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                              <Button mnemonicParsing="false" styleClass="icon-button" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/package.png" />
+                                          <Image url="@../components/images/package.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                              <Button mnemonicParsing="false" styleClass="icon-button" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/package_car.png" />
+                                          <Image url="@../components/images/package_car.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                              <Button mnemonicParsing="false" styleClass="icon-button" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/package_box_alt.png" />
+                                          <Image url="@../components/images/package_box_alt.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
                               </Button>
-                              <Button mnemonicParsing="false" style="-fx-background-color: transparent;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                              <Button mnemonicParsing="false" styleClass="icon-button" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/Location%20icon.png" />
+                                          <Image url="@../components/images/Location%20icon.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -147,7 +147,7 @@
                   </AnchorPane>
                </left>
                <center>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #D9D9D9;" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="content-pane" BorderPane.alignment="CENTER">
                      <children>
                         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <top>
@@ -164,9 +164,10 @@
                                           <RowConstraints minHeight="40.0" prefHeight="60.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <HBox alignment="CENTER_LEFT" spacing="1.0" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BASELINE" GridPane.vgrow="ALWAYS">
+                                          <HBox alignment="CENTER_LEFT" spacing="1.0" stylesheets="@../Styles/BoneStyles.css" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BASELINE" GridPane.vgrow="ALWAYS">
                                              <children>
-                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #01252A;" text="Reception" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="nav-button" text="Reception" HBox.hgrow="ALWAYS">
+
                                                    <HBox.margin>
                                                       <Insets top="10.0" />
                                                    </HBox.margin>
@@ -174,7 +175,7 @@
                                                       <Font size="24.0" />
                                                    </font>
                                                 </Button>
-                                                <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #01252A;" text="Sortie" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                                <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="nav-button" text="Sortie" HBox.hgrow="ALWAYS">
                                                    <HBox.margin>
                                                       <Insets right="10.0" top="10.0" />
                                                    </HBox.margin>
@@ -186,7 +187,7 @@
                                           </HBox>
                                           <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                              <children>
-                                                <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="Ajouter" HBox.hgrow="ALWAYS">
+                                                <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="action-button" text="Ajouter" HBox.hgrow="ALWAYS">
                                                    <HBox.margin>
                                                       <Insets left="10.0" right="7.0" />
                                                    </HBox.margin>
@@ -198,7 +199,7 @@
                                           </HBox>
                                           <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
                                              <children>
-                                                <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-border-radius: 50; -fx-background-color: #ffffff;" text="Supprimer" HBox.hgrow="ALWAYS">
+                                                <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="action-button" text="Supprimer" HBox.hgrow="ALWAYS">
                                                    <HBox.margin>
                                                       <Insets left="7.0" right="10.0" />
                                                    </HBox.margin>
@@ -208,7 +209,7 @@
                                                 </Button>
                                              </children>
                                           </HBox>
-                                          <TextField promptText="Recherche">
+                                          <TextField promptText="Recherche" styleClass="search-field">
                                              <font>
                                                 <Font name="System Bold" size="16.0" />
                                              </font>
@@ -224,9 +225,9 @@
                            <center>
                               <AnchorPane BorderPane.alignment="CENTER">
                                  <children>
-                                    <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: linear-gradient(to bottom, #1F4D54 0%, #44ABBA 20.19%);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+                                    <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="table-scroll-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
                                        <content>
-                                          <TableView prefHeight="417.0" prefWidth="700.0" style="-fx-background-color: linear-gradient(to bottom, #1F4D54 0%, #44ABBA 20.19%);">
+                                          <TableView prefHeight="417.0" prefWidth="700.0" styleClass="main-table">
                                              <columns>
                                                 <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Code" />
                                                 <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Category" />
@@ -234,7 +235,7 @@
                                                 <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="Quantity" />
                                                 <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="f/d" />
                                                 <TableColumn editable="false" minWidth="110.0" prefWidth="-1.0" text="date de command" />
-                                                <TableColumn minWidth="30.0" prefWidth="-1.0" style="-fx-background-color: transparent;" text="">
+                                                <TableColumn minWidth="30.0" prefWidth="-1.0" styleClass="checkbox-column" text="">
                                                    <graphic>
                                                       <CheckBox mnemonicParsing="false" />
                                                    </graphic>
@@ -253,7 +254,23 @@
                               </AnchorPane>
                            </center>
                            <bottom>
-                              <AnchorPane prefHeight="96.0" prefWidth="802.0" BorderPane.alignment="CENTER" />
+                              <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="cancel-button" text="CANCEL">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="confirmButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="confirm-button" text="Confirm">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="15.0" left="15.0" right="15.0" top="10.0" />
+                                 </padding>
+                              </HBox>
                            </bottom>
                         </BorderPane>
                      </children>
