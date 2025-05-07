@@ -8,9 +8,17 @@
 package db.java;
 
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Connection;
+
+import db.configuration.ConfigDatabase;
 
 import db.errors.ConnectionFailedException;
+import db.errors.LoadPropertiesException;
+
 import db.java.EntityCoreDatabase;
+
 import testpackage.model.core.Fournisseur;
 
 /*
@@ -19,7 +27,7 @@ import testpackage.model.core.Fournisseur;
  * 	example :
  *		try {
  *		    // Create the database access object
- *		    FournisseurDatabase fournisseurDB = new FournisseurDatabase();
+ *		    FournisseurDatabase fournisseurDB = new FournisseurDatabase(null , null , null);
  *		    
  *		    // Or with custom ID column name
  *		    // FournisseurDatabase fournisseurDB = new FournisseurDatabase("custom_id_column");
@@ -30,7 +38,7 @@ import testpackage.model.core.Fournisseur;
  *		}
  *
  * 2. using CRUD operations : check Operation interface ...
- * 	2.1. add method
+ * 	2.1. add and atchoObj method 
  * 	example : 
  * 		Fournisseur newSupplier = new Fournisseur();
  * 		newSupplier.setIdF("F1001");
@@ -50,7 +58,7 @@ import testpackage.model.core.Fournisseur;
  * 		    System.err.println("Failed to add supplier: " + e.getMessage());
  * 		}
  *
- * 	2.2. findById method
+ * 	2.2. findById and atchoChwiyaObjWHakId method
  * 	example : 
  * 		try {
  * 		    Fournisseur foundSupplier = fournisseurDB.findById("F1001");
@@ -64,7 +72,7 @@ import testpackage.model.core.Fournisseur;
  * 		    System.err.println("Search failed: " + e.getMessage());
  * 		}
  *
- * 	2.3. update method
+ * 	2.3. update and bdlBdl method
  * 	example : 
  * 		try {
  * 		    // First get the existing supplier
@@ -85,7 +93,7 @@ import testpackage.model.core.Fournisseur;
  * 		} catch (OperationFailedException e) {
  * 		    System.err.println("Update failed: " + e.getMessage());
  * 		}
- * 	2.4. delete method
+ * 	2.4. remove and gla3_3liya method
  * 	example : 
  *		try {
  *		    Fournisseur toDelete = fournisseurDB.findById("F1001");
@@ -123,69 +131,47 @@ import testpackage.model.core.Fournisseur;
 
 public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 
-	/**
-	 * Constructor with customizable ID column name.
-	 * Initializes the database connection and sets the table name and ID column.
-	 * 
-	 * @param idCol The name of the ID column in the Fournisseur table
-	 * @throws ConnectionFailedException if database connection cannot be established
-	 */
-	public FournisseurDatabase(String idCol) throws ConnectionFailedException {
-		super.idColumn = idCol;
-		super.tableName = "Fournisseur";
+	public FournisseurDatabase(String idCol , String tableName) throws ConnectionFailedException , LoadPropertiesException {
+		super(
+				(idCol == null) ? "id_f" : idCol,
+				(tableName == null) ? "Fournisseur" : tableName
+		);
 	}
 
-	/**
-	 * Default constructor using standard column names.
-	 * Initializes with default ID column name "id_f" and table name "Fournisseur".
-	 * 
-	 * @throws ConnectionFailedException if database connection cannot be established
-	 */
-	public FournisseurDatabase() throws ConnectionFailedException {
-		super("id_f", "Fournisseur");
+	public FournisseurDatabase(Connection conn , String idCol , String tableName) throws ConnectionFailedException {
+		super(
+				conn,
+				(idCol == null) ? "id_f" : idCol,
+				(tableName == null) ? "Fournisseur" : tableName
+		);
 	}
 
-	/**
-	 * Retrieves the ID value from a Fournisseur object.
-	 * 
-	 * @param obj The Fournisseur object to get the ID from
-	 * @return The ID value as a String
-	 */
+	public FournisseurDatabase(ConfigDatabase conn , String idCol , String tableName) throws ConnectionFailedException {
+		super(
+				conn,
+				(idCol == null) ? "id_f" : idCol,
+				(tableName == null) ? "Fournisseur" : tableName
+		);
+	}
+
 	@Override
 	protected String getIdValue(Fournisseur obj) {
 		return obj.getId_f();
 	}
 
-	/**
-	 * Returns the number of columns in the Fournisseur table.
-	 * Used for building SQL insert statements.
-	 * @return The total number of columns (9)
-	 */
 	@Override
 	protected int getColumnCount() {
 		return 9; 
 	}
 
-	/**
-	 * Returns the number of parameters needed for update operations.
-	 * Excludes the ID column which is used in the WHERE clause.
-	 * @return The number of update parameters (8)
-	 */
 	@Override
 	protected int getUpdateParameterCount() {
 		return 8;
 	}
 
-	/**
-	 * Sets parameters for an INSERT statement using values from a Fournisseur object.
-	 * 
-	 * @param statement The PreparedStatement to set parameters on
-	 * @param obj The Fournisseur object containing data to insert
-	 * @throws SQLException if a database access error occurs
-	 */
 	@Override
 	protected void setAddParameters(PreparedStatement statement, Fournisseur obj) throws SQLException {
-		statement.setString(1, obj.getIdF());
+		statement.setString(1, obj.getId_f());
 		statement.setString(2, obj.getAdresse());
 		statement.setString(3, obj.getNum_tel());
 		statement.setString(4, obj.getNom_f());
@@ -196,50 +182,31 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 		statement.setString(9, obj.getRC());
 	}
 
-	/**
-	 * Sets parameters for an UPDATE statement using values from a Fournisseur object.
-	 * 
-	 * @param statement The PreparedStatement to set parameters on
-	 * @param obj The Fournisseur object containing updated values
-	 * @throws SQLException if a database access error occurs
-	 */
 	@Override
 	protected void setUpdateParameters(PreparedStatement statement, Fournisseur obj) throws SQLException {
 		statement.setString(1, obj.getAdresse());
-		statement.setString(2, obj.getNumeroTlph());
-		statement.setString(3, obj.getNom());
-		statement.setString(4, obj.getEmail());
+		statement.setString(2, obj.getNum_tel());
+		statement.setString(3, obj.getNom_f());
+		statement.setString(4, obj.getMail_f());
 		statement.setString(5, obj.getNIF());
 		statement.setString(6, obj.getNIS());
 		statement.setString(7, obj.getIA());
 		statement.setString(8, obj.getRC());
 	}
 
-	/**
-	 * Builds the SET clause for UPDATE statements.
-	 * 
-	 * @return A String containing the SET clause with all updatable columns
-	 */
 	@Override
 	protected String buildUpdateSetClause() {
 		return "adresse = ?, numero_tlph = ?, nom = ?, email = ?, NIF = ?, NIS = ?, IA = ?, RC = ?";
 	}
 
-	/**
-	 * Maps a ResultSet row to a Fournisseur object.
-	 * 
-	 * @param result The ResultSet containing database row data
-	 * @return A populated Fournisseur object
-	 * @throws SQLException if a database access error occurs
-	 */
 	@Override
 	public Fournisseur mapResultSetToEntity(ResultSet result) throws SQLException {
 		Fournisseur fournisseur = new Fournisseur();
-		fournisseur.setIdF(result.getString("id_f"));
+		fournisseur.setId_f(result.getString("id_f"));
 		fournisseur.setAdresse(result.getString("adresse"));
-		fournisseur.setNumeroTlph(result.getString("numero_tlph"));
-		fournisseur.setNom(result.getString("nom"));
-		fournisseur.setEmail(result.getString("email"));
+		fournisseur.setNum_tel(result.getString("numero_tlph"));
+		fournisseur.setNom_f(result.getString("nom"));
+		fournisseur.setMail_f(result.getString("email"));
 		fournisseur.setNIF(result.getString("NIF"));
 		fournisseur.setNIS(result.getString("NIS"));
 		fournisseur.setIA(result.getString("IA"));
@@ -247,25 +214,11 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 		return fournisseur;
 	}
 
-	/**
-	 * Generates the WHERE clause for search operations.
-	 * Searches in nom, email, and NIF fields using LIKE pattern matching.
-	 * 
-	 * @param keyword The search term to look for
-	 * @return A String containing the search condition
-	 */
 	@Override
-	public String getSearchCondition() {
+	public String getSearchCondition(String keyword) {
 		return "nom LIKE ? OR email LIKE ? OR NIF LIKE ?";
 	}
 
-	/**
-	 * Sets parameters for a search operation.
-	 * 
-	 * @param statement The PreparedStatement to set parameters on
-	 * @param keyword The search term to look for
-	 * @throws SQLException if a database access error occurs
-	 */
 	@Override
 	public void setSearchParameters(PreparedStatement statement, String keyword) throws SQLException {
 		String searchPattern = "%" + keyword + "%";

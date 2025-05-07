@@ -21,6 +21,9 @@
  *   	this class should not be visible to others
  *  @author Souane Abdenour , Berrached Maroua
  */
+
+
+// TODO: this shit is not important
 package db.configuration;
 
 import java.io.FileReader;
@@ -36,9 +39,11 @@ import db.configuration.ConfigDatabase;
 import db.errors.ConnectionFailedException;
 import db.errors.ReadSQLTableFileException;
 import db.errors.ExecuteStatementException;
+import db.errors.OperationFailedException;
 
 public class DatabaseInitializer {
 	private final ConfigDatabase conn;
+	private final Connection con;
 	private static final String fileName = "/db/gestiondinventaireyrm/tables.sql";
 
 	/**
@@ -46,11 +51,16 @@ public class DatabaseInitializer {
 	 * @param conn Valid ConfigDatabase connection handler
 	 * @param fileName Path to the SQL file containing table definitions
 	 */
-	public DatabaseInitializer(ConfigDatabase conn) throws ExecuteStatementException{
+	public DatabaseInitializer(ConfigDatabase conn) throws ExecuteStatementException , ConnectionFailedException , OperationFailedException{
 		this.conn = conn;
-		Statement statement = this.conn.createStatement();
-		if(!statment.execute("DROP DATABASE IF EXISTS project")){
-			throw new ExecuteStatementException("cannot drop database project");
+		this.con = this.conn.getConnection();
+		try{
+			Statement statement = this.con.createStatement();
+			if(!statement.execute("DROP DATABASE IF EXISTS project")){
+				throw new ExecuteStatementException("cannot drop database project");
+			}
+		}catch(SQLException error){
+			throw new OperationFailedException("fuck off" , error);
 		}
 	}
 	/**
