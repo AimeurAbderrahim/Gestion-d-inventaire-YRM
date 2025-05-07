@@ -7,74 +7,57 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ControllerStateMachine {
-    private Stage stage;
     private BaseController currentController;
-    private BaseController previousController;
+    private Stage primaryStage;
+    private Scene mainScene;
 
-    // Cache for controllers to avoid recreating them
-    private Map<Class<? extends BaseController>, BaseController> controllerCache = new HashMap<>();
+    // ✅ Correctly typed controller cache
+    private final Map<Class<? extends BaseController>, BaseController> controllerCache = new HashMap<>();
 
-    // Scene cache to avoid recreating scenes
-    private Scene scene;
-
-    public ControllerStateMachine(Stage stage) {
-        this.stage = stage;
-        // Create a single scene that will be reused
-        this.scene = new Scene(new javafx.scene.layout.StackPane());
+    public ControllerStateMachine(Stage primaryStage) {
+        this.primaryStage = primaryStage;
     }
 
-    // Cache-aware controller factory
-    @SuppressWarnings("unchecked")
-    public <T extends BaseController> T getController(Class<T> controllerClass) {
-        return (T) controllerCache.computeIfAbsent(controllerClass, clazz -> {
-            try {
-                // Assumes each controller has a constructor that accepts ControllerStateMachine
-                return clazz.getConstructor(ControllerStateMachine.class).newInstance(this);
-            } catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            }
-        });
-    }
-
-    // Main method for changing between states/controllers with performance optimizations
     public void changeState(BaseController newController) {
-        if (currentController != null) {
-            currentController.onExit();
+        if (newController == null) {
+            throw new IllegalArgumentException("New controller cannot be null");
         }
 
-        previousController = currentController;
-        currentController = newController;
+        this.currentController = newController;
 
-        // Reuse the scene but change the root
-        scene.setRoot(currentController.getRoot());
-
-        // Only set the scene if it's not already set
-        if (stage.getScene() != scene) {
-            stage.setScene(scene);
+        if (currentController.getRoot() == null) {
+            throw new IllegalStateException("Controller returned null root node");
         }
 
-        currentController.onEnter();
+        try {
+            if (mainScene == null) {
+                mainScene = new Scene(currentController.getRoot());
+                primaryStage.setScene(mainScene);
+            } else {
+                mainScene.setRoot(currentController.getRoot());
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to set scene root: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Failed to change application state", e);
+        }
+
+        primaryStage.setTitle("YRM Inventory Management - " +
+                currentController.getClass().getSimpleName().replace("Controller", ""));
     }
 
     public BaseController getCurrentController() {
         return currentController;
     }
 
-    public BaseController getPreviousController() {
-        return previousController;
-    }
-
-    // Go back to previous controller
-    public void goBack() {
-        if (previousController != null) {
-            BaseController temp = currentController;
-            currentController = previousController;
-            previousController = temp;
-
-            // Reuse the scene but change the root
-            scene.setRoot(currentController.getRoot());
-            currentController.onEnter();
-        }
+    // ✅ Now works correctly with generics and avoids the wildcard issue
+    public <T extends BaseController> T getController(Class<T> controllerClass) {
+        return controllerClass.cast(controllerCache.computeIfAbsent(controllerClass, clazz -> {
+            try {
+                return clazz.getConstructor(ControllerStateMachine.class).newInstance(this);
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to instantiate controller: " + clazz.getName(), e);
+            }
+        }));
     }
 }
