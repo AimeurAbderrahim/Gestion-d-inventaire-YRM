@@ -1,4 +1,4 @@
-package Controllers;
+package stateMachin;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;

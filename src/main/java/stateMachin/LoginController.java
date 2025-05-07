@@ -1,4 +1,4 @@
-package Controllers;
+package stateMachin;
 
 import javafx.fxml.FXML;
 import javafx.scene.Parent;

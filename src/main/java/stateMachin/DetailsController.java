@@ -1,4 +1,4 @@
-package Controllers;
+package stateMachin;
 
 import javafx.geometry.Insets;
 import javafx.scene.Parent;

@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="740.0" prefWidth="1350.0" styleClass="main-container" stylesheets="@../Styles/LoginPageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+<StackPane prefHeight="740.0" prefWidth="1350.0" styleClass="main-container" stylesheets="@../Styles/LoginPageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.LoginController">
    <children>
       <!-- Background image that fills the screen -->
       <ImageView fx:id="Background" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
