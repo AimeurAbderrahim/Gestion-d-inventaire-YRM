@@ -27,7 +27,7 @@
             </rowConstraints>
             <children>
                <TextField maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Code de salle" styleClass="Text-Field" GridPane.rowIndex="1" />
-               <TextField maxWidth="1.7976931348623157E308" promptText="Nom de servide" styleClass="Text-Field" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+               <TextField maxWidth="1.7976931348623157E308" promptText="Nom de service" styleClass="Text-Field" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                <TextField maxWidth="1.7976931348623157E308" promptText="Responsable " styleClass="Text-Field" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                <TextField maxWidth="1.7976931348623157E308" promptText="Type" styleClass="Text-Field" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                <TextField maxWidth="1.7976931348623157E308" promptText="Superficie" styleClass="Text-Field" GridPane.rowIndex="5" />

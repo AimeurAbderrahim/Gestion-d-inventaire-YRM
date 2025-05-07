@@ -8,10 +8,7 @@
 package db.java;
 
 // sql local jdk package
-import java.sql.ResultSet;
-import java.sql.PreparedStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -147,8 +144,8 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		List<T> entities = new ArrayList<>();
 		String sql = "SELECT * FROM " + this.tableName;
 
-		try (Statement statement = this.connection.createStatement(); 
-				ResultSet result = statement.executeQuery(sql)) {
+		try (Statement statement = this.connection.createStatement();
+			 ResultSet result = statement.executeQuery(sql)) {
 			while (result.next()) {
 				entities.add(this.mapResultSetToEntity(result));
 			}

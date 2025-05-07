@@ -10,6 +10,7 @@ package db.java;
 import java.sql.SQLException;
 
 import db.errors.ConnectionFailedException;
+import db.errors.LoadPropertiesException;
 import db.java.EntityCoreDatabase;
 import testpackage.model.core.Fournisseur;
 
@@ -141,7 +142,7 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 	 * 
 	 * @throws ConnectionFailedException if database connection cannot be established
 	 */
-	public FournisseurDatabase() throws ConnectionFailedException {
+	public FournisseurDatabase() throws ConnectionFailedException, LoadPropertiesException {
 		super("id_f", "Fournisseur");
 	}
 
