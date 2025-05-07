@@ -1,8 +1,8 @@
 package testpackage.model.core;
 
-import Operations.ImplementId;
+import testpackage.model.enumeration.Roles;
 
-public class Compte implements ImplementId {
+public class Compte {
 	private String id_C ;
 	private String nom_utilisateur ;
 	private String mot_de_passe ;
@@ -14,7 +14,7 @@ public class Compte implements ImplementId {
 		this.nom_utilisateur = nom_utilisateur;
 		this.mot_de_passe = mot_de_passe;
 		this.roles = roles;
-		this.id_C = implementsId();
+		// this.id_C = implementsId();
 	}
 
 	public String getId_C() {
@@ -49,26 +49,26 @@ public class Compte implements ImplementId {
 		this.roles = roles;
 	}
 
-	@Override
-	public String implementsId() {
-		if (roles==Roles.Administrateur){
-			comptageA++;
-			return String.format("%03d", comptageA)+"A";
-		} else if (roles==Roles.Secretaire) {
-			comptageS++;
-			return String.format("%03d", comptageS)+"S";
-		}
-		else {
-			comptageM++ ;
-			return String.format("%03d", comptageM)+"M";
-		}
-	}
+	// @Override
+	// public String implementsId() {
+	// 	if (roles==Roles.Administrateur){
+	// 		comptageA++;
+	// 		return String.format("%03d", comptageA)+"A";
+	// 	} else if (roles==Roles.Secretaire) {
+	// 		comptageS++;
+	// 		return String.format("%03d", comptageS)+"S";
+	// 	}
+	// 	else {
+	// 		comptageM++ ;
+	// 		return String.format("%03d", comptageM)+"M";
+	// 	}
+	// }
 
-	public static void main(String[] args) {
-		Compte compte=new Compte("","",Roles.Administrateur);
-		System.out.println(compte.getId_C());
-		System.out.println(compte.getId_C());
-		Compte compte1=new Compte("","",Roles.Administrateur);
-		System.out.println(compte1.getId_C());
-	}
+	// public static void main(String[] args) {
+	// 	Compte compte=new Compte("","",Roles.Administrateur);
+	// 	System.out.println(compte.getId_C());
+	// 	System.out.println(compte.getId_C());
+	// 	Compte compte1=new Compte("","",Roles.Administrateur);
+	// 	System.out.println(compte1.getId_C());
+	// }
 }

@@ -1,18 +1,17 @@
 package testpackage.model.core;
 
-import Fournisseurs.Fournisseur;
-import Operations.ImplementId;
-import Produit.ProduitModel;
+import testpackage.model.core.Fournisseur;
+import testpackage.model.core.ProduitModel;
 
 import java.time.LocalDateTime;
 
-public class BonReception implements ImplementId {
+public class BonReception {
 	private String id_bonR ;
 	private LocalDateTime dateReception;
 	private boolean etat ;
 
 	public BonReception() {
-		this.id_bonR = implementsId();
+		// this.id_bonR = implementsId();
 	}
 	public String getId_bonR() {
 		return id_bonR;
@@ -41,8 +40,8 @@ public class BonReception implements ImplementId {
 		}
 	}
 
-	@Override
-	public String implementsId() {
-		return "R";
-	}
+	// @Override
+	// public String implementsId() {
+	// 	return "R";
+	// }
 }

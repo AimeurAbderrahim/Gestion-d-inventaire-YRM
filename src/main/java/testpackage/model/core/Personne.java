@@ -1,12 +1,11 @@
 package testpackage.model.core;
 
-import Emplacements.Emplacement;
-import Exceptions.NotNullException;
-import Operations.ImplementId;
+import testpackage.model.core.Emplacement;
+import testpackage.model.errors.NotNullException;
 
 import java.time.LocalDate;
 
-public class Personne implements ImplementId {
+public class Personne {
 	private String id_p ;
 	private String nom ;
 	private String prenom ;
@@ -31,7 +30,7 @@ public class Personne implements ImplementId {
 		this.adresse = adresse;
 		this.mail_P = email;
 		this.numero_tel_personne = numero_tel_personne;
-		this.id_p = implementsId();
+		// this.id_p = implementsId();
 	}
 
 	public String getId_p() {
@@ -90,8 +89,8 @@ public class Personne implements ImplementId {
 		this.numero_tel_personne = numero_tel_personne;
 	}
 
-	@Override
-	public String implementsId() {
-		return String.format("%04d",comptageP);
-	}
+	// @Override
+	// public String implementsId() {
+	// 	return String.format("%04d",comptageP);
+	// }
 }

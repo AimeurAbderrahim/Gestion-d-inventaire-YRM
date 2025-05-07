@@ -1,15 +1,13 @@
 package testpackage.model.core;
 
-import Operations.ImplementId;
-
 import java.time.LocalDateTime;
 
-public class BonSortie implements ImplementId {
+public class BonSortie {
 	private String id_BonS ;
 	private LocalDateTime date_sortie ;
 	private boolean etat ;
 	public BonSortie() {
-		this.id_BonS = implementsId();
+		// this.id_BonS = implementsId();
 	}
 
 	public String getId_BonS() {
@@ -39,8 +37,8 @@ public class BonSortie implements ImplementId {
 		}
 	}
 
-	@Override
-	public String implementsId() {
-		return "S";
-	}
+	// @Override
+	// public String implementsId() {
+	// 	return "S";
+	// }
 }

@@ -1,14 +1,13 @@
 package testpackage.model.core;
 
-import Bons.BonSortie;
-import Exceptions.MinimumException;
-import Exceptions.NotNullException;
-import Operations.ImplementId;
+import testpackage.model.core.BonSortie;
+import testpackage.model.errors.MinimumException;
+import testpackage.model.errors.NotNullException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class ProduitArticle implements ImplementId {
+public class ProduitArticle {
 	private String id_article ;
 	private LocalDate date_peremption ;
 	private LocalDateTime date_achat ;
@@ -47,9 +46,9 @@ public class ProduitArticle implements ImplementId {
 		this.date_achat = date_achat;
 	}
 
-	@Override
-	public String implementsId() {
-		comptageA++ ;
-		return String.format("%04d",comptageA);
-	}
+	// @Override
+	// public String implementsId() {
+	// 	comptageA++ ;
+	// 	return String.format("%04d",comptageA);
+	// }
 }

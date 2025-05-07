@@ -1,5 +1,8 @@
 package testpackage.model.core;
 
+import testpackage.model.enumeration.TypeSalle;
+import testpackage.model.enumeration.Services;
+
 public class Emplacement {
 	private String id_emplacement ;
 	private TypeSalle typeSalle ;
@@ -7,6 +10,8 @@ public class Emplacement {
 	private int bureau ;
 	private Services service ;
 
+
+	public Emplacement() {}
 	public Emplacement(String id_emplacement, TypeSalle typeSalle, double superficie, int bureau, Services service) throws NullPointerException {
 		this.id_emplacement = id_emplacement;
 		this.typeSalle = typeSalle;
