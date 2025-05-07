@@ -12,5 +12,12 @@ module testpackage.gestiondinventaireyrm {
     exports testpackage.gestiondinventaireyrm;
     requires javafx.graphics;
 
-    exports stateMachin to javafx.graphics;
+    // Open the stateMachin package to javafx.fxml module
+    opens stateMachin to javafx.fxml;
+    // Export stateMachin package to allow access from other modules
+    exports stateMachin;
+
+
+    // Opens your package to JavaFX
+
 }
