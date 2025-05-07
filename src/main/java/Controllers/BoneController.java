@@ -1,4 +1,4 @@
-package stateMachin;
+package Controllers;
 
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
@@ -9,10 +9,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class FournisurController extends BaseController {
+public class BoneController extends BaseController {
     private VBox root;
 
-    public FournisurController(ControllerStateMachine stateMachine) {
+    public BoneController(ControllerStateMachine stateMachine) {
         super(stateMachine);
         createView();
     }
@@ -22,12 +22,12 @@ public class FournisurController extends BaseController {
         root.setPadding(new Insets(15));
 
         // Header
-        Label title = new Label("Fournisur Management");
+        Label title = new Label("Bone Management");
         title.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
 
         // Content
         ListView<String> listView = new ListView<>();
-        listView.getItems().addAll("Supplier 1", "Supplier 2", "Supplier 3");
+        listView.getItems().addAll("Bone 1", "Bone 2", "Bone 3");
         VBox.setVgrow(listView, Priority.ALWAYS);
 
         // Action buttons
@@ -38,10 +38,13 @@ public class FournisurController extends BaseController {
         Button popupBtn = new Button("Pop Up");
         popupBtn.setOnAction(e -> showPopUp());
 
-        Button boneBtn = new Button("Go to Bone");
-        boneBtn.setOnAction(e -> stateMachine.changeState(new BoneController(stateMachine)));
+        Button locationBtn = new Button("Go to Location");
+        locationBtn.setOnAction(e -> stateMachine.changeState(new LocationController(stateMachine)));
 
-        actions.getChildren().addAll(detailsBtn, popupBtn, boneBtn);
+        Button fournisurBtn = new Button("Go to Fournisur");
+        fournisurBtn.setOnAction(e -> stateMachine.changeState(new FournisurController(stateMachine)));
+
+        actions.getChildren().addAll(detailsBtn, popupBtn, locationBtn, fournisurBtn);
 
         root.getChildren().addAll(title, listView, actions);
     }
@@ -63,6 +66,6 @@ public class FournisurController extends BaseController {
 
     // Example method implementation
     public void method(String type) {
-        System.out.println("Fournisur method called with: " + type);
+        System.out.println("Bone method called with: " + type);
     }
 }

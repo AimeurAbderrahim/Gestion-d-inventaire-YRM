@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../Styles/ProduitPageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testpackage.gestiondinventaireyrm.components.ProduitPage">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../Styles/ProduitPageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProductController">
     <children>
         <AnchorPane layoutY="118.0" prefHeight="620.0" prefWidth="98.0" style="-fx-background-color: linear-gradient(to bottom, #01252A 60.9%, #037F90 100%); -fx-border-radius: 5px;">
             <children>
