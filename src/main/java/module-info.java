@@ -22,6 +22,7 @@ module testpackage.gestiondinventaireyrm {
 	// exports testpackage.model.errors to javafx.fxml;
 	// exports testpackage.model.generator to javafx.fxml;
 
+
 	opens testpackage.gestiondinventaireyrm to javafx.fxml;
 
 	opens db.configuration to javafx.fxml;
@@ -40,4 +41,5 @@ module testpackage.gestiondinventaireyrm {
 	exports db.errors;
 	exports db.test;
 	exports db.java;
+
 }

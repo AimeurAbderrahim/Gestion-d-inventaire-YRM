@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<Scene stylesheets="@../Styles/LoginPageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <StackPane prefHeight="740.0" prefWidth="1350.0" styleClass="main-container" stylesheets="@../Styles/LoginPageStyles.css">
+      <children>
+         <!-- Background image that fills the screen -->
+         <ImageView fx:id="Background" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+            <image>
+               <Image url="@../components/images/WelcomPageBackground.png" />
+            </image>
+         </ImageView>
+
+         <!-- Login form container -->
+         <VBox alignment="CENTER" fillWidth="false" maxHeight="600.0" maxWidth="500.0" minHeight="400.0" minWidth="300.0" prefHeight="500.0" prefWidth="400.0" StackPane.alignment="CENTER">
+            <children>
+               <AnchorPane fx:id="ConnexionStyle" maxHeight="500.0" maxWidth="400.0" minHeight="400.0" minWidth="300.0" prefHeight="500.0" prefWidth="400.0" styleClass="login-container" stylesheets="@../Styles/LoginPageStyles.css">
+                  <children>
+                     <VBox alignment="TOP_CENTER" layoutX="35.0" layoutY="39.0" spacing="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
+                        <children>
+                           <Label fx:id="ConnexionLabel" alignment="CENTER" prefHeight="58.0" prefWidth="203.0" stylesheets="@../Styles/LoginPageStyles.css" text="Connexion">
+                              <font>
+                                 <Font name="System Bold" size="40.0" />
+                              </font>
+                              <textFill>
+                                 <LinearGradient endX="0.8199052132701422" endY="1.0" startX="0.8151658767772513">
+                                    <stops>
+                                       <Stop>
+                                          <color>
+                                             <Color red="0.004800000227987766" green="0.14189332723617554" blue="0.1599999964237213" />
+                                          </color>
+                                       </Stop>
+                                       <Stop offset="0.327733671632018">
+                                          <color>
+                                             <Color red="0.004800000227987766" green="0.14189332723617554" blue="0.1599999964237213" />
+                                          </color>
+                                       </Stop>
+                                       <Stop offset="1.0">
+                                          <color>
+                                             <Color red="0.0117647061124444" green="0.49803921580314636" blue="0.5647059082984924" />
+                                          </color>
+                                       </Stop>
+                                    </stops>
+                                 </LinearGradient>
+                              </textFill>
+                           </Label>
+                        </children>
+                     </VBox>
+
+                     <VBox alignment="CENTER" spacing="25.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+                        <children>
+                           <HBox alignment="CENTER" minHeight="75.0" prefHeight="75.0" prefWidth="322.0" styleClass="UsernameContainer" stylesheets="@../Styles/LoginPageStyles.css">
+                              <children>
+                                 <ImageView fitHeight="52.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../components/images/UsernameIcon.png" />
+                                    </image>
+                                    <HBox.margin>
+                                       <Insets left="15.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                                 <TextField alignment="CENTER" focusTraversable="false" promptText="Nom d'utilisateur" styleClass="PasswordTextFeild" stylesheets="@../Styles/LoginPageStyles.css" HBox.hgrow="ALWAYS">
+                                    <font>
+                                       <Font size="34.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                       <Insets top="10.0" />
+                                    </opaqueInsets>
+                                    <HBox.margin>
+                                       <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                 </TextField>
+                              </children>
+                           </HBox>
+
+                           <HBox alignment="CENTER" minHeight="75.0" prefHeight="75.0" prefWidth="322.0" styleClass="UsernameContainer" stylesheets="@../Styles/LoginPageStyles.css">
+                              <children>
+                                 <ImageView fitHeight="50.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../components/images/MotDePasseIcon.png" />
+                                    </image>
+                                    <HBox.margin>
+                                       <Insets left="10.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                                 <TextField fx:id="PasswordTextFeild" alignment="CENTER" focusTraversable="false" promptText="Mot de passe" styleClass="PasswordTextFeild" stylesheets="@../Styles/LoginPageStyles.css" HBox.hgrow="ALWAYS">
+                                    <font>
+                                       <Font size="10.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                       <Insets top="10.0" />
+                                    </opaqueInsets>
+                                    <HBox.margin>
+                                       <Insets left="10.0" right="10.0" />
+                                    </HBox.margin>
+                                 </TextField>
+                              </children>
+                           </HBox>
+      
+                           <Button fx:id="ConnexionButton" maxWidth="1.7976931348623157E308" minHeight="60.0" mnemonicParsing="false" styleClass="login-button" stylesheets="@../Styles/LoginPageStyles.css" text="Se Connecter" textFill="WHITE">
+                              <font>
+                                 <Font name="System Bold" size="27.0" />
+                              </font>
+                           </Button>
+                        </children>
+                     </VBox>
+                  </children>
+               </AnchorPane>
+            </children>
+         </VBox>
+
+         <!-- Bottom logos -->
+         <HBox alignment="BOTTOM_LEFT" maxHeight="125.0" maxWidth="250.0" prefHeight="125.0" prefWidth="250.0" spacing="10.0" StackPane.alignment="BOTTOM_LEFT">
+            <children>
+               <ImageView fitHeight="105.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../components/images/UstoLogo.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="104.0" fitWidth="123.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../components/images/InfoLogo.png" />
+                  </image>
+               </ImageView>
+            </children>
+            <padding>
+               <Insets bottom="10.0" left="10.0" />
+            </padding>
+         </HBox>
+
+         <!-- Top logo -->
+         <ImageView fitHeight="112.0" fitWidth="146.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_LEFT">
+            <image>
+               <Image url="@../components/images/InfoLogo.png" />
+            </image>
+            <StackPane.margin>
+               <Insets left="10.0" top="10.0" />
+            </StackPane.margin>
+         </ImageView>
+      </children>
+   </StackPane>
+</Scene>
