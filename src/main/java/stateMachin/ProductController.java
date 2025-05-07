@@ -1,76 +1,55 @@
 package stateMachin;
 
 import javafx.application.Platform;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 
 public class ProductController extends BaseController {
-    private VBox root;
-    private ListView<String> listView;
+    @FXML private Label titleLabel;
+    @FXML private ListView<String> productListView;
+    @FXML private Button detailsButton;
+    @FXML private Button popupButton;
+    @FXML private Button locationButton;
+
     private boolean initialized = false;
 
     public ProductController(ControllerStateMachine stateMachine) {
         super(stateMachine);
     }
 
-    private void lazyInit() {
+    @Override
+    protected void loadFXML() {
+        root = FXMLLoaderUtil.loadFXML("/testpackage/gestiondinventaireyrm/pages/ProductView.fxml", this);
+        initialize();
+    }
+
+    private void initialize() {
         if (initialized) return;
 
-        root = new VBox(10);
-        root.setPadding(new Insets(15));
-
-        // Header
-        Label title = new Label("Product Management");
-        title.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-
-        // Content - using a more efficient cell factory approach
-        listView = new ListView<>();
+        // Setup button actions
+        detailsButton.setOnAction(e -> showDetails());
+        popupButton.setOnAction(e -> showPopUp());
+        locationButton.setOnAction(e -> goToLocation());
 
         // Load items asynchronously
         Platform.runLater(() -> {
-            listView.getItems().addAll("Product 1", "Product 2", "Product 3");
+            productListView.getItems().addAll("Product 1", "Product 2", "Product 3");
         });
-
-        VBox.setVgrow(listView, Priority.ALWAYS);
-
-        // Action buttons
-        HBox actions = new HBox(10);
-        Button detailsBtn = new Button("Details");
-        detailsBtn.setOnAction(e -> showDetails());
-
-        Button popupBtn = new Button("Pop Up");
-        popupBtn.setOnAction(e -> showPopUp());
-
-        Button locationBtn = new Button("Go to Location");
-        locationBtn.setOnAction(e -> goToLocation());
-
-        actions.getChildren().addAll(detailsBtn, popupBtn, locationBtn);
-        root.getChildren().addAll(title, listView, actions);
 
         initialized = true;
     }
 
-    @Override
-    public Parent getRoot() {
-        lazyInit();
-        return root;
-    }
-
     // Show details view
     private void showDetails() {
-        DetailsController detailsController = new DetailsController(stateMachine, this);
+        DetailsController detailsController = (DetailsController) stateMachine.getController(DetailsController.class);
         stateMachine.changeState(detailsController);
     }
 
     // Show popup view
     private void showPopUp() {
-        PopUpController popUpController = new PopUpController(stateMachine, this);
+        PopUpController popUpController = (PopUpController) stateMachine.getController(PopUpController.class);
         stateMachine.changeState(popUpController);
     }
 
@@ -86,10 +65,10 @@ public class ProductController extends BaseController {
     public void onEnter() {
         super.onEnter();
         // Refresh data if needed when entering this state
-        if (listView != null && listView.getItems().isEmpty()) {
+        if (productListView != null && productListView.getItems().isEmpty()) {
             Platform.runLater(() -> {
-                listView.getItems().addAll("Product 1", "Product 2", "Product 3");
+                productListView.getItems().addAll("Product 1", "Product 2", "Product 3");
             });
         }
     }
-}
+}//
