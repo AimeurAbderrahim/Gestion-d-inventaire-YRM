@@ -21,6 +21,7 @@ import db.configuration.ConfigDatabase;
 import db.errors.OperationFailedException;
 import db.errors.ConnectionFailedException;
 import db.errors.LoadPropertiesException;
+import db.errors.CloseConnectionException;
 
 public abstract class EntityCoreDatabase<T> implements Operation<T> {
 	protected ConfigDatabase configuration;
@@ -44,11 +45,38 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 	}
 
 	/**
-	 * Adds a new entity to the database.
+	 * Constructs a new EntityCoreDatabase instance.
 	 * 
-	 * @param obj The entity object to add
-	 * @throws OperationFailedException If the operation fails
+	 * @param connection connection interface used to applied operations to the database
+	 * @param idColumn The name of the primary key column in the database table
+	 * @param tableName The name of the database table
+	 * @throws LoadPropertiesException If database properties cannot be loaded
+	 * @throws ConnectionFailedException If database connection cannot be established
 	 */
+	public EntityCoreDatabase(Connection connection , String idColumn, String tableName){
+		this.idColumn = idColumn;
+		this.tableName = tableName;
+		this.configuration = null;
+		this.connection = connection;
+	}
+
+	/**
+	 * Constructs a new EntityCoreDatabase instance.
+	 * 
+	 * @param con_connection configuration of connection object used to applied operations to the database
+	 * @param idColumn The name of the primary key column in the database table
+	 * @param tableName The name of the database table
+	 * @throws LoadPropertiesException If database properties cannot be loaded
+	 * @throws ConnectionFailedException If database connection cannot be established
+	 */
+	public EntityCoreDatabase(ConfigDatabase con_connection , String idColumn, String tableName) throws ConnectionFailedException{
+		this.idColumn = idColumn;
+		this.tableName = tableName;
+		this.configuration = con_connection;
+		this.connection = this.configuration.getConnection();
+	}
+
+
 	@Override
 	public void add(T obj) throws OperationFailedException {
 		String sql = "INSERT INTO " + this.tableName + " VALUES (?" + ", ?".repeat(this.getColumnCount() - 1) + ")";
@@ -61,13 +89,18 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		}
 	}
 
-	/**
-	 * Updates an existing entity in the database.
-	 * 
-	 * @param oldObj The current version of the entity (used for ID lookup)
-	 * @param newObj The new version of the entity with updated values
-	 * @throws OperationFailedException If the operation fails
-	 */
+	@Override
+	public void addMany(List<T> obj) throws OperationFailedException {
+		for(T ob : obj){
+			this.add(ob);
+		}
+	}
+
+	@Override
+	public void atchoObj(T obj) throws OperationFailedException {
+		this.add(obj);
+	}
+
 	@Override
 	public void update(T oldObj, T newObj) throws OperationFailedException {
 		String sql = "UPDATE " + this.tableName + " SET " + this.buildUpdateSetClause() + " WHERE " + this.idColumn + " = ?";
@@ -81,13 +114,11 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		}
 	}
 
-	/**
-	 * Removes an entity from the database.
-	 * 
-	 * @param obj The entity to remove
-	 * @return true if removal was successful, false otherwise
-	 * @throws OperationFailedException If the operation fails
-	 */
+	@Override
+	public void bdlBdl(T oldObj, T newObj) throws OperationFailedException {
+		this.update(oldObj , newObj);
+	}
+
 	@Override
 	public boolean remove(T obj) throws OperationFailedException {
 		String sql = "DELETE FROM " + this.tableName + " WHERE " + this.idColumn + " = ?";
@@ -100,25 +131,16 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		}
 	}
 
-	/**
-	 * Searches for an entity in the database.
-	 * 
-	 * @param obj The entity to search for
-	 * @return true if the entity exists, false otherwise
-	 * @throws OperationFailedException If the operation fails
-	 */
+	@Override
+	public boolean gla3_3liya(T obj) throws OperationFailedException{
+		return this.remove(obj);
+	}
+
 	@Override
 	public boolean search(T obj) throws OperationFailedException {
 		return this.existsById(this.getIdValue(obj));
 	}
 
-	/**
-	 * Finds an entity by its ID.
-	 * 
-	 * @param id The ID of the entity to find
-	 * @return The found entity, or null if not found
-	 * @throws OperationFailedException If the operation fails
-	 */
 	@Override
 	public T findById(String id) throws OperationFailedException {
 		String sql = "SELECT * FROM " + this.tableName + " WHERE " + this.idColumn + " = ?";
@@ -134,21 +156,16 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 			throw new OperationFailedException("Failed to find object by ID in " + this.tableName, e);
 		}
 	}
+	public T atchoChwiyaObjWHakId(String id) throws OperationFailedException{
+		return this.findById(id);
+	}
 
-	/**
-	 * Retrieves all entities from the database.
-	 * Note: This may be memory-intensive for large datasets.
-	 * 
-	 * @return List of all entities
-	 * @throws OperationFailedException If the operation fails
-	 */
 	@Override
 	public List<T> findAll() throws OperationFailedException {
 		List<T> entities = new ArrayList<>();
 		String sql = "SELECT * FROM " + this.tableName;
 
-		try (Statement statement = this.connection.createStatement(); 
-				ResultSet result = statement.executeQuery(sql)) {
+		try (PreparedStatement statement = this.connection.prepareStatement(sql); ResultSet result = statement.executeQuery()) {
 			while (result.next()) {
 				entities.add(this.mapResultSetToEntity(result));
 			}
@@ -158,31 +175,21 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		}
 	}
 
-	/**
-	 * Counts all entities in the database.
-	 * 
-	 * @return The total count of entities
-	 * @throws OperationFailedException If the operation fails
-	 */
+	public List<T> atchoGa3() throws OperationFailedException{
+		return this.findAll();
+	}
+
 	@Override
 	public long countAll() throws OperationFailedException {
 		String sql = "SELECT COUNT(*) FROM " + this.tableName;
 
-		try (Statement statement = this.connection.createStatement(); 
-				ResultSet result = statement.executeQuery(sql)) {
+		try (PreparedStatement  statement = this.connection.prepareStatement(sql); ResultSet result = statement.executeQuery()) {
 			return result.next() ? result.getLong(1) : 0;
 		} catch (SQLException e) {
 			throw new OperationFailedException("Failed to count objects in " + this.tableName, e);
 		}
 	}
 
-	/**
-	 * Checks if an entity exists with the given ID.
-	 * 
-	 * @param id The ID to check
-	 * @return true if an entity exists, false otherwise
-	 * @throws OperationFailedException If the operation fails
-	 */
 	@Override
 	public boolean existsById(String id) throws OperationFailedException {
 		String sql = "SELECT 1 FROM " + this.tableName + " WHERE " + this.idColumn + " = ? LIMIT 1";
@@ -196,18 +203,11 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		}
 	}
 
-	/**
-	 * Gets the maximum ID value from the database.
-	 * 
-	 * @return The highest ID value, or 0 if no records exist
-	 * @throws OperationFailedException If the operation fails
-	 */
 	@Override
 	public long getLastIndexID() throws OperationFailedException {
 		String sql = "SELECT MAX(" + this.idColumn + ") FROM " + this.tableName;
 
-		try (Statement statement = this.connection.createStatement(); 
-				ResultSet result = statement.executeQuery(sql)) {
+		try (PreparedStatement   statement = this.connection.prepareStatement(sql); ResultSet result = statement.executeQuery()) {
 			return result.next() ? result.getLong(1) : 0;
 		} catch (SQLException e) {
 			throw new OperationFailedException("Failed to get last index ID from " + this.tableName, e);
@@ -296,8 +296,18 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 	 * @param statement The Statement to close
 	 * @throws SQLException If a database error occurs during closing
 	 */
-	protected void closeResources(ResultSet resultSet, Statement statement) throws SQLException {
+	protected void closeResources(ResultSet resultSet, PreparedStatement statement) throws SQLException {
 		if (resultSet != null) resultSet.close();
 		if (statement != null) statement.close();
+	}
+
+	protected void clean() throws CloseConnectionException{
+		if(this.configuration != null || this.configuration.testConnection())
+			this.configuration.closeConnection();
+		try{
+			this.connection.close();
+		}catch(SQLException error) {
+			throw new CloseConnectionException("failed to close connection" , error);
+		}
 	}
 }

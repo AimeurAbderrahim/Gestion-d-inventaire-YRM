@@ -1,12 +1,10 @@
 package testpackage.model.core;
 
-import Bons.BonReception;
-import Exceptions.NotNullException;
-import Operations.ImplementId;
+import testpackage.model.errors.NotNullException;
 
 import java.util.List;
 
-public class Fournisseur implements ImplementId {
+public class Fournisseur {
 	private String id_f ;
 	private String nom_f ;
 	private String adresse ;
@@ -17,6 +15,8 @@ public class Fournisseur implements ImplementId {
 	private String IA;
 	private String RC;
 	static int comptageF=0 ;
+
+	public Fournisseur(){}
 	public Fournisseur( String nom_f, String adresse, String num_tel, String mail_f, String NIF, String NIS, String IA, String RC) throws NotNullException {
 		if(
 				(num_tel	==	null && mail_f	==	null) 	|| 
@@ -36,7 +36,9 @@ public class Fournisseur implements ImplementId {
 		this.NIS = NIS;
 		this.IA = IA;
 		this.RC = RC;
-		this.id_f = implementsId();
+		// for test
+		// this.id_f = "F006";
+		// this.id_f = implementsId();
 	}
 
 
@@ -112,10 +114,10 @@ public class Fournisseur implements ImplementId {
 	public void setRC(String RC) {
 		this.RC = RC;
 	}
-
-	@Override
-	public String implementsId() {
-		comptageF++ ;
-		return String.format("%02d",comptageF);
-	}
+	// NOTE: replaced with UUID generator
+	// @Override
+	// public String implementsId() {
+	// 	comptageF++ ;
+	// 	return String.format("%02d",comptageF);
+	// }
 }

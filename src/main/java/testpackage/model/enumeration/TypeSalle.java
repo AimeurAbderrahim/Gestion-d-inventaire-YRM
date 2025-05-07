@@ -1,9 +1,9 @@
 package testpackage.model.enumeration;
 
 public enum TypeSalle {
-	Reunion,
-	Recherche,
-	Technique,
-	Bureaux,
-	Support
+	REUNION,
+	RECHERCHE,
+	TECHNIQUE,
+	BUREAUX,
+	SUPPORT
 }

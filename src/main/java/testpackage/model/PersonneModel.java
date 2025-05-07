@@ -1,5 +1,7 @@
 package testpackage.model;
 
+import testpackage.model.core.Personne;
+
 import java.util.HashMap;
 
 public class PersonneModel<K,V> {
