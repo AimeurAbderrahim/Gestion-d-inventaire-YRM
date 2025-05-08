@@ -1,64 +1,57 @@
 package stateMachin;
 
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 
 public class FournisurController extends BaseController {
-    private VBox root;
+    @FXML private Label titleLabel;
+    @FXML private ListView<String> supplierListView;
+    @FXML private Button detailsButton;
+    @FXML private Button popupButton;
+    @FXML private Button boneButton;
+
+    private boolean initialized = false;
 
     public FournisurController(ControllerStateMachine stateMachine) {
         super(stateMachine);
-        createView();
-    }
-
-    private void createView() {
-        root = new VBox(10);
-        root.setPadding(new Insets(15));
-
-        // Header
-        Label title = new Label("Fournisur Management");
-        title.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-
-        // Content
-        ListView<String> listView = new ListView<>();
-        listView.getItems().addAll("Supplier 1", "Supplier 2", "Supplier 3");
-        VBox.setVgrow(listView, Priority.ALWAYS);
-
-        // Action buttons
-        HBox actions = new HBox(10);
-        Button detailsBtn = new Button("Details");
-        detailsBtn.setOnAction(e -> showDetails());
-
-        Button popupBtn = new Button("Pop Up");
-        popupBtn.setOnAction(e -> showPopUp());
-
-        Button boneBtn = new Button("Go to Bone");
-        boneBtn.setOnAction(e -> stateMachine.changeState(new BoneController(stateMachine)));
-
-        actions.getChildren().addAll(detailsBtn, popupBtn, boneBtn);
-
-        root.getChildren().addAll(title, listView, actions);
     }
 
     @Override
-    public Parent getRoot() {
-        return root;
+    protected void loadFXML() {
+        root = FXMLLoaderUtil.loadFXML("/stateMachin/pages/FournisurView.fxml", this);
+        initialize();
     }
 
-    // Show details view
-    private void showDetails() {
-        stateMachine.changeState(new DetailsController(stateMachine, this));
+    private void initialize() {
+        if (initialized) return;
+
+        // Setup button actions
+        boneButton.setOnAction(e -> goToBone());
+
+        // Load items
+        supplierListView.getItems().addAll("Supplier 1", "Supplier 2", "Supplier 3");
+
+        initialized = true;
     }
 
-    // Show popup view
-    private void showPopUp() {
-        stateMachine.changeState(new PopUpController(stateMachine, this));
+
+
+       // Navigate to bone screen
+    private void goToBone() {
+        BoneController boneController =
+                (BoneController) stateMachine.getController(BoneController.class);
+        stateMachine.changeState(boneController);
+    }
+
+    @Override
+    public void onEnter() {
+        super.onEnter();
+        // Refresh data if needed when entering this state
+        if (supplierListView != null && supplierListView.getItems().isEmpty()) {
+            supplierListView.getItems().addAll("Supplier 1", "Supplier 2", "Supplier 3");
+        }
     }
 
     // Example method implementation

@@ -23,7 +23,7 @@ public abstract class BaseController {
         // Default implementation does nothing
         // Override in subclasses that use FXML
     }
-
+    //
     // Called when entering this state
     public void onEnter() {
         System.out.println("Entering " + getClass().getSimpleName());

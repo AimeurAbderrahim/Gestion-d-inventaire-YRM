@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml">
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15" />
+    </padding>
+
+    <Label fx:id="titleLabel" text="Fournisur Management" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <ListView fx:id="supplierListView" VBox.vgrow="ALWAYS" />
+
+    <HBox spacing="10">
+        <Button fx:id="detailsButton" text="Details" />
+        <Button fx:id="popupButton" text="Pop Up" />
+        <Button fx:id="boneButton" text="Go to Bone" />
+    </HBox>
+</VBox>
