@@ -85,7 +85,7 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 			this.setAddParameters(statement, obj);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			throw new OperationFailedException("Failed to add object to " + this.tableName, e);
+			throw new OperationFailedException("Failed to add object to " + this.tableName + e.getMessage(), e);
 		}
 	}
 
@@ -203,16 +203,16 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		}
 	}
 
-	@Override
-	public long getLastIndexID() throws OperationFailedException {
-		String sql = "SELECT MAX(" + this.idColumn + ") FROM " + this.tableName;
+	// @Override
+	// public long getLastIndexID() throws OperationFailedException {
+	// 	String sql = "SELECT MAX(" + this.idColumn + ") FROM " + this.tableName;
 
-		try (PreparedStatement   statement = this.connection.prepareStatement(sql); ResultSet result = statement.executeQuery()) {
-			return result.next() ? result.getLong(1) : 0;
-		} catch (SQLException e) {
-			throw new OperationFailedException("Failed to get last index ID from " + this.tableName, e);
-		}
-	}
+	// 	try (PreparedStatement   statement = this.connection.prepareStatement(sql); ResultSet result = statement.executeQuery()) {
+	// 		return result.next() ? result.getLong(1) : 0;
+	// 	} catch (SQLException e) {
+	// 		throw new OperationFailedException("Failed to get last index ID from " + this.tableName, e);
+	// 	}
+	// }
 
 	// =============== ABSTRACT METHODS ===============
 
@@ -288,6 +288,10 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 	 * @throws SQLException If a database error occurs
 	 */
 	public abstract void setSearchParameters(PreparedStatement statement, String keyword) throws SQLException;
+
+
+
+	public abstract String generatedIdPK() throws SQLException;
 
 	/**
 	 * Closes database resources.

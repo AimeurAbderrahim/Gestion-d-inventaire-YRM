@@ -126,7 +126,7 @@ public interface Operation<T> {
 	 * @return index of the last item or data
 	 * @throws OperationFailedException if the operation fails
 	 */
-	long getLastIndexID() throws OperationFailedException;
+	// long getLastIndexID() throws OperationFailedException;
 
 	// you still want more methods like before , haha right !!
 	// kmlo drahmek keep working idiot

@@ -171,7 +171,8 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 
 	@Override
 	protected void setAddParameters(PreparedStatement statement, Fournisseur obj) throws SQLException {
-		statement.setString(1, obj.getId_f());
+		// TODO: instead of getting id , we will generated <line 175>
+		statement.setString(1, this.generatedIdPK());
 		statement.setString(2, obj.getAdresse());
 		statement.setString(3, obj.getNum_tel());
 		statement.setString(4, obj.getNom_f());
@@ -180,6 +181,12 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 		statement.setString(7, obj.getNIS());
 		statement.setString(8, obj.getIA());
 		statement.setString(9, obj.getRC());
+	}
+
+	@Override
+	public String generatedIdPK() throws SQLException{
+		long idx = super.countAll();
+		return String.format("%02d" , idx);
 	}
 
 	@Override

@@ -69,8 +69,10 @@ CREATE TABLE IF NOT EXISTS Bon (
 	id_bon varchar(10) PRIMARY KEY,
 	bon_date DATE NOT NULL,
 	bon_type BOOLEAN ,
-	id_emplacement VARCHAR(10) NOT NULL,
-	FOREIGN KEY (id_emplacement) REFERENCES Emplacement(id_emplacement)
+	id_emplacement VARCHAR(10),
+	id_f VARCHAR(10),
+	FOREIGN KEY (id_emplacement) REFERENCES Emplacement(id_emplacement),
+	FOREIGN KEY (id_f) REFERENCES Fournisseur(id_f)
 );
 
 /**

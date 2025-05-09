@@ -7,8 +7,11 @@ import db.configuration.ConfigDatabase;
 // test 2
 import db.java.EntityCoreDatabase;
 import db.java.FournisseurDatabase;
+import db.java.EmplacementDatabase;
 import db.errors.*;
 import testpackage.model.core.Fournisseur;
+import testpackage.model.core.Emplacement;
+import testpackage.model.enumeration.*;
 import testpackage.model.errors.NotNullException;
 public class Test {
 	public static void main(String[] args)
@@ -37,28 +40,39 @@ public class Test {
 		}
 		// II)- test operations on tables
 		try {
+			// 1)- fournisseur
 			// Create the database access object
-			FournisseurDatabase fournisseurDB = new FournisseurDatabase(db , null , null);
-			Fournisseur f = fournisseurDB.findById("F101");
-			if(f != null){
-				System.out.println("Found supplier: " + f.getNom_f());
-				System.out.println("Email: " + f.getMail_f());
-			}else{
-				System.out.println("not found");
-			}
+			// FournisseurDatabase fournisseurDB = new FournisseurDatabase(db , null , null);
+			// Fournisseur f = fournisseurDB.findById("F101");
+			// if(f != null){
+			// 	System.out.println("Found supplier: " + f.getNom_f());
+			// 	System.out.println("Email: " + f.getMail_f());
+			// }else{
+			// 	System.out.println("not found");
+			// }
 
 			// id generated
-			fournisseurDB.add(new Fournisseur( "testname", "1010 Route des Importateurs, Annaba", "0234958234", "test@test.dz", "NIF10456789" , "NIS10456789" , "IA10456789" , "RC10456789"));
-			System.out.println("added");
+			// fournisseurDB.add(new Fournisseur("testname", "1010 Route des Importateurs, Annaba", "0234958234", "test@test.dz", "NIF10456792" , "NIS10456792" , "IA10456793" , "RC10456792"));
+			// System.out.println("added");
 			// Or with custom ID column name
 			// FournisseurDatabase fournisseurDB = new FournisseurDatabase("custom_id_column");
+
+			// 2)- emplacement
+			EmplacementDatabase emplacementDB = new EmplacementDatabase(db , null , null);
+
+			emplacementDB.add(new Emplacement("2221", TypeSalle.REUNION, 23.4, 3, Services.RECHERCHES));
+			emplacementDB.add(new Emplacement("2222", TypeSalle.REUNION, 23.4, 3, Services.RECHERCHES));
+			emplacementDB.add(new Emplacement("2223", TypeSalle.REUNION, 23.4, 3, Services.RECHERCHES));
+			emplacementDB.add(new Emplacement("2224", TypeSalle.REUNION, 23.4, 3, Services.RECHERCHES));
 		} catch (ConnectionFailedException e) {
 			System.err.println("Failed to connect to database: " + e.getMessage());
 		} catch(OperationFailedException e){
 			System.err.println("Failed to find by id: " + e.getMessage());
-		}catch(NotNullException e){
-			System.err.println("Failed null: " + e.getMessage());
 		}
+		// catch(NotNullException e){
+		// 	System.err.println("Failed null: " + e.getMessage());
+		// }
+		
 		System.exit(0);
 	}
 }
