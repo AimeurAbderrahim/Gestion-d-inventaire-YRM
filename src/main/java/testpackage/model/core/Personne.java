@@ -13,7 +13,11 @@ public class Personne {
 	private String adresse ;
 	private String mail_P ;
 	private String numero_tel_personne ;
-	static int comptageP ;
+
+	private String id_emplacement;
+	private String id_c;
+
+	public Personne(){}
 
 	public Personne(String nom, String prenom, LocalDate date_naissance_P, String adresse, String email, String numero_tel_personne, Emplacement emplacement) throws NotNullException {
 		if(
@@ -31,6 +35,19 @@ public class Personne {
 		this.mail_P = email;
 		this.numero_tel_personne = numero_tel_personne;
 		// this.id_p = implementsId();
+	}
+
+	public String getId_emplacement(){
+		return this.id_emplacement;
+	}
+	public void setId_emplacement(String id){
+		this.id_emplacement = id;
+	}
+	public String getId_c(){
+		return this.id_c;
+	}
+	public void setId_c(String id){
+		this.id_c = id;
 	}
 
 	public String getId_p() {
@@ -88,9 +105,4 @@ public class Personne {
 	public void setNumero_tel_personne(String numero_tel_personne) {
 		this.numero_tel_personne = numero_tel_personne;
 	}
-
-	// @Override
-	// public String implementsId() {
-	// 	return String.format("%04d",comptageP);
-	// }
 }

@@ -7,7 +7,7 @@ public class Bon {
 	private LocalDateTime dateBon;
 	private boolean type;
 
-	private int id_f;
+	private String id_f;
 	private String id_emplacement;
 
 	public Bon(){
@@ -19,13 +19,32 @@ public class Bon {
 		this.dateBon = dateBon;
 		if(type == false){
 			this.id_emplacement = id;
-			this.id_f = -1;
+			this.id_f = null;
 		}else{
-			this.id_f = Integer.parseInt(id);
+			this.id_f = id;
 			this.id_emplacement = null;
 		}
 	}
 
+	public void setId_f(String id){
+		this.id_f = id;
+	}
+
+	public void setId_emplacement(String id){
+		this.id_emplacement = id;
+	}
+
+	public String getId_emplacement(){
+		return this.id_emplacement;
+	}
+
+	public String getId_f(){
+		return this.id_f;
+	}
+
+	public void setIdBon(String id){
+		this.id_bon = id;
+	}
 	public String getIdBon(){
 		return this.id_bon;
 	}
@@ -36,6 +55,10 @@ public class Bon {
 
 	public LocalDateTime getDateBon(){
 		return this.dateBon;
+	}
+
+	public void setType(boolean type){
+		this.type = type;
 	}
 
 	public boolean isBonReception(){

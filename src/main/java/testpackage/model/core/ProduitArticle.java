@@ -5,21 +5,43 @@ import testpackage.model.errors.MinimumException;
 import testpackage.model.errors.NotNullException;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class ProduitArticle {
 	private String id_article ;
+	private String nom;
+	private int quantite_global ;
 	private LocalDate date_peremption ;
-	private LocalDateTime date_achat ;
-	static int comptageA=0 ;
+	private LocalDate date_achat ;
 
-	public ProduitArticle(String id_article, LocalDate date_peremption, LocalDate date_achat, int quantite, ProduitModel produitModel, BonSortie bonSortie) throws NotNullException, MinimumException {
+	private String id_modele;
+
+	public ProduitArticle(){}
+
+	public ProduitArticle(String id_article, String nom , int quantite_global , LocalDate date_peremption, LocalDate date_achat , String id_modele) throws NotNullException, MinimumException {
 		if (date_achat==null || id_article==null){
 			throw new NotNullException("Manque information Article");
 		}
 		this.id_article = id_article;
+		this.nom = nom;
+		this.quantite_global = quantite_global;
 		this.date_peremption = date_peremption;
-		this.date_achat = date_achat.atStartOfDay();
+		this.date_achat = date_achat;
+	}
+
+	public int getQuantite_global(){
+		return this.quantite_global;
+	}
+
+	public void setQuantite_global(int q){
+		this.quantite_global = q;
+	}
+
+	public String getNom_article(){
+		return this.nom;
+	}
+
+	public void setNom_article(String nom){
+		this.nom = nom;
 	}
 
 	public String getId_article() {
@@ -38,17 +60,19 @@ public class ProduitArticle {
 		this.date_peremption = date_peremption;
 	}
 
-	public LocalDateTime getDate_achat() {
+	public LocalDate getDate_dachat() {
 		return date_achat;
 	}
 
-	public void setDate_achat(LocalDateTime date_achat) {
+	public void setDate_dachat(LocalDate date_achat) {
 		this.date_achat = date_achat;
 	}
 
-	// @Override
-	// public String implementsId() {
-	// 	comptageA++ ;
-	// 	return String.format("%04d",comptageA);
-	// }
+	public String getId_modele(){
+		return this.id_modele;
+	}
+
+	public void setId_modele(String id){
+		this.id_modele = id;
+	}
 }
