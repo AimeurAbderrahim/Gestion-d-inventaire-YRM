@@ -21,7 +21,7 @@ public class ProductController extends BaseController {
 
     @Override
     protected void loadFXML() {
-        root = FXMLLoaderUtil.loadFXML("/testpackage/gestiondinventaireyrm/pages/ProductView.fxml", this);
+        root = FXMLLoaderUtil.loadFXML("/stateMachin/pages/ProductView.fxml", this);
         initialize();
     }
 
