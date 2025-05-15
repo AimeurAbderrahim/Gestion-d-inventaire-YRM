@@ -1,3 +1,4 @@
+
 package testpackage.model.core;
 
 import testpackage.model.core.Emplacement;
@@ -106,3 +107,4 @@ public class Personne {
 		this.numero_tel_personne = numero_tel_personne;
 	}
 }
+
