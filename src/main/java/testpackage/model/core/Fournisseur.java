@@ -14,10 +14,9 @@ public class Fournisseur {
 	private String NIS;
 	private String IA;
 	private String RC;
-	static int comptageF=0 ;
 
 	public Fournisseur(){}
-	public Fournisseur( String nom_f, String adresse, String num_tel, String mail_f, String NIF, String NIS, String IA, String RC) throws NotNullException {
+	public Fournisseur(String nom_f, String adresse, String num_tel, String mail_f, String NIF, String NIS, String IA, String RC) throws NotNullException {
 		if(
 				(num_tel	==	null && mail_f	==	null) 	|| 
 				nom_f		==	null 				|| 
@@ -37,7 +36,6 @@ public class Fournisseur {
 		this.IA = IA;
 		this.RC = RC;
 		// for test
-		// this.id_f = "F006";
 		// this.id_f = implementsId();
 	}
 
@@ -114,10 +112,4 @@ public class Fournisseur {
 	public void setRC(String RC) {
 		this.RC = RC;
 	}
-	// NOTE: replaced with UUID generator
-	// @Override
-	// public String implementsId() {
-	// 	comptageF++ ;
-	// 	return String.format("%02d",comptageF);
-	// }
 }

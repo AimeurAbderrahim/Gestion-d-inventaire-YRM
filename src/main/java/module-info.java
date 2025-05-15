@@ -48,4 +48,6 @@ module testpackage.gestiondinventaireyrm {
 
 
 
+	exports stateMachin;
+
 }

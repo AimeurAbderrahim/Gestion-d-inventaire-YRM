@@ -8,37 +8,42 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
-    private ControllerStateMachine stateMachine;
+	private ControllerStateMachine stateMachine;
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        System.setProperty("prism.forceGPU", "true");
-        System.setProperty("javafx.animation.fullspeed", "true");
+	@Override
+	public void start(Stage stage) {
+		// Apply hardware acceleration hints
+		System.setProperty("prism.forceGPU", "true");
+		System.setProperty("javafx.animation.fullspeed", "true");
 
-        Platform.runLater(() -> {
-            Font.loadFont(getClass().getResourceAsStream("/fonts/System.font"), 10);
-        });
+		// Preload commonly used fonts to avoid font loading delay
+		Platform.runLater(() -> {
+			Font.loadFont(getClass().getResourceAsStream("/fonts/System.font"), 10);
+		});
 
-        stage.setTitle("Login");
+		stage.setTitle("Controller State Machine");
+		stage.setWidth(600);
+		stage.setHeight(400);
 
-        stateMachine = new ControllerStateMachine(stage);
+		stateMachine = new ControllerStateMachine(stage);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/testpackage/gestiondinventaireyrm/pages/LoginPage.fxml"));
-        Scene scene = new Scene(loader.load());
+		// Start with the Product state
+		ProductController initialState = new ProductController(stateMachine);
+		stateMachine.changeState(initialState);
 
-        LoginController controller = loader.getController();
-        controller.setStateMachine(stateMachine); // Inject state machine
+		stage.show();
+	}
 
-        stage.setScene(scene);
-        stage.show();
-    }
+	public static void main(String[] args) {
+		// Enable these VM options for better performance
+		// -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -Djavafx.preloader=true
+		launch(args);
+	}
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+	@Override
+	public void stop() {
+		// Clean up resources when the application closes
+		Platform.exit();
+	}
 
-    @Override
-    public void stop() {
-        Platform.exit();
-    }
 }

@@ -44,4 +44,48 @@ public class ConvertEnum {
 			default : return null;
 		}
 	}
+	// roles
+	public static String convertRolesToString(Roles type){
+		switch(type){
+			case ADMINISTRATEUR : return "ADMINISTRATEUR";
+			case SECRETAIRE : return "SECRETAIRE";
+			case MAGASINIER : return "MAGASINIER";
+			default : return "unreachable";
+		}
+	}
+
+	public static Roles convertStringToRoles(String type){
+		switch(type){
+			case "ADMINISTRATEUR" : return Roles.ADMINISTRATEUR;
+			case "SECRETAIRE" : return Roles.SECRETAIRE;
+			case "MAGASINIER" : return Roles.MAGASINIER;
+			default : return null;
+		}
+	}
+	// categorie
+	public static String convertCategorieToString(Categorie type){
+		switch(type){
+			case PEDAGOGIQUE : return "PEDAGOGIQUE";
+			case MOBILIER : return "MOBILIER";
+			case INFORMATIQUE : return "INFORMATIQUE";
+			case RESEAU : return "RESEAU";
+			case MULTIMEDIA : return "MULTIMEDIA";
+			case ACCESSOIRES : return "ACCESSOIRES";
+			default : return "unreachable";
+		}
+	}
+
+	public static Categorie convertStringToCategorie(String type){
+		switch(type){
+			case "PEDAGOGIQUE" : return Categorie.PEDAGOGIQUE;
+			case "MOBILIER" : return Categorie.MOBILIER;
+			case "INFORMATIQUE" : return Categorie.INFORMATIQUE;
+			case "RESEAU" : return Categorie.RESEAU;
+			case "MULTIMEDIA" : return Categorie.MULTIMEDIA;
+			case "ACCESSOIRES" : return Categorie.ACCESSOIRES;
+			default : return null;
+		}
+	}
+	
+	
 }
