@@ -85,7 +85,7 @@ public class ProduitModeleDatabase extends EntityCoreDatabase<ProduitModel> {
 	}
 
 	@Override
-	public String getSearchCondition(String keyword) {
+	public String getSearchCondition() {
 		return "designation LIKE ? OR categorie LIKE ?";
 	}
 

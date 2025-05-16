@@ -77,7 +77,7 @@ public interface Operation<T> {
 	 */
 
 	// i think this method is useless whatever sorry you have to use search (-_-)zZZ
-	boolean search(T obj) throws OperationFailedException;
+	List<T> search(String pattren) throws OperationFailedException;
 
 	/**
 	 * Finds an object by its unique identifier.

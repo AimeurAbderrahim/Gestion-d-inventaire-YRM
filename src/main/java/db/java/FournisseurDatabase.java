@@ -222,7 +222,7 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 	}
 
 	@Override
-	public String getSearchCondition(String keyword) {
+	public String getSearchCondition() {
 		return "nom LIKE ? OR email LIKE ? OR NIF LIKE ?";
 	}
 

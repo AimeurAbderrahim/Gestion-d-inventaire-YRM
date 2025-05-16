@@ -13,7 +13,6 @@ public class Compte {
 		this.nom_utilisateur = nom_utilisateur;
 		this.mot_de_passe = mot_de_passe;
 		this.roles = roles;
-		// this.id_C = implementsId();
 	}
 
 	public String getId_c() {

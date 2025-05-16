@@ -37,6 +37,10 @@ public class CompteDatabase extends EntityCoreDatabase<Compte> {
 		     );
 	}
 
+	public Connection getConn(){
+		return super.connection;
+	}
+
 	@Override
 	protected String getIdValue(Compte obj) {
 		return obj.getId_c();
@@ -65,7 +69,7 @@ public class CompteDatabase extends EntityCoreDatabase<Compte> {
 		statement.setString(1, id);
 		statement.setString(2, obj.getNom_utilisateur());
 		statement.setString(3, obj.getMot_de_passe());
-		statement.setString(4, obj.getRoles().toString());
+		statement.setString(4, ConvertEnum.convertRolesToString(obj.getRoles()));
 	}
 
 	@Override
@@ -91,8 +95,8 @@ public class CompteDatabase extends EntityCoreDatabase<Compte> {
 	}
 
 	@Override
-	public String getSearchCondition(String keyword) {
-		return "nom_utilisateur LIKE ? OR role LIKE ?";
+	public String getSearchCondition() {
+		return "nom_utilisateur LIKE ? OR role LIKE ? OR mot_de_passe LIKE ?";
 	}
 
 	@Override
@@ -100,6 +104,7 @@ public class CompteDatabase extends EntityCoreDatabase<Compte> {
 		String searchPattern = "%" + keyword + "%";
 		statement.setString(1, searchPattern);
 		statement.setString(2, searchPattern);
+		statement.setString(3, searchPattern);
 	}
 
 	@Override

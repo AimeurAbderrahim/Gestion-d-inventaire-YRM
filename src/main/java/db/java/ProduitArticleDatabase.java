@@ -87,7 +87,7 @@ public class ProduitArticleDatabase extends EntityCoreDatabase<ProduitArticle> {
 	}
 
 	@Override
-	public String getSearchCondition(String keyword) {
+	public String getSearchCondition() {
 		return "nom_article LIKE ? OR id_article LIKE ?";
 	}
 

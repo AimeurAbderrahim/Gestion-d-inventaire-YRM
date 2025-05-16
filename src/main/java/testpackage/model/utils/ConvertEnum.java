@@ -16,7 +16,7 @@ public class ConvertEnum {
 			case TECHNIQUE : return "TECHNIQUE";
 			case BUREAUX : return "BUREAUX";
 			case SUPPORT : return "SUPPORT";
-			default : return "unreachable";
+			default : return "UNREACHABLE";
 		}
 	}
 
@@ -33,24 +33,31 @@ public class ConvertEnum {
 	// Services
 	public static String convertServicesToString(Services type){
 		switch(type){
-			case RECHERCHES : return "RECHERCHES ";
-			default : return "unreachable";
+			case VICE_DOYENS : return "VICE DOYENS"; 
+			case SECRETARIAT : return "SECRETARIAT"; 
+			case CHEF_DE_DEPARTEMENT : return "CHEF DE DEPARTEMENT"; 
+			case BIBLIOTHEQUE : return "BIBLIOTHEQUE";
+			default : return "UNREACHABLE";
 		}
 	}
 
 	public static Services convertStringToServices(String type){
 		switch(type){
-			case "RECHERCHES" : return Services.RECHERCHES;
+			case "VICE DOYENS" : return Services.VICE_DOYENS; 
+			case "SECRETARIAT" : return Services.SECRETARIAT; 
+			case "CHEF DE DEPARTEMENT" : return Services.CHEF_DE_DEPARTEMENT; 
+			case "BIBLIOTHEQUE" : return Services.BIBLIOTHEQUE;
 			default : return null;
 		}
 	}
 	// roles
 	public static String convertRolesToString(Roles type){
 		switch(type){
-			case ADMINISTRATEUR : return "ADMINISTRATEUR";
-			case SECRETAIRE : return "SECRETAIRE";
-			case MAGASINIER : return "MAGASINIER";
-			default : return "unreachable";
+			case ADMINISTRATEUR : 	return "ADMINISTRATEUR";
+			case SECRETAIRE : 	return "SECRETAIRE";
+			case MAGASINIER : 	return "MAGASINIER";
+			case CLIENT : 		return "CLIENT";
+			default : return "UNREACHABLE";
 		}
 	}
 
@@ -59,6 +66,7 @@ public class ConvertEnum {
 			case "ADMINISTRATEUR" : return Roles.ADMINISTRATEUR;
 			case "SECRETAIRE" : return Roles.SECRETAIRE;
 			case "MAGASINIER" : return Roles.MAGASINIER;
+			case "CLIENT" : return Roles.CLIENT;
 			default : return null;
 		}
 	}
@@ -71,7 +79,7 @@ public class ConvertEnum {
 			case RESEAU : return "RESEAU";
 			case MULTIMEDIA : return "MULTIMEDIA";
 			case ACCESSOIRES : return "ACCESSOIRES";
-			default : return "unreachable";
+			default : return "UNREACHABLE";
 		}
 	}
 

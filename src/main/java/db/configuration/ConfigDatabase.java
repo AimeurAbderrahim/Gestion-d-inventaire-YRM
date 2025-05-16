@@ -49,7 +49,7 @@ public class ConfigDatabase {
 			this.proptiesFile.load(inputProp);
 			this.url 	= this.proptiesFile.getProperty("db.url");
 			this.username 	= this.proptiesFile.getProperty("db.user");
-			this.password 	= this.proptiesFile.getProperty("db.user");
+			this.password 	= this.proptiesFile.getProperty("db.password");
 		}catch(IOException error) {
 			throw new LoadPropertiesException("cannot load property file");
 		}
