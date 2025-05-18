@@ -2,45 +2,68 @@ package stateMachin;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.text.Font;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
-	private ControllerStateMachine stateMachine;
+    private ControllerStateMachine stateMachine;
 
-	@Override
-	public void start(Stage stage) {
-		// Apply hardware acceleration hints
-		System.setProperty("prism.forceGPU", "true");
-		System.setProperty("javafx.animation.fullspeed", "true");
+    @Override
+    public void start(Stage stage) {
+        // Apply hardware acceleration hints
+        System.setProperty("prism.forceGPU", "true");
+        System.setProperty("javafx.animation.fullspeed", "true");
 
-		// Preload commonly used fonts to avoid font loading delay
-		Platform.runLater(() -> {
-			Font.loadFont(getClass().getResourceAsStream("/fonts/System.font"), 10);
-		});
+        // Debug startup
+        System.out.println("Starting application...");
 
-		stage.setTitle("Controller State Machine");
-		stage.setWidth(600);
-		stage.setHeight(400);
+        stage.setTitle("Resource Management System");
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
 
-		stateMachine = new ControllerStateMachine(stage);
+        try {
+            System.out.println("Creating state machine...");
+            stateMachine = new ControllerStateMachine(stage);
 
-		// Start with the Product state
-		ProductController initialState = new ProductController(stateMachine);
-		stateMachine.changeState(initialState);
+            // Start with the Login scene
+            System.out.println("Setting initial scene to Login");
 
-		stage.show();
-	}
+            // Access the login scene from the state machine
+            Scene loginScene = stateMachine.getScene(EnumScenes.Login);
+            stage.setScene(loginScene);
 
-	public static void main(String[] args) {
-		// Enable these VM options for better performance
-		// -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -Djavafx.preloader=true
-		launch(args);
-	}
+            // Ensure the scene is properly laid out
+            loginScene.getRoot().layout();
 
-	@Override
-	public void stop() {
-		// Clean up resources when the application closes
-		Platform.exit();
-	}
+            // Show the stage
+            stage.show();
+
+            // Notify the controller that we're entering this scene
+            stateMachine.enterScene(EnumScenes.Login);
+
+            // Force a UI refresh after everything is set up
+            Platform.runLater(() -> {
+                stage.sizeToScene();
+            });
+
+            System.out.println("Application started successfully");
+        } catch (Exception e) {
+            System.err.println("Error during application startup: " + e.getMessage());
+            e.printStackTrace();
+            Platform.exit();
+        }
+    }
+
+    public static void main(String[] args) {
+        // Enable these VM options for better performance
+        // -XX:+UseG1GC -XX:MaxGCPauseMillis=100 -Djavafx.preloader=true
+        launch(args);
+    }
+
+    @Override
+    public void stop() {
+        // Clean up resources when the application closes
+        System.out.println("Application shutting down...");
+        Platform.exit();
+    }
 }
