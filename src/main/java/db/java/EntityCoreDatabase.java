@@ -137,8 +137,25 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 	}
 
 	@Override
-	public boolean search(T obj) throws OperationFailedException {
-		return this.existsById(this.getIdValue(obj));
+	public List<T> search(String pattren) throws OperationFailedException {
+		// TODO: handle the search
+		// return this.existsById(this.getIdValue(obj));
+		String sql = "SELECT * FROM " + this.tableName+ " WHERE " + this.getSearchCondition() ;
+		List<T> res = new ArrayList<>();
+		try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
+			// statement.setString(1, this.getIdValue(obj));
+			this.setSearchParameters(statement , pattren);
+			ResultSet result = statement.executeQuery();
+			while(result.next()){
+				T obj = mapResultSetToEntity(result);
+				res.add(obj);
+			}
+		} catch (SQLException e) {
+			throw new OperationFailedException("Failed to remove object from " + this.tableName, e);
+		}
+		if(res.size() == 0)
+			return null;
+		return res;
 	}
 
 	@Override
@@ -278,7 +295,7 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 	 * @param keyword The search term
 	 * @return The search condition string
 	 */
-	public abstract String getSearchCondition(String keyword);
+	public abstract String getSearchCondition();
 
 	/**
 	 * Sets parameters for search operations.

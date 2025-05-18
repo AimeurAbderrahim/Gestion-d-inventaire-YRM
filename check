@@ -5,6 +5,9 @@
     this python script is written by rayden
 """
 
+# compile : mvn clean compile
+# run Test Class : mvn exec:java -Dexec.mainClass="db.test.Test"
+
 import os
 
 def list_all_recursive(root_dir="."):

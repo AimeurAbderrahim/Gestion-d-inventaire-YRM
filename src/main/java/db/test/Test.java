@@ -13,6 +13,11 @@ import testpackage.model.core.Fournisseur;
 import testpackage.model.core.Emplacement;
 import testpackage.model.enumeration.*;
 import testpackage.model.errors.NotNullException;
+
+import db.utils.CreateAccount;
+import db.utils.AuthunticationVerification;
+import testpackage.model.utils.ConvertEnum;
+
 public class Test {
 	public static void main(String[] args)
 	{
@@ -39,40 +44,50 @@ public class Test {
 			System.exit(0);
 		}
 		// II)- test operations on tables
-		try {
-			// 1)- fournisseur
-			// Create the database access object
-			// FournisseurDatabase fournisseurDB = new FournisseurDatabase(db , null , null);
-			// Fournisseur f = fournisseurDB.findById("F101");
-			// if(f != null){
-			// 	System.out.println("Found supplier: " + f.getNom_f());
-			// 	System.out.println("Email: " + f.getMail_f());
-			// }else{
-			// 	System.out.println("not found");
-			// }
+		// try {
+		// 	// 1)- fournisseur
+		// 	// Create the database access object
+		// 	// FournisseurDatabase fournisseurDB = new FournisseurDatabase(db , null , null);
+		// 	// Fournisseur f = fournisseurDB.findById("F101");
+		// 	// if(f != null){
+		// 	// 	System.out.println("Found supplier: " + f.getNom_f());
+		// 	// 	System.out.println("Email: " + f.getMail_f());
+		// 	// }else{
+		// 	// 	System.out.println("not found");
+		// 	// }
 
-			// id generated
-			// fournisseurDB.add(new Fournisseur("testname", "1010 Route des Importateurs, Annaba", "0234958234", "test@test.dz", "NIF10456792" , "NIS10456792" , "IA10456793" , "RC10456792"));
-			// System.out.println("added");
-			// Or with custom ID column name
-			// FournisseurDatabase fournisseurDB = new FournisseurDatabase("custom_id_column");
+		// 	// id generated
+		// 	// fournisseurDB.add(new Fournisseur("testname", "1010 Route des Importateurs, Annaba", "0234958234", "test@test.dz", "NIF10456792" , "NIS10456792" , "IA10456793" , "RC10456792"));
+		// 	// System.out.println("added");
+		// 	// Or with custom ID column name
+		// 	// FournisseurDatabase fournisseurDB = new FournisseurDatabase("custom_id_column");
 
-			// 2)- emplacement
-			EmplacementDatabase emplacementDB = new EmplacementDatabase(db , null , null);
+		// 	// 2)- emplacement
+		// 	EmplacementDatabase emplacementDB = new EmplacementDatabase(db , null , null);
 
-			emplacementDB.add(new Emplacement("2221", TypeSalle.REUNION, 23.4, 3, Services.RECHERCHES));
-			emplacementDB.add(new Emplacement("2222", TypeSalle.REUNION, 23.4, 3, Services.RECHERCHES));
-			emplacementDB.add(new Emplacement("2223", TypeSalle.REUNION, 23.4, 3, Services.RECHERCHES));
-			emplacementDB.add(new Emplacement("2224", TypeSalle.REUNION, 23.4, 3, Services.RECHERCHES));
-		} catch (ConnectionFailedException e) {
-			System.err.println("Failed to connect to database: " + e.getMessage());
-		} catch(OperationFailedException e){
-			System.err.println("Failed to find by id: " + e.getMessage());
-		}
+		// 	emplacementDB.add(new Emplacement("2221", TypeSalle.REUNION, 23.4, 3, Services.VICE_DOYENS));
+		// 	emplacementDB.add(new Emplacement("2222", TypeSalle.REUNION, 23.4, 3, Services.VICE_DOYENS));
+		// 	emplacementDB.add(new Emplacement("2223", TypeSalle.REUNION, 23.4, 3, Services.VICE_DOYENS));
+		// 	emplacementDB.add(new Emplacement("2224", TypeSalle.REUNION, 23.4, 3, Services.VICE_DOYENS));
+		// } catch (ConnectionFailedException e) {
+		// 	System.err.println("Failed to connect to database: " + e.getMessage());
+		// } catch(OperationFailedException e){
+		// 	System.err.println("Failed to find by id: " + e.getMessage());
+		// }
 		// catch(NotNullException e){
 		// 	System.err.println("Failed null: " + e.getMessage());
 		// }
-		
+		// CreateAccount newaccount = new CreateAccount("rayden" , "rayden");
+		// newaccount.login();
+
+
+		AuthunticationVerification check = new AuthunticationVerification("rayden" , "rayden");
+		if(check.checkAuth()){
+			System.out.println("password exists");
+		}
+		try{
+			db.closeConnection();
+		}catch(CloseConnectionException error){}
 		System.exit(0);
 	}
 }

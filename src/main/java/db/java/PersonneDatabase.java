@@ -96,7 +96,7 @@ public class PersonneDatabase extends EntityCoreDatabase<Personne> {
 	}
 
 	@Override
-	public String getSearchCondition(String keyword) {
+	public String getSearchCondition() {
 		return "nom LIKE ? OR prenom LIKE ? OR email LIKE ?";
 	}
 

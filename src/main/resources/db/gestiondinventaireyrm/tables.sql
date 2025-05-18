@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS Emplacement (
 	superficie DECIMAL(10,2),
 	bureau INT,
 	-- TODO: nom_serivce should be enumiration
-	nom_service VARCHAR(100)
+	nom_service ENUM('VICE DOYENS' , 'SECRETARIAT' , 'CHEF DE DEPARTEMENT' , 'BIBLIOTHEQUE')
 );
 
 /**
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS ProduitModele (
 	id_modele VARCHAR(10) PRIMARY KEY,
 	type_produit BOOLEAN DEFAULT FALSE,
 	designation VARCHAR(255) NOT NULL ,
-	categorie ENUM('informatique' , 'bureautique' , 'reseau' , 'telecommunication' , 'stockage' , 'autre') NOT NULL ,
+	categorie ENUM('INFORMATIQUE' , 'BUREAUTIQUE' , 'RESEAU' , 'TELECOMMUNICATION' , 'STOCKAGE' , 'AUTRE') NOT NULL ,
 	id_bon VARCHAR(10) NOT NULL,
 	FOREIGN KEY (id_bon) REFERENCES Bon(id_bon)
 );
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS Compte (
 	nom_utilisateur VARCHAR(50) NOT NULL UNIQUE,
 	mot_de_passe VARCHAR(255) NOT NULL,
 	-- check enum later
-	role ENUM('admin' , 'magasinier' , 'secreteur') NOT NULL,
+	role ENUM('ADMINISTRATEUR' , 'MAGASINIER' , 'SECRETAIRE' , 'CLIENT') NOT NULL,
 	CONSTRAINT chk_password_length CHECK (LENGTH(mot_de_passe) >= 8)
 );
 

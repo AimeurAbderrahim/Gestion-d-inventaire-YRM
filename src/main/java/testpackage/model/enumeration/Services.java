@@ -1,6 +1,10 @@
+
 package testpackage.model.enumeration;
 
 // TODO: add more services
 public enum Services {
-	RECHERCHES
+	VICE_DOYENS , 
+	SECRETARIAT , 
+	CHEF_DE_DEPARTEMENT , 
+	BIBLIOTHEQUE
 }

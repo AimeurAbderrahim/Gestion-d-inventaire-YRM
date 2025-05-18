@@ -199,7 +199,7 @@ public class EmplacementDatabase extends EntityCoreDatabase<Emplacement> {
 	}
 
 	@Override
-	public String getSearchCondition(String foo) {
+	public String getSearchCondition() {
 		return "type_salle LIKE ? OR nom_service LIKE ? OR id_emplacement LIKE ?";
 	}
 

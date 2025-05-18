@@ -95,14 +95,16 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 	}
 
 	@Override
-	public String getSearchCondition(String keyword) {
-		return "id_bon LIKE ?";
+	public String getSearchCondition() {
+		return "id_bon LIKE ? OR bon_date LIKE ? OR bon_type LIKE ?";
 	}
 
 	@Override
 	public void setSearchParameters(PreparedStatement statement, String keyword) throws SQLException {
 		String searchPattern = "%" + keyword + "%";
 		statement.setString(1, searchPattern);
+		statement.setString(2, searchPattern);
+		statement.setString(3, searchPattern);
 	}
 
 	@Override
