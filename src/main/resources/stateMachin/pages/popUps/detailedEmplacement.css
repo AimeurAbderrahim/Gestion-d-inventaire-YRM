@@ -7,8 +7,7 @@
   -fx-background-color: linear-gradient(to bottom, #C0C9CA 17.79%, rgba(95, 100, 100, 0.70) 95.67%);
   -fx-padding: 20px;
   -fx-font-family: "Arial";
-  /* Remove max-width constraint to allow proper resizing */
-  -fx-min-width: 800px; /* Ensure minimum width */
+  -fx-min-width: 800px;
 }
 
 /* Header Styling */
@@ -20,7 +19,7 @@
 }
 
 .title-label {
-  -fx-font-size: 24px;
+  -fx-font-size: 32px;
   -fx-font-weight: bold;
   -fx-text-fill: #333333;
 }
@@ -44,7 +43,7 @@
 
 /* Section Labels */
 .section-label {
-  -fx-font-size: 18px;
+  -fx-font-size: 32px;
   -fx-font-weight: bold;
   -fx-text-fill: #333333;
   -fx-padding: 5px 0;
@@ -74,7 +73,7 @@
 }
 
 .info-field {
-  -fx-background-color: #008b9c;
+  -fx-background-color: #05A3B9;
   -fx-background-radius: 5px;
   -fx-border-radius: 5px;
   -fx-text-fill: white;
@@ -82,7 +81,6 @@
   -fx-padding: 5px 10px;
   -fx-min-width: 150px;
   -fx-pref-width: 200px;
-  /* Remove max-width to allow better resizing */
   -fx-alignment: center-left;
 }
 
@@ -97,12 +95,13 @@
 /* TextField Styling */
 .text-field {
   -fx-background-color: #FFFFFF;
-  -fx-background-radius: 5px;
-  -fx-border-radius: 5px;
+  -fx-background-radius: 30px;
+  -fx-border-radius: 30px;
   -fx-border-color: #CCCCCC;
   -fx-border-width: 1px;
   -fx-padding: 5px 10px;
-  -fx-font-size: 14px;
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
 }
 
 #searchField {
@@ -113,8 +112,8 @@
 
 /* Button Styling */
 .button {
-  -fx-background-radius: 5px;
-  -fx-border-radius: 5px;
+  -fx-background-radius: 30px;
+  -fx-border-radius: 30px;
   -fx-font-size: 14px;
   -fx-font-weight: bold;
   -fx-min-width: 110px;
@@ -125,49 +124,38 @@
 }
 
 .filter-button {
-  -fx-background-color: #f0f0f0;
+  -fx-background-color: white;
   -fx-text-fill: #333333;
-  -fx-border-color: #cccccc;
+  -fx-border-color: white;
   -fx-border-width: 1px;
+  -fx-border-radius: 30px;
+  -fx-background-radius: 30px;
   -fx-min-width: 80px;
   -fx-pref-width: 90px;
+  -fx-font-weight: bold;
+  -fx-font-size: x-large;
 }
 
 .filter-button:hover {
   -fx-background-color: #e0e0e0;
 }
 
-.add-button {
-  -fx-background-color: #4CAF50;
-  -fx-text-fill: white;
-}
-
-.add-button:hover {
-  -fx-background-color: #45a049;
-}
-
-.print-button {
-  -fx-background-color: #2196F3;
-  -fx-text-fill: white;
-}
-
-.print-button:hover {
-  -fx-background-color: #0b7dda;
-}
-
-.close-button {
-  -fx-background-color: #f0f0f0;
-  -fx-text-fill: #333333;
-  -fx-border-color: #cccccc;
+.add-button, .print-button, .close-button {
   -fx-border-width: 1px;
+  -fx-border-color: white;
+  -fx-border-radius: 30px;
+  -fx-background-radius: 30px;
+  -fx-background-color: white;
+  -fx-font-weight: bold;
+  -fx-font-size: x-large;
 }
 
-.close-button:hover {
+.add-button:hover, .print-button:hover, .close-button:hover {
   -fx-background-color: #e0e0e0;
 }
 
 /* Table Styling */
-.table-scroll-pane {
+.table-scroll-pane, .ProduitScrollPane {
   -fx-background-color: transparent;
   -fx-border-color: transparent;
   -fx-fit-to-width: true;
@@ -177,82 +165,53 @@
   -fx-max-width: infinity;
 }
 
-.table-scroll-pane > .viewport {
+.table-scroll-pane > .viewport, .ProduitScrollPane > .viewport {
   -fx-background-color: transparent;
 }
 
-.products-table {
+.table-view {
+  -fx-background-color: linear-gradient(to bottom, #1F4D54 0%, #44ABBA 20.19%);
+  -fx-background-radius: 30px;
+  -fx-border-color: transparent;
+}
+
+.column-header-background {
+  -fx-padding: 8;
+  -fx-background-color: #00424B;
+  -fx-background-radius: 30px;
+}
+
+.column-header {
+  -fx-padding: 5;
   -fx-background-color: transparent;
-  -fx-background-radius: 5px;
-  -fx-border-radius: 5px;
-  -fx-border-color: #CCCCCC;
-  -fx-border-width: 1px;
-  -fx-max-width: infinity;
 }
 
-.products-table .column-header-background {
-  -fx-background-color: #008b9c;
-  -fx-background-radius: 5px 5px 0 0;
-  -fx-padding: 5px;
-}
-
-.products-table .column-header, .products-table .filler {
-  -fx-background-color: transparent;
-  -fx-min-height: 40px;
-}
-
-.products-table .column-header .label {
-  -fx-text-fill: white;
+.column-header .label {
   -fx-font-weight: bold;
-  -fx-alignment: CENTER_LEFT;
-  -fx-padding: 5px 10px;
+  -fx-font-size: 16;
+  -fx-text-fill: white;
 }
 
-.products-table .table-row-cell {
-  -fx-background-color: white;
-  -fx-border-color: #f0f0f0;
-  -fx-table-cell-border-color: #f0f0f0;
-  -fx-padding: 5px;
-  -fx-min-height: 40px;
+/* Remove borders */
+.table-view .column-header,
+.table-view .column-header-background {
+  -fx-border-width: 0;
 }
 
-.products-table .table-row-cell:odd {
-  -fx-background-color: #F5F5F5;
-}
-
-.products-table .table-row-cell:selected {
-  -fx-background-color: rgba(0, 139, 156, 0.3);
-}
-
-.products-table .table-cell {
-  -fx-alignment: CENTER_LEFT;
-  -fx-padding: 5px 10px;
+.table-row-cell {
+  -fx-background-color: #05A3B9;
   -fx-text-fill: #333333;
+  -fx-border-color: transparent;
+  -fx-border-width: 0 0 1 0;
 }
 
-/* Column specific widths - used with CONSTRAINED_RESIZE_POLICY */
-.products-table .table-column#codeColumn {
-  -fx-min-width: 100px;
+.CheckBox {
+  -fx-background-color: transparent;
+  -fx-background-radius: 30px;
 }
 
-.products-table .table-column#nameColumn {
-  -fx-pref-width: 150px;
-}
-
-.products-table .table-column#typeColumn {
-  -fx-min-width: 120px;
-}
-
-.products-table .table-column#categoryColumn {
-  -fx-pref-width: 120px;
-}
-
-.products-table .table-column#numberColumn {
-  -fx-min-width: 100px;
-}
-
-.products-table .table-column#actionsColumn {
-  -fx-min-width: 150px;
+.table-view .table-cell {
+  -fx-background-radius: 30px;
 }
 
 /* Scroll Bar Styling */

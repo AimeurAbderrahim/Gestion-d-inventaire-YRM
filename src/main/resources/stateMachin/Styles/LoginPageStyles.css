@@ -1,6 +1,6 @@
 /* Base styles */
 .main-container {
-    -fx-background-color: transparent;
+    -fx-background-color: linear-gradient(to bottom, #0d8e8e, #023f3f);
 }
 
 /* Login container styling */
@@ -43,6 +43,11 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
 }
 
+/* For full screen background coverage */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #0d8e8e, #023f3f);
+    -fx-background-size: cover;
+}
 
 /* Responsive design adjustments */
 @media (max-width: 800px) {

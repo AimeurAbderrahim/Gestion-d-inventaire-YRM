@@ -1,63 +1,160 @@
 package stateMachin;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ControllerStateMachine {
-    private BaseController currentController;
     private Stage primaryStage;
-    private Scene mainScene;
-
-    // ✅ Correctly typed controller cache
-    private final Map<Class<? extends BaseController>, BaseController> controllerCache = new HashMap<>();
+    private Map<EnumScenes, Scene> scenes;
+    private Map<EnumScenes, BaseController> controllers;
+    private BaseController currentController;
 
     public ControllerStateMachine(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        this.scenes = new HashMap<>();
+        this.controllers = new HashMap<>();
+
+        // Initialize all scenes 
+        initializeScenes();
     }
 
-    public void changeState(BaseController newController) {
-        if (newController == null) {
-            throw new IllegalArgumentException("New controller cannot be null");
-        }
-
-        this.currentController = newController;
-
-        if (currentController.getRoot() == null) {
-            throw new IllegalStateException("Controller returned null root node");
-        }
-
+    private void initializeScenes() {
         try {
-            if (mainScene == null) {
-                mainScene = new Scene(currentController.getRoot());
-                primaryStage.setScene(mainScene);
-            } else {
-                mainScene.setRoot(currentController.getRoot());
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to set scene root: " + e.getMessage());
+            loadScene(EnumScenes.Login, "/stateMachin/pages/LoginPage.fxml");
+
+            // Load other scenes
+            loadScene(EnumScenes.Bone, "/stateMachin/pages/BoneView.fxml");
+            loadScene(EnumScenes.Location, "/stateMachin/pages/Emplacement.fxml");
+            loadScene(EnumScenes.Products, "/stateMachin/pages/ProductView.fxml");
+            loadScene(EnumScenes.Fournisur, "/stateMachin/pages/FournisurView.fxml");
+            loadScene(EnumScenes.Welcome, "/stateMachin/pages/WelcomePage.fxml");
+
+            System.out.println("All scenes initialized successfully");
+        } catch (IOException e) {
+            System.err.println("Failed to initialize scenes: " + e.getMessage());
             e.printStackTrace();
-            throw new RuntimeException("Failed to change application state", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void loadScene(EnumScenes sceneType, String path) throws IOException {
+        try {
+            System.out.println("Loading scene: " + sceneType + " from path: " + path);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            scenes.put(sceneType, scene);
+
+            // Get the controller and store it
+            BaseController controller = fxmlLoader.getController();
+
+            // Set the state machine reference in the controller
+            controller.initStateMachine(this);
+
+            // Store the controller for future reference
+            controllers.put(sceneType, controller);
+
+            System.out.println("Loaded scene: " + sceneType + " with controller: " + controller.getClass().getSimpleName());
+        } catch (IOException e) {
+            System.err.println("Error loading scene " + sceneType + ": " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void changeScene(EnumScenes sceneType, ActionEvent event) {
+        try {
+            // Get the stage from the event source
+            primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // If we have a current controller, call its onExit method
+            if (currentController != null) {
+                currentController.onExit();
+            }
+
+            // Update current controller
+            currentController = controllers.get(sceneType);
+
+            // Call onEnter for the new controller
+            if (currentController != null) {
+                currentController.onEnter();
+            } else {
+                System.err.println("WARNING: No controller found for scene " + sceneType);
+            }
+
+            // Get the next scene
+            Scene nextScene = scenes.get(sceneType);
+
+            // Set the scene on the stage
+            primaryStage.setScene(nextScene);
+
+            // Force layout update
+            nextScene.getRoot().layout();
+
+            // Request focus to ensure UI updates
+            nextScene.getRoot().requestFocus();
+
+            // Force stage to update
+            primaryStage.sizeToScene();
+            primaryStage.show();
+
+           /* // Force a UI refresh with a tiny window size change
+            javafx.application.Platform.runLater(() -> {
+                primaryStage.setWidth(primaryStage.getWidth() + 1);
+                javafx.application.Platform.runLater(() -> {
+                    primaryStage.setWidth(primaryStage.getWidth() - 1);
+                });
+            });
+*/
+            System.out.println("Changed scene to: " + sceneType);
+        } catch (Exception e) {
+            System.err.println("Error changing scene: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // Get a scene by type
+    public Scene getScene(EnumScenes sceneType) {
+        return scenes.get(sceneType);
+    }
+
+    // Enter a scene without an action event (used for initial scene)
+    public void enterScene(EnumScenes sceneType) {
+        // If we have a current controller, call its onExit method
+        if (currentController != null) {
+            currentController.onExit();
         }
 
-        primaryStage.setTitle("YRM Inventory Management - " +
-                currentController.getClass().getSimpleName().replace("Controller", ""));
-    }
+        // Update current controller
+        currentController = controllers.get(sceneType);
 
-    public BaseController getCurrentController() {
-        return currentController;
-    }
+        // Call onEnter for the new controller
+        if (currentController != null) {
+            currentController.onEnter();
+        } else {
+            System.err.println("WARNING: No controller found for scene " + sceneType);
+        }
 
-    // ✅ Now works correctly with generics and avoids the wildcard issue
-    public <T extends BaseController> T getController(Class<T> controllerClass) {
-        return controllerClass.cast(controllerCache.computeIfAbsent(controllerClass, clazz -> {
-            try {
-                return clazz.getConstructor(ControllerStateMachine.class).newInstance(this);
-            } catch (Exception e) {
-                throw new RuntimeException("Failed to instantiate controller: " + clazz.getName(), e);
-            }
-        }));
+        // Force a layout pass and repaint
+        Scene scene = scenes.get(sceneType);
+        if (scene != null && scene.getRoot() != null) {
+            scene.getRoot().layout();
+        }
+
+        // Request UI refresh
+        javafx.application.Platform.runLater(() -> {
+            primaryStage.sizeToScene();
+        });
+
+        System.out.println("Entered scene: " + sceneType);
     }
 }

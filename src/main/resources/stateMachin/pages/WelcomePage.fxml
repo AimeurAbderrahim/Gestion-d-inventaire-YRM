@@ -6,124 +6,156 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../Styles/WelcomePageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="testpackage.gestiondinventaireyrm.components.WelcomePage">
+<AnchorPane minHeight="720.0" minWidth="1280.0" stylesheets="@../Styles/WelcomePageStyles.css"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="stateMachin.WelcomeController">
 
-   <!-- Background -->
    <children>
-      <ImageView fitHeight="812.0" fitWidth="1354.0" preserveRatio="false" AnchorPane.bottomAnchor="-92.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="-74.0" AnchorPane.topAnchor="0">
-         <image>
-            <Image url="@../components/images/WelcomPageBackground.png" />
-         </image>
-      </ImageView>
 
-      <!-- Top bar -->
-      <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="1251.0" spacing="20" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="20">
+      <!-- Background image -->
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                 AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="59.0" fitWidth="76.0">
+            <ImageView fitHeight="1080.0" fitWidth="1920.0" preserveRatio="false">
                <image>
-                  <Image url="@../components/images/InfoLogo.png" />
+                  <Image url="@../images/WelcomPageBackground.png" />
                </image>
             </ImageView>
-            <Label prefHeight="49.0" prefWidth="817.0" text="Administrateur" textFill="WHITE">
-               <font>
-                  <Font name="System Bold Italic" size="33.0" />
-               </font>
-            </Label>
-            <Button fx:id="SettingsButton" prefHeight="56.0" prefWidth="87.0" styleClass="TopBarIcons" stylesheets="@../Styles/WelcomePageStyles.css">
-               <graphic>
-                  <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../components/images/notification.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="LogoutButton" prefHeight="56.0" prefWidth="114.0" styleClass="TopBarIcons">
-               <graphic>
-                  <ImageView fitHeight="41.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../components/images/settings.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="77.0" styleClass="TopBarIcons">
-               <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="29.0">
-                     <image>
-                        <Image url="@../components/images/exit.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
          </children>
-      </HBox>
+      </StackPane>
 
-      <!-- Centered menu -->
-      <VBox fx:id="menuContainer" alignment="CENTER" layoutX="509.0" layoutY="242.0" prefHeight="414.0" prefWidth="316.0" spacing="20" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="509.0" AnchorPane.rightAnchor="455.0" AnchorPane.topAnchor="242.0">
-         <children>
+      <!-- Main UI layout -->
+      <BorderPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 
-            <Button fx:id="ProduitButton" alignment="BASELINE_LEFT" contentDisplay="LEFT" graphicTextGap="45.0" maxWidth="312.0" minWidth="312.0" prefHeight="88.0" prefWidth="312.0" styleClass="Button" stylesheets="@../Styles/WelcomePageStyles.css" text="Produit">
-               <graphic>
-                  <ImageView fitHeight="65.0" fitWidth="67.0">
+         <!-- Top Bar -->
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="147.0" spacing="20" BorderPane.alignment="TOP_CENTER">
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="127.0" fitWidth="144.0" preserveRatio="true">
                      <image>
-                        <Image url="@../components/images/ProduitIcon.png" />
+                        <Image url="@../images/InfoLogo.png" />
                      </image>
                   </ImageView>
-               </graphic>
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
 
-            <Button fx:id="FournisseurButton" alignment="BASELINE_LEFT" graphicTextGap="25.0" maxWidth="312.0" minWidth="312.0" prefHeight="60" prefWidth="312.0" styleClass="Button" stylesheets="@../Styles/WelcomePageStyles.css" text="Fournisseur" textFill="WHITE">
-               <graphic>
-                  <ImageView fitHeight="65.0" fitWidth="67.0">
-                     <image>
-                        <Image url="@../components/images/FourniseurIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
+                  <Label id="RoleName" fx:id="RoleName" text="Administrateur" textFill="WHITE"
+                         style="-fx-font-weight: bold;" maxWidth="Infinity" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
 
-            <Button fx:id="BonsButton" alignment="BASELINE_LEFT" graphicTextGap="50.0" maxWidth="312.0" minWidth="312.0" prefHeight="60" prefWidth="312.0" styleClass="Button" stylesheets="@../Styles/WelcomePageStyles.css" text="Bons">
-               <graphic>
-                  <ImageView fitHeight="65.0" fitWidth="67.0">
-                     <image>
-                        <Image url="@../components/images/BonsIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
+                  <Button fx:id="SettingsButton" minHeight="56.0" minWidth="87.0" styleClass="TopBarIcons">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/notification.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
 
-            <Button fx:id="EmplacementButton" alignment="BASELINE_LEFT" contentDisplay="LEFT" graphicTextGap="10.0" maxWidth="312.0" minWidth="312.0" prefHeight="88.0" prefWidth="312.0" styleClass="Button" stylesheets="@../Styles/WelcomePageStyles.css" text="Emplacement" textFill="#fffdfd">
-               <graphic>
-                  <ImageView fitHeight="71.0" fitWidth="82.0">
-                     <image>
-                        <Image url="@../components/images/Location%20icon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font name="System Bold" size="27.0" />
-               </font>
-            </Button>
+                  <Button fx:id="LogoutButton" minHeight="56.0" minWidth="87.0" styleClass="TopBarIcons">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/settings.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
 
-         </children>
-      </VBox>
+                  <Button fx:id="ExitButton" minHeight="56.0" minWidth="87.0" styleClass="TopBarIcons">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/exit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </top>
 
+         <!-- Centered menu -->
+         <center>
+            <VBox fx:id="menuContainer" alignment="CENTER" spacing="20" BorderPane.alignment="CENTER">
+               <padding>
+                  <Insets top="40.0" right="40.0" bottom="40.0" left="40.0" />
+               </padding>
+               <children>
+
+                  <Button fx:id="ProduitButton" text="Produit" graphicTextGap="70.0" contentDisplay="LEFT"
+                          styleClass="Button" prefHeight="88.0" minWidth="300.0" maxWidth="400.0">
+                     <graphic>
+                        <ImageView fitHeight="65.0" fitWidth="67.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/ProduitIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="FournisseurButton" text="Fournisseur" graphicTextGap="55.0" contentDisplay="LEFT"
+                          styleClass="Button" prefHeight="88.0" minWidth="300.0" maxWidth="400.0" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="65.0" fitWidth="67.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/FourniseurIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="BonsButton" text="Bons" graphicTextGap="90.0" contentDisplay="LEFT"
+                          styleClass="Button" prefHeight="88.0" minWidth="300.0" maxWidth="400.0">
+                     <graphic>
+                        <ImageView fitHeight="65.0" fitWidth="67.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/BonsIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="EmplacementButton" text="Emplacement" graphicTextGap="30.0" contentDisplay="LEFT"
+                          styleClass="Button" prefHeight="88.0" minWidth="300.0" maxWidth="400.0" textFill="#fffdfd">
+                     <graphic>
+                        <ImageView fitHeight="71.0" fitWidth="82.0" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/EmplacementIcon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Button>
+
+               </children>
+            </VBox>
+         </center>
+
+      </BorderPane>
    </children>
 </AnchorPane>

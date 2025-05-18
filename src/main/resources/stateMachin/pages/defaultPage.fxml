@@ -45,7 +45,7 @@
                                  <graphic>
                                     <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../components/images/notification.png" />
+                                          <Image url="@../images/notification.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -54,7 +54,7 @@
                                  <graphic>
                                     <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../components/images/settings.png" />
+                                          <Image url="@../images/settings.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -63,7 +63,7 @@
                                  <graphic>
                                     <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../components/images/exit.png" />
+                                          <Image url="@../images/exit.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -103,7 +103,7 @@
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../components/images/package.png" />
+                                    <Image url="@../images/package.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -112,7 +112,7 @@
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../components/images/package_car.png" />
+                                    <Image url="@../images/package_car.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -121,7 +121,7 @@
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../components/images/package_box_alt.png" />
+                                    <Image url="@../images/package_box_alt.png" />
                                  </image>
                               </ImageView>
                            </graphic>

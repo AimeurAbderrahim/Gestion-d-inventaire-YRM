@@ -1,22 +1,75 @@
-.Button{
+/* Base styles */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #0d8e8e, #023f3f);
+}
+
+#RoleName{
+    -fx-font-size: 40px;
+    -fx-font-width: bold;
+    -fx-text-fill: white;
+}
+.main-container {
+    -fx-background-color: transparent;
+}
+
+/* Top bar styling */
+.TopBarIcons {
+    -fx-background-color: transparent;
+    -fx-background-radius: 30px;
+    -fx-cursor: hand;
+}
+
+.TopBarIcons:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Menu button styling - keeping original colors */
+.Button {
     -fx-background-color:rgba(255, 255, 255, 0.2);
     -fx-font-color:white;
     -fx-text-fill: white;
+    -fx-background-radius: 15px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 8, 0, 0, 0);
+    -fx-padding: 10px 60px;
+    -fx-text-alignment: center;
 }
-.TopBarIcons{
-    -fx-background-color:rgba(0, 0, 0, 0);
-}
+
 .Button:hover {
-    -fx-background-color: white;
-    -fx-text-fill: white;
-    -fx-text-color: white;
+    -fx-background-color: linear-gradient(to right, #031418, #03C8D4);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
 }
 
-.Button:hover .text {
-    -fx-fill: linear-gradient(from 0% 0% to 0% 100%, #01252A 26.56%, #037F90 100%);
+/* Background image handling */
+ImageView {
+    -fx-preserve-ratio: false;
 }
 
-.Button:hover ImageView {
-    -fx-opacity: 1.0;
-    -fx-effect: dropshadow(gaussian, #0099aa, 5, 0.4, 0, 0);
+/* Responsive font sizes */
+@media (max-width: 800px) {
+    .Button .text {
+        -fx-font-size: 20px;
+    }
+    
+    Label {
+        -fx-font-size: 24px;
+    }
+}
+
+/* Ensure proper sizing for smaller screens */
+@media (max-height: 600px) {
+    .menuContainer {
+        -fx-spacing: 10;
+    }
+    
+    .Button {
+        -fx-padding: 5px 15px;
+    }
+}
+
+/* If no background image exists, use the gradient background */
+AnchorPane {
+    -fx-background-color: linear-gradient(to bottom, #0d8e8e, #023f3f);
 }

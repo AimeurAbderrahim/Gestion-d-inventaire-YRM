@@ -16,7 +16,7 @@
    <children>
       <ImageView fitHeight="812.0" fitWidth="1354.0" preserveRatio="false" AnchorPane.bottomAnchor="-92.0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="-74.0" AnchorPane.topAnchor="0">
          <image>
-            <Image url="@images/WelcomPageBackground.png" />
+            <Image url="@../images/WelcomPageBackground.png" />
          </image>
       </ImageView>
 
@@ -25,7 +25,7 @@
          <children>
             <ImageView fitHeight="59.0" fitWidth="76.0">
                <image>
-                  <Image url="@images/InfoLogo.png" />
+                  <Image url="@../images/InfoLogo.png" />
                </image>
             </ImageView>
             <Label prefHeight="49.0" prefWidth="817.0" text="Administrateur" textFill="WHITE">
@@ -37,7 +37,7 @@
                <graphic>
                   <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/notification.png" />
+                        <Image url="@../images/notification.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -46,7 +46,7 @@
                <graphic>
                   <ImageView fitHeight="41.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/settings.png" />
+                        <Image url="@../images/settings.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -55,7 +55,7 @@
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="29.0">
                      <image>
-                        <Image url="@images/exit.png" />
+                        <Image url="@../images/exit.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -71,7 +71,7 @@
                <graphic>
                   <ImageView fitHeight="65.0" fitWidth="67.0">
                      <image>
-                        <Image url="@images/ProduitIcon.png" />
+                        <Image url="@../images/ProduitIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -84,7 +84,7 @@
                <graphic>
                   <ImageView fitHeight="65.0" fitWidth="67.0">
                      <image>
-                        <Image url="@images/FourniseurIcon.png" />
+                        <Image url="@../images/FourniseurIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -100,7 +100,7 @@
                <graphic>
                   <ImageView fitHeight="65.0" fitWidth="67.0">
                      <image>
-                        <Image url="@images/BonsIcon.png" />
+                        <Image url="@../images/BonsIcon.png" />
                      </image>
                   </ImageView>
                </graphic>

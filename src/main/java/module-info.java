@@ -44,10 +44,8 @@ module testpackage.gestiondinventaireyrm {
 	exports db.test;
 	exports db.java;
 	exports stateMachin;
+    exports temp;
+    opens temp to javafx.fxml;
 
-
-
-
-	exports stateMachin;
 
 }

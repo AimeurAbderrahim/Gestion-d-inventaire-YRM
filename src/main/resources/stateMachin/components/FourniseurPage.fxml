@@ -35,7 +35,7 @@
                      <graphic>
                         <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/package.png" />
+                              <Image url="@../images/package.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -44,7 +44,7 @@
                      <graphic>
                         <ImageView fitHeight="86.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/FourniseurWhileEntered.png" />
+                              <Image url="@../images/FourniseurWhileEntered.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -53,7 +53,7 @@
                      <graphic>
                         <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/package_box_alt.png" />
+                              <Image url="@../images/package_box_alt.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -97,7 +97,7 @@
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/notification.png" />
+                                    <Image url="@../images/notification.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -106,7 +106,7 @@
                            <graphic>
                               <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/settings.png" />
+                                    <Image url="@../images/settings.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -115,7 +115,7 @@
                            <graphic>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@images/exit.png" />
+                                    <Image url="@../images/exit.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -124,7 +124,7 @@
                   </GridPane>
                   <ImageView fitHeight="150.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/InfoLogo.png" />
+                        <Image url="@../images/InfoLogo.png" />
                      </image>
                   </ImageView>
                   <Label text="Administrateur" textFill="WHITE" GridPane.columnIndex="1">
@@ -174,7 +174,7 @@
       </ScrollPane>
       <ImageView fitHeight="39.0" fitWidth="47.0" layoutX="126.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/Search.png" />
+            <Image url="@../images/Search.png" />
          </image>
       </ImageView>
       <HBox layoutX="579.0" layoutY="187.0" prefHeight="50.0" prefWidth="219.0">
