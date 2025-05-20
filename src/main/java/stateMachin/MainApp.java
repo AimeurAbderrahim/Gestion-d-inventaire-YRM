@@ -18,8 +18,10 @@ public class MainApp extends Application {
         System.out.println("Starting application...");
 
         stage.setTitle("Resource Management System");
-        stage.setMinWidth(800);
-        stage.setMinHeight(600);
+        stage.setFullScreen(true);
+        stage.setMinWidth(1280);
+        stage.setMinHeight(720);
+
 
         try {
             System.out.println("Creating state machine...");

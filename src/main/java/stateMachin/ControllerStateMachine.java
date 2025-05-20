@@ -22,7 +22,7 @@ public class ControllerStateMachine {
         this.scenes = new HashMap<>();
         this.controllers = new HashMap<>();
 
-        // Initialize all scenes 
+        // Initialize all scenes
         initializeScenes();
     }
 

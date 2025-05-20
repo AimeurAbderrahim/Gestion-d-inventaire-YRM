@@ -37,7 +37,7 @@
                         <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;">
+                        <Button fx:id="ProduitButton" mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" onAction="#ProduitButtonSwitch">
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -46,25 +46,25 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
+                        <Button fx:id="FournisseurButton" mnemonicParsing="false"  prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1" onAction="#FournisseurButtonSwitch">
                            <graphic>
-                              <ImageView fitHeight="86.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/FourniseurWhileEntered.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="2">
+                        <Button fx:id="BonsButton" mnemonicParsing="false"  prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="2" onAction="#BonsButtonSwitch">
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/package_box_alt.png" />
+                                    <Image url="@../images/BonsIcon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="3">
+                        <Button fx:id="EmplacementButton" mnemonicParsing="false"    prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="3" onAction="#EmplacementButtonSwitch">
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane stylesheets="@bone.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.LocationController">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -102,7 +101,7 @@
                         <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" styleClass="icon-button" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button fx:id="ProduitButton" mnemonicParsing="false" onAction="#ProduitButtonSwitch" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;">
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -111,33 +110,30 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" styleClass="icon-button" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button fx:id="FournisseurButton" mnemonicParsing="false" onAction="#FournisseurButtonSwitch" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/package_car.png" />
+                                    <Image url="@../images/FourniseurIcon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" styleClass="icon-button" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                        <Button fx:id="BonsButton" mnemonicParsing="false" onAction="#BonsButtonSwitch" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="2">
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/package_box_alt.png" />
+                                    <Image url="@../images/BonsIcon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button mnemonicParsing="false" styleClass="icon-button" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-                           <graphic>
-                              <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/Location%20icon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
+                        <Button fx:id="EmplacementButton" mnemonicParsing="false" onAction="#EmplacementButtonSwitch" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="3" />
+                        <ImageView fitHeight="105.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                           <image>
+                              <Image url="@../images/EmplacementIconOnClick.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </GridPane>
                </children>

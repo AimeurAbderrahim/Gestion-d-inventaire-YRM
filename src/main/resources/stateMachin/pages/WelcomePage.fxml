@@ -12,16 +12,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="720.0" minWidth="1280.0" stylesheets="@../Styles/WelcomePageStyles.css"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="stateMachin.WelcomeController">
+<AnchorPane minHeight="720.0" minWidth="1280.0" stylesheets="@../Styles/WelcomePageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.WelcomeController">
 
    <children>
 
       <!-- Background image -->
-      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                 AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="1080.0" fitWidth="1920.0" preserveRatio="false">
                <image>
@@ -32,8 +28,7 @@
       </StackPane>
 
       <!-- Main UI layout -->
-      <BorderPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
-                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
          <!-- Top Bar -->
          <top>
@@ -48,8 +43,7 @@
                      </image>
                   </ImageView>
 
-                  <Label id="RoleName" fx:id="RoleName" text="Administrateur" textFill="WHITE"
-                         style="-fx-font-weight: bold;" maxWidth="Infinity" HBox.hgrow="ALWAYS">
+                  <Label id="RoleName" fx:id="RoleName" maxWidth="Infinity" style="-fx-font-weight: bold;" text="Administrateur" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -92,12 +86,11 @@
          <center>
             <VBox fx:id="menuContainer" alignment="CENTER" spacing="20" BorderPane.alignment="CENTER">
                <padding>
-                  <Insets top="40.0" right="40.0" bottom="40.0" left="40.0" />
+                  <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                </padding>
                <children>
 
-                  <Button fx:id="ProduitButton" text="Produit" graphicTextGap="70.0" contentDisplay="LEFT"
-                          styleClass="Button" prefHeight="88.0" minWidth="300.0" maxWidth="400.0">
+                  <Button fx:id="ProduitButton" alignment="BASELINE_LEFT" graphicTextGap="75.0" maxWidth="400.0" minWidth="300.0" onAction="#ProduitButtonSwitch" prefHeight="88.0" styleClass="Button" text="Produit">
                      <graphic>
                         <ImageView fitHeight="65.0" fitWidth="67.0" preserveRatio="true">
                            <image>
@@ -110,8 +103,7 @@
                      </font>
                   </Button>
 
-                  <Button fx:id="FournisseurButton" text="Fournisseur" graphicTextGap="55.0" contentDisplay="LEFT"
-                          styleClass="Button" prefHeight="88.0" minWidth="300.0" maxWidth="400.0" textFill="WHITE">
+                  <Button fx:id="FournisseurButton" alignment="BASELINE_LEFT" contentDisplay="LEFT" graphicTextGap="60.0" maxWidth="400.0" minWidth="300.0" onAction="#FournisseurButtonSwitch" prefHeight="88.0" styleClass="Button" text="Fournisseur" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="65.0" fitWidth="67.0" preserveRatio="true">
                            <image>
@@ -124,8 +116,7 @@
                      </font>
                   </Button>
 
-                  <Button fx:id="BonsButton" text="Bons" graphicTextGap="90.0" contentDisplay="LEFT"
-                          styleClass="Button" prefHeight="88.0" minWidth="300.0" maxWidth="400.0">
+                  <Button fx:id="BonsButton" alignment="BASELINE_LEFT" contentDisplay="LEFT" graphicTextGap="94.0" maxWidth="400.0" minWidth="300.0" onAction="#BonsButtonSwitch" prefHeight="88.0" styleClass="Button" text="Bons">
                      <graphic>
                         <ImageView fitHeight="65.0" fitWidth="67.0" preserveRatio="true">
                            <image>
@@ -138,8 +129,7 @@
                      </font>
                   </Button>
 
-                  <Button fx:id="EmplacementButton" text="Emplacement" graphicTextGap="30.0" contentDisplay="LEFT"
-                          styleClass="Button" prefHeight="88.0" minWidth="300.0" maxWidth="400.0" textFill="#fffdfd">
+                  <Button fx:id="EmplacementButton" alignment="BASELINE_LEFT" contentDisplay="LEFT" graphicTextGap="40.0" maxWidth="400.0" minWidth="300.0" onAction="#EmplacementButtonSwitch" prefHeight="88.0" styleClass="Button" text="Emplacement" textFill="#fffdfd">
                      <graphic>
                         <ImageView fitHeight="71.0" fitWidth="82.0" preserveRatio="true">
                            <image>
