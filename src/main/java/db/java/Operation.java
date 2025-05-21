@@ -14,7 +14,9 @@
  * - Use the implemented classes through this interface type for loose coupling
  * - Handle exceptions appropriately in implementations
  *
- *   @author Souane Abdenour , Berrached Maroua
+ *   @author Souane Abdenour (rayden) , Berrached Maroua (marvi)
+ *   @github https://github.com/abdorayden
+ *   @personnel websize https://rayden-six.vercel.app/
  */
 
 package db.java;

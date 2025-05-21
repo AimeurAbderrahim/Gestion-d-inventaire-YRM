@@ -62,8 +62,8 @@ public class CompteDatabase extends EntityCoreDatabase<Compte> {
 		String id = "";
 		switch(obj.getRoles()){
 			case ADMINISTRATEUR: id = id + "A";break;
-			case SECRETAIRE: id = id + "S";break;
-			case MAGASINIER: id = id + "M";break;
+			case SECRETAIRE:     id = id + "S";break;
+			case MAGASINIER:     id = id + "M";break;
 		}
 		id = id + String.format("%03d", idx);
 		statement.setString(1, id);

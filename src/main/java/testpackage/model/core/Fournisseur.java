@@ -12,17 +12,15 @@ public class Fournisseur {
 	private String mail_f ;
 	private String NIF;
 	private String NIS;
-	private String IA;
 	private String RC;
 
 	public Fournisseur(){}
-	public Fournisseur(String nom_f, String adresse, String num_tel, String mail_f, String NIF, String NIS, String IA, String RC) throws NotNullException {
+	public Fournisseur(String nom_f, String adresse, String num_tel, String mail_f, String NIF, String NIS, String RC) throws NotNullException {
 		if(
 				(num_tel	==	null && mail_f	==	null) 	|| 
 				nom_f		==	null 				|| 
 				NIF		==	null 				|| 
 				NIS		==	null 				|| 
-				IA		==	null 				|| 
 				RC		==	null
 		){
 			throw new NotNullException("Manque d'information Fournisseur");
@@ -33,7 +31,6 @@ public class Fournisseur {
 		this.mail_f = mail_f;
 		this.NIF = NIF;
 		this.NIS = NIS;
-		this.IA = IA;
 		this.RC = RC;
 		// for test
 		// this.id_f = implementsId();
@@ -95,14 +92,6 @@ public class Fournisseur {
 
 	public void setNIS(String NIS) {
 		this.NIS = NIS;
-	}
-
-	public String getIA() {
-		return IA;
-	}
-
-	public void setIA(String IA) {
-		this.IA = IA;
 	}
 
 	public String getRC() {
