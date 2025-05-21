@@ -48,7 +48,6 @@ import testpackage.model.core.Fournisseur;
  * 		newSupplier.setEmail("contact@techsolutions.dz");
  * 		newSupplier.setNIF("NIF123456789");
  * 		newSupplier.setNIS("NIS987654321");
- * 		newSupplier.setIA("IA456123789");
  * 		newSupplier.setRC("RC789456123");
  * 		
  * 		try {
@@ -161,12 +160,12 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 
 	@Override
 	protected int getColumnCount() {
-		return 9; 
+		return 8; 
 	}
 
 	@Override
 	protected int getUpdateParameterCount() {
-		return 8;
+		return 7;
 	}
 
 	@Override
@@ -179,8 +178,7 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 		statement.setString(5, obj.getMail_f());
 		statement.setString(6, obj.getNIF());
 		statement.setString(7, obj.getNIS());
-		statement.setString(8, obj.getIA());
-		statement.setString(9, obj.getRC());
+		statement.setString(8, obj.getRC());
 	}
 
 	@Override
@@ -197,13 +195,12 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 		statement.setString(4, obj.getMail_f());
 		statement.setString(5, obj.getNIF());
 		statement.setString(6, obj.getNIS());
-		statement.setString(7, obj.getIA());
-		statement.setString(8, obj.getRC());
+		statement.setString(7, obj.getRC());
 	}
 
 	@Override
 	protected String buildUpdateSetClause() {
-		return "adresse = ?, numero_tlph = ?, nom = ?, email = ?, NIF = ?, NIS = ?, IA = ?, RC = ?";
+		return "adresse = ?, numero_tlph = ?, nom = ?, email = ?, NIF = ?, NIS = ?, RC = ?";
 	}
 
 	@Override
@@ -216,7 +213,6 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 		fournisseur.setMail_f(result.getString("email"));
 		fournisseur.setNIF(result.getString("NIF"));
 		fournisseur.setNIS(result.getString("NIS"));
-		fournisseur.setIA(result.getString("IA"));
 		fournisseur.setRC(result.getString("RC"));
 		return fournisseur;
 	}
