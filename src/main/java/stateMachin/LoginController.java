@@ -1,43 +1,76 @@
 package stateMachin;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class LoginController extends BaseController {
-    @FXML
-    private TextField usernameField;
+    @FXML private Label ConnexionLabel;
+    @FXML private AnchorPane ConnexionStyle;
+    @FXML private ImageView Background;
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private Button connexionButton;
 
-    @FXML
-    private PasswordField passwordField;
+    private boolean initialized = false;
 
-    @FXML
-    private Button connexionButton;
-
+    // Default constructor for FXML loader
     public LoginController() {
-        super(null); // Will be set after via setter
-    }
-
-    public void setStateMachine(ControllerStateMachine stateMachine) {
-        this.stateMachine = stateMachine;
+        super();
+        System.out.println("LoginController constructed by FXML loader");
     }
 
     @FXML
     private void initialize() {
-        connexionButton.setOnAction(e -> handleLogin());
+        if (initialized) return;
+
+        System.out.println("Initializing LoginController");
+
+        // Check if UI elements are properly loaded
+        System.out.println("connexionButton: " + (connexionButton != null ? "found" : "NOT FOUND"));
+        System.out.println("usernameField: " + (usernameField != null ? "found" : "NOT FOUND"));
+        System.out.println("passwordField: " + (passwordField != null ? "found" : "NOT FOUND"));
+
+        initialized = true;
     }
 
-    private void handleLogin() {
-        System.out.println("Login: " + usernameField.getText());
+    @FXML
+    public void login(ActionEvent event) {
+        System.out.println("Login method called");
 
-        ProductController next = new ProductController(stateMachine);
-        stateMachine.changeState(next);
+        try {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+
+            // Here you would normally validate credentials
+            System.out.println("Login attempt with username: " + username);
+
+            // Check if state machine is available
+            if (stateMachine != null) {
+                System.out.println("Changing scene to Location");
+                stateMachine.changeScene(EnumScenes.Welcome, event);
+                System.out.println("Scene change initiated");
+            } else {
+                System.err.println("ERROR: stateMachine is null in LoginController");
+            }
+        } catch (Exception e) {
+            System.err.println("Exception during login: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public Parent getRoot() {
-        return null;
+    public void onEnter() {
+        super.onEnter();
+        // Reset fields when entering login screen
+        if (usernameField != null) {
+            usernameField.clear();
+            passwordField.clear();
+        }
     }
 }
