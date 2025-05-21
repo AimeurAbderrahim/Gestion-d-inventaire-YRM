@@ -180,7 +180,7 @@
                                     </ImageView>
                                  </children>
                               </StackPane>
-                              <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="219.0" mnemonicParsing="false" styleClass="Buttons" stylesheets="@../Styles/ProduitPageStyles.css" text="Ajouter">
+                              <Button fx:id="AjouterFournisurButtonId" onAction="#AjouterFournisurButton"  alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="219.0" mnemonicParsing="false" styleClass="Buttons" stylesheets="@../Styles/ProduitPageStyles.css" text="Ajouter">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -209,22 +209,21 @@
                <center>
                   <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="456.0" prefWidth="1146.0" styleClass="ProduitScrollPane" stylesheets="@../Styles/ProduitPageStyles.css" BorderPane.alignment="CENTER">
                      <content>
-                        <TableView prefHeight="417.0" prefWidth="700.0" scaleShape="false">
+                        <TableView fx:id="fournisseurTable" prefHeight="417.0" prefWidth="1146.0" scaleShape="false" styleClass="ProduitScrollPane" stylesheets="@../Styles/ProduitPageStyles.css" BorderPane.alignment="CENTER">
                            <columns>
-                              <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Code" />
-                              <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Name" />
-                              <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Adress" />
-                              <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="Phone" />
-                              <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="Email" />
-                              <TableColumn minWidth="30.0" prefWidth="-1.0" style="-fx-background-color: transparent;" text="">
-                                 <graphic>
-                                    <CheckBox mnemonicParsing="false" styleClass="CheckBox" />
-                                 </graphic>
+                              <TableColumn fx:id="colNom" text="Nom" minWidth="120" />
+                              <TableColumn fx:id="colAdresse" text="Adresse" minWidth="150" />
+                              <TableColumn fx:id="colNumTel" text="Téléphone" minWidth="120" />
+                              <TableColumn fx:id="colMail" text="Email" minWidth="150" />
+                              <TableColumn fx:id="colNIF" text="NIF" minWidth="100" />
+                              <TableColumn fx:id="colNIS" text="NIS" minWidth="100" />
+                              <TableColumn fx:id="colRC" text="RC" minWidth="100" />
+                              <TableColumn minWidth="30" style="-fx-background-color: transparent;">
+                                    <graphic>
+                                       <CheckBox mnemonicParsing="false" styleClass="CheckBox" />
+                                    </graphic>
                               </TableColumn>
                            </columns>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>

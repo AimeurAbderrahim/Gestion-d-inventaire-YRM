@@ -32,6 +32,20 @@ public class Test {
 			db = new ConfigDatabase();
 			db.getConnection();
 			System.out.println("connection succesful");
+			try {	
+				FournisseurDatabase fournisseurDB = new FournisseurDatabase(db , null , null);
+				Fournisseur f = fournisseurDB.findById("F101");
+				if(f != null){
+					System.out.println("Found supplier: " + f.getNom_f());
+					System.out.println("Email: " + f.getMail_f());
+				}else{
+					System.out.println("not found");
+				}
+				fournisseurDB.add(new Fournisseur("testname", "1010 Route des Importateurs, Annaba", "0234958234", "test@test.dz", "NIF10456792" , "NIS10456792" , "RC10456792"));
+
+			} catch (Exception e) {
+				System.err.println("Failed to connect to database: " + e.getMessage());
+			}
 			db.closeConnection();
 		}catch(ConnectionFailedException error){
 			System.out.println(error.getMessage());

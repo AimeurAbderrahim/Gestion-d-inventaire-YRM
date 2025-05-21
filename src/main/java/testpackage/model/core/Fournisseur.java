@@ -2,8 +2,6 @@ package testpackage.model.core;
 
 import testpackage.model.errors.NotNullException;
 
-import java.util.List;
-
 public class Fournisseur {
 	private String id_f ;
 	private String nom_f ;
