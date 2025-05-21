@@ -45,7 +45,7 @@ public class ConfigDatabase {
 	public ConfigDatabase() throws LoadPropertiesException{
 		this.proptiesFile = new Properties();
 		// TODO: use separate DB users with minimal required privileges
-		try(InputStream inputProp = getClass().getClassLoader().getResourceAsStream("db/gestiondinventaireyrm/db.properties")){
+		try(InputStream inputProp = getClass().getClassLoader().getResourceAsStream("db.properties")){
 			this.proptiesFile.load(inputProp);
 			this.url 	= this.proptiesFile.getProperty("db.url");
 			this.username 	= this.proptiesFile.getProperty("db.user");

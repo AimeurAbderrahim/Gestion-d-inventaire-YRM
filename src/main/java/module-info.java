@@ -9,6 +9,7 @@ module testpackage.gestiondinventaireyrm {
 	requires javafx.controls;
 	requires javafx.fxml;
 	requires java.sql;
+	requires javafx.base;
 
 	requires org.controlsfx.controls;
 	requires com.dlsc.formsfx;
@@ -33,6 +34,6 @@ module testpackage.gestiondinventaireyrm {
 	exports stateMachin;
 	exports temp;
 	opens temp to javafx.fxml;
-
+	opens testpackage.model.core to javafx.base;
 
 }

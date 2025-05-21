@@ -8,7 +8,7 @@
  * 1. Multi-tenant database architecture
  * 2. Comprehensive inventory tracking with expiration dates
  * 3. Supplier management with legal identifiers
- * 4. Location-based asset management
+ * 4. Location-based asset managementfournisseur
  * 5. Role-based user access control
  * 
  * Schema Design Principles:
