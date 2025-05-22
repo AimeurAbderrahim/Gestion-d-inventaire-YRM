@@ -1,12 +1,6 @@
 /*
  * this class is useless keep mouving
+ * nothing special here
  * */
-
 package db.java;
-
-public class Foo {
-	public Foo(){
-		System.out.println("what do you looking at foo");
-		System.out.println("you shouldn't call me you waste your computer memory LOL XD");
-	}
-}
+public class Foo { public Foo(){ } }
