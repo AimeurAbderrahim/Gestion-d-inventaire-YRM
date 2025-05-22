@@ -96,7 +96,7 @@ public class CompteDatabase extends EntityCoreDatabase<Compte> {
 
 	@Override
 	public String getSearchCondition() {
-		return "nom_utilisateur LIKE ? OR role LIKE ? OR mot_de_passe LIKE ?";
+		return "nom_utilisateur LIKE ? OR role LIKE ?";
 	}
 
 	@Override
@@ -104,7 +104,6 @@ public class CompteDatabase extends EntityCoreDatabase<Compte> {
 		String searchPattern = "%" + keyword + "%";
 		statement.setString(1, searchPattern);
 		statement.setString(2, searchPattern);
-		statement.setString(3, searchPattern);
 	}
 
 	@Override
