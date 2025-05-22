@@ -2,9 +2,11 @@ package stateMachin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -51,7 +53,10 @@ public class ControllerStateMachine {
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
             Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            double screenWidth = screenBounds.getWidth();
+            double screenHeight = screenBounds.getHeight();
+            Scene scene = new Scene(root, screenWidth, screenHeight);
             scenes.put(sceneType, scene);
 
             // Get the controller and store it

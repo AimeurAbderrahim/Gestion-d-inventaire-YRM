@@ -43,9 +43,13 @@ public class MainApp extends Application {
         System.out.println("Starting application...");
 
         stage.setTitle("Resource Management System");
-        stage.setFullScreen(true);
+        stage.setFullScreen(false);
         stage.setMinWidth(1280);
         stage.setMinHeight(720);
+        stage.setResizable(false);
+        stage.setX(0);  // Set X coordinate on the screen (left edge)
+        stage.setY(0);
+
 
 
         try {
@@ -61,7 +65,7 @@ public class MainApp extends Application {
 
             // Ensure the scene is properly laid out
             loginScene.getRoot().layout();
-
+            stage.sizeToScene();
             // Show the stage
             stage.show();
 

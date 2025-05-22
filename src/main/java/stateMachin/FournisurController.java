@@ -234,6 +234,7 @@ public class FournisurController extends BaseController {
             popupStage.initModality(Modality.APPLICATION_MODAL); // Block input to other windows
             popupStage.setTitle("Popup");
             popupStage.setScene(new Scene(popupRoot));
+
             popupStage.showAndWait(); // Use show() for non-blocking
 
         }catch (Exception e){

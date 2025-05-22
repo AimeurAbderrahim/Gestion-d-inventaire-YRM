@@ -98,6 +98,9 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+                <excludes>
+                    <exclude>lib/*.jar</exclude>
+                </excludes>
             </resource>
         </resources>
         <plugins>
@@ -116,8 +119,8 @@
 
 <!-- 		i changed to 17 because my jdk is old -->
 <!-- 		TODO: upgrade my jdk -->
-                       <!-- <source>17</source> -->
-                       <!-- <target>17</target> -->
+                       <!-- <source>17</source>
+                       <target>17</target> -->
 		  <!-- 		  /////////////// -->
                 </configuration>
             </plugin>
@@ -130,11 +133,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>
-<!--  				  testpackage.gestiondinventaireyrm/testpackage.gestiondinventaireyrm.HelloApplication -->
- 				    statMachin.MainApp
-                            </mainClass>
-			    <module>statMachin/statMachin.MainApp</module>
+                            <mainClass>testpackage.gestiondinventaireyrm/stateMachin.MainApp</mainClass>
                             <launcher>app</launcher>
 			    <jvmArguments>
 				    -XX:+UseG1GC

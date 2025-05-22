@@ -148,10 +148,12 @@
   -fx-background-color: white;
   -fx-font-weight: bold;
   -fx-font-size: x-large;
+  -fx-cursor: pointer;
 }
 
 .add-button:hover, .print-button:hover, .close-button:hover {
   -fx-background-color: #e0e0e0;
+  -fx-cursor: pointer;
 }
 
 /* Table Styling */
