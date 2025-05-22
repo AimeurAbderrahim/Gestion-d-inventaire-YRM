@@ -55,6 +55,7 @@ public class Test {
 			// FournisseurDatabase fournisseurDB = new FournisseurDatabase("custom_id_column");
 		}
 		catch(ConnectionFailedException error){
+
 			System.out.println(error.getMessage());
 			System.exit(0);
 		}

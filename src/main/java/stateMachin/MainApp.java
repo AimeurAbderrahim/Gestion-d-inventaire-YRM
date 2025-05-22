@@ -1,5 +1,9 @@
 package stateMachin;
 
+import db.configuration.ConfigDatabase;
+import db.errors.CloseConnectionException;
+import db.errors.ConnectionFailedException;
+import db.errors.LoadPropertiesException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -7,9 +11,30 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
     private ControllerStateMachine stateMachine;
+    // private ConfigDatabase db;
+
+
+    // public ConfigDatabase getDb() {
+    //     return db;
+    // }
+
+    public MainApp() {
+        ConfigDatabase db = null;
+        try{
+			db = new ConfigDatabase();
+			db.getConnection();
+        }catch(ConnectionFailedException error){
+			System.out.println(error.getMessage());
+			System.exit(0);
+		}catch(LoadPropertiesException err){
+			System.out.println(err.getMessage());
+			System.exit(0);
+		}
+    }
 
     @Override
     public void start(Stage stage) {
+		
         // Apply hardware acceleration hints
         System.setProperty("prism.forceGPU", "true");
         System.setProperty("javafx.animation.fullspeed", "true");
@@ -18,8 +43,14 @@ public class MainApp extends Application {
         System.out.println("Starting application...");
 
         stage.setTitle("Resource Management System");
-        stage.setMinWidth(800);
-        stage.setMinHeight(600);
+        stage.setFullScreen(false);
+        stage.setMinWidth(1280);
+        stage.setMinHeight(720);
+        stage.setResizable(false);
+        stage.setX(0);  // Set X coordinate on the screen (left edge)
+        stage.setY(0);
+
+
 
         try {
             System.out.println("Creating state machine...");
@@ -34,7 +65,7 @@ public class MainApp extends Application {
 
             // Ensure the scene is properly laid out
             loginScene.getRoot().layout();
-
+            stage.sizeToScene();
             // Show the stage
             stage.show();
 
@@ -62,6 +93,12 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
+        // try {
+        //     db.closeConnection();
+        // } catch(CloseConnectionException err){
+		// 	System.out.println(err.getMessage());
+		// 	System.exit(0);
+		// }
         // Clean up resources when the application closes
         System.out.println("Application shutting down...");
         Platform.exit();

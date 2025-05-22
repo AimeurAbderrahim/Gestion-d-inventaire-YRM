@@ -9,6 +9,10 @@
     -fx-background-color: white;
     -fx-font-weight: bold;
     -fx-font-size: x-large;
+    -fx-cursor: pointer;
+}
+.Buttons:hover {
+    -fx-cursor: pointer;
 }
 
 .column-header-background {
