@@ -47,9 +47,9 @@ public class MainApp extends Application {
         stage.setMinWidth(1280);
         stage.setMinHeight(720);
         stage.setResizable(false);
-        stage.setX(0);  // Set X coordinate on the screen (left edge)
-        stage.setY(0);
-
+//        stage.setX(0);  // Set X coordinate on the screen (left edge)
+//        stage.setY(0);
+        stage.centerOnScreen();
 
 
         try {
@@ -62,7 +62,6 @@ public class MainApp extends Application {
             // Access the login scene from the state machine
             Scene loginScene = stateMachine.getScene(EnumScenes.Login);
             stage.setScene(loginScene);
-
             // Ensure the scene is properly laid out
             loginScene.getRoot().layout();
             stage.sizeToScene();

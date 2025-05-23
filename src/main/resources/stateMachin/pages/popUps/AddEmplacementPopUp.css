@@ -47,6 +47,7 @@
 
 .button:first-child:hover {
     -fx-background-color: #e0e0e0;
+    -fx-cursor: hand;
 }
 
 /* Confirm Button */
@@ -57,6 +58,8 @@
 
 .button:last-child:hover {
     -fx-background-color: #007a89;
+    -fx-cursor: hand;
+
 }
 
 /* GridPane Styling */

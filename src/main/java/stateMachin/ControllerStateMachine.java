@@ -56,7 +56,7 @@ public class ControllerStateMachine {
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             double screenWidth = screenBounds.getWidth();
             double screenHeight = screenBounds.getHeight();
-            Scene scene = new Scene(root, screenWidth, screenHeight);
+            Scene scene = new Scene(root, screenWidth, screenHeight-35);
             scenes.put(sceneType, scene);
 
             // Get the controller and store it

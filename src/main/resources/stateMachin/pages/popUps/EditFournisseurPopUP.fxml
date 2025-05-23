@@ -102,7 +102,7 @@
                                 <Font size="12.0" />
                             </font>
                         </Button>
-                        <Button mnemonicParsing="false" styleClass="close-button" text="Fermer" />
+                        <Button mnemonicParsing="false" styleClass="close-button" text="Fermer" onAction="#PopupCloseButton" />
                     </children>
                     <BorderPane.margin>
                         <Insets top="15.0" />

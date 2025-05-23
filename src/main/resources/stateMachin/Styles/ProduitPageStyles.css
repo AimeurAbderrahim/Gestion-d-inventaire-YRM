@@ -9,10 +9,11 @@
     -fx-background-color: white;
     -fx-font-weight: bold;
     -fx-font-size: x-large;
-    -fx-cursor: pointer;
+
 }
 .Buttons:hover {
-    -fx-cursor: pointer;
+    -fx-cursor: hand;
+    -fx-background-color: #e0e0e0;
 }
 
 .column-header-background {
@@ -33,14 +34,28 @@
 /* Optional: Remove borders */
 .table-view .column-header,
 .table-view .column-header-background {
-    -fx-border-width: 0;
+    -fx-border-width: 2;
 }
 .table-row-cell {
-    -fx-background-color: #05A3B9;  /* White background */
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-text-alignment: center;
+    -fx-background-color: transparent;  /* White background */
     -fx-text-fill: #333333;/* Dark text */
     -fx-border-color: transparent; /* Light gray border */
-    -fx-border-width: 0 0 1 0;      /* Bottom border only */
+    -fx-border-width: 0 0 0 0; /* Bottom border only */
+    -fx-border-radius: 30px;
+    -fx-background-radius:30px;
 }
+.table-row-cell:filled:hover {
+    -fx-background-color: #444; /* gray background */
+    -fx-text-fill: white; /* text color inside the row */
+    -fx-cursor: hand;
+}
+.table-row-cell:filled:hover .table-cell {
+    -fx-text-fill: white;
+}
+
 .CheckBox{
     -fx-background-color: transparent;
     -fx-background-radius: 30px;

@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -37,7 +36,7 @@
                         <RowConstraints minHeight="100.0" prefHeight="150.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="ProduitButton" mnemonicParsing="false" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" onAction="#ProduitButtonSwitch">
+                        <Button fx:id="ProduitButton" mnemonicParsing="false" onAction="#ProduitButtonSwitch" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;">
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -46,7 +45,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="FournisseurButton" mnemonicParsing="false"  prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1" onAction="#FournisseurButtonSwitch">
+                        <Button fx:id="FournisseurButton" mnemonicParsing="false" onAction="#FournisseurButtonSwitch" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -55,7 +54,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="BonsButton" mnemonicParsing="false"  prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="2" onAction="#BonsButtonSwitch">
+                        <Button fx:id="BonsButton" mnemonicParsing="false" onAction="#BonsButtonSwitch" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="2">
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -64,7 +63,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="EmplacementButton" mnemonicParsing="false"    prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="3" onAction="#EmplacementButtonSwitch">
+                        <Button fx:id="EmplacementButton" mnemonicParsing="false" onAction="#EmplacementButtonSwitch" prefHeight="101.0" prefWidth="98.0" style="-fx-background-color: transparent;" GridPane.rowIndex="3">
                            <graphic>
                               <ImageView fitHeight="88.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -180,20 +179,13 @@
                                     </ImageView>
                                  </children>
                               </StackPane>
-                              <Button fx:id="AjouterFournisurButtonId" onAction="#AjouterFournisurButton"  alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="219.0" mnemonicParsing="false" styleClass="Buttons" stylesheets="@../Styles/ProduitPageStyles.css" text="Ajouter">
+                              <Button fx:id="AjouterFournisurButtonId" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="219.0" mnemonicParsing="false" onAction="#AjouterFournisurButton" styleClass="Buttons" stylesheets="@../Styles/ProduitPageStyles.css" text="Ajouter">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
-                              </Button>
-                              <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="219.0" mnemonicParsing="false" styleClass="Buttons" stylesheets="@../Styles/ProduitPageStyles.css" text="Modifier">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Button>
-                              <Button alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="219.0" mnemonicParsing="false" styleClass="Buttons" stylesheets="@../Styles/ProduitPageStyles.css" text="Supprimer">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="500.0" />
+                                 </HBox.margin>
                               </Button>
                            </children>
                            <VBox.margin>
@@ -211,18 +203,13 @@
                      <content>
                         <TableView fx:id="fournisseurTable" prefHeight="417.0" prefWidth="1146.0" scaleShape="false" styleClass="ProduitScrollPane" stylesheets="@../Styles/ProduitPageStyles.css" BorderPane.alignment="CENTER">
                            <columns>
-                              <TableColumn fx:id="colNom" text="Nom" minWidth="120" />
-                              <TableColumn fx:id="colAdresse" text="Adresse" minWidth="150" />
-                              <TableColumn fx:id="colNumTel" text="Téléphone" minWidth="120" />
-                              <TableColumn fx:id="colMail" text="Email" minWidth="150" />
-                              <TableColumn fx:id="colNIF" text="NIF" minWidth="100" />
-                              <TableColumn fx:id="colNIS" text="NIS" minWidth="100" />
-                              <TableColumn fx:id="colRC" text="RC" minWidth="100" />
-                              <TableColumn minWidth="30" style="-fx-background-color: transparent;">
-                                 <graphic>
-                                    <CheckBox mnemonicParsing="false" styleClass="CheckBox" />
-                                 </graphic>
-                              </TableColumn>
+                              <TableColumn fx:id="colNom" minWidth="120" text="Nom" />
+                              <TableColumn fx:id="colAdresse" minWidth="150" text="Adresse" />
+                              <TableColumn fx:id="colNumTel" minWidth="120" text="Téléphone" />
+                              <TableColumn fx:id="colMail" minWidth="150" text="Email" />
+                              <TableColumn fx:id="colNIF" minWidth="100" text="NIF" />
+                              <TableColumn fx:id="colNIS" minWidth="100" text="NIS" />
+                              <TableColumn fx:id="colRC" minWidth="100" text="RC" />
                            </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

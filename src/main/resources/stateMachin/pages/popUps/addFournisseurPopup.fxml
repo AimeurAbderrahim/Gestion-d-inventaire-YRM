@@ -2,12 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@detailedEmplacement.css" minHeight="300.0" minWidth="800.0" styleClass="root" fx:controller="stateMachin.FournisurController">
+<AnchorPane minHeight="300.0" minWidth="800.0" styleClass="root" stylesheets="@detailedEmplacement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.FournisurController">
 
     <children>
         <BorderPane minHeight="300" minWidth="800.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -37,7 +33,7 @@
                                 </Label>
                                 <!-- Spacer to push the close button to the right -->
                                 <HBox HBox.hgrow="ALWAYS" />
-                                <Button fx:id="closePopup" onAction="#PopupCloseButton"  mnemonicParsing="false" styleClass="close-icon-button">
+                                <Button fx:id="closePopup" mnemonicParsing="false" onAction="#PopupCloseButton" styleClass="close-icon-button">
                                     <graphic>
                                         <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -59,6 +55,8 @@
                             <rowConstraints>
                                 <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
+                        <RowConstraints />
                             </rowConstraints>
                             <children>
                                 <!-- Row 1 -->
@@ -98,13 +96,8 @@
             <bottom>
                 <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Button mnemonicParsing="false" styleClass="add-button" text="Ajouter" fx:id="ajouterFournisseurDbButton" onAction="#AjouterFournisseurDbAction" />
-                        <Button minWidth="150.0" mnemonicParsing="false" styleClass="print-button" text="Raport">
-                            <font>
-                                <Font size="12.0" />
-                            </font>
-                        </Button>
-                        <Button mnemonicParsing="false" styleClass="close-button" text="Fermer" />
+                        <Button fx:id="ajouterFournisseurDbButton" mnemonicParsing="false" onAction="#AjouterFournisseurDbAction" styleClass="add-button" text="Ajouter" />
+                        <Button mnemonicParsing="false" styleClass="close-button" text="Fermer"  onAction="#PopupCloseButton"/>
                     </children>
                     <BorderPane.margin>
                         <Insets top="15.0" />
