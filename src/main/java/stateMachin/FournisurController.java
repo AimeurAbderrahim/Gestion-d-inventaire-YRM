@@ -11,15 +11,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.w3c.dom.events.MouseEvent;
 import testpackage.model.core.Fournisseur;
+import testpackage.model.errors.NotNullException;
 
 public class FournisurController extends BaseController {
     private boolean initialized = false;
@@ -50,62 +51,96 @@ public class FournisurController extends BaseController {
     private TableColumn<Fournisseur, String> colNIS;
     @FXML
     private TableColumn<Fournisseur, String> colRC;
+    @FXML
+    private Button modifierFournisseurDbButton;
 
     private final ObservableList<Fournisseur> fournisseurData = FXCollections.observableArrayList();
+    private Fournisseur fournisseurToEdit = null;
 
     @FXML
     private void initialize() {
 
         try {
-            System.err.println("Initializing FournisurController & connecting to database");
 
+            // already initialised for this *instance*?
             if (initialized) return;
-
-
             initialized = true;
 
-            colNom.setCellValueFactory(new PropertyValueFactory<>("nom_f"));
-            colAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-            colNumTel.setCellValueFactory(new PropertyValueFactory<>("num_tel"));
-            colMail.setCellValueFactory(new PropertyValueFactory<>("mail_f"));
-            colNIF.setCellValueFactory(new PropertyValueFactory<>("NIF"));
-            colNIS.setCellValueFactory(new PropertyValueFactory<>("NIS"));
-            colRC.setCellValueFactory(new PropertyValueFactory<>("RC"));
+            /* ── only the main screen has the table ── */
+            if (fournisseurTable != null) {
+                colNom.setCellValueFactory(new PropertyValueFactory<>("nom_f"));
+                colAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+                colNumTel.setCellValueFactory(new PropertyValueFactory<>("num_tel"));
+                colMail.setCellValueFactory(new PropertyValueFactory<>("mail_f"));
+                colNIF.setCellValueFactory(new PropertyValueFactory<>("NIF"));
+                colNIS.setCellValueFactory(new PropertyValueFactory<>("NIS"));
+                colRC.setCellValueFactory(new PropertyValueFactory<>("RC"));
 
-            try {
-                ConfigDatabase db = new ConfigDatabase();
-                db.getConnection();
+                refreshFournisurData();
+                fournisseurTable.setItems(fournisseurData);
 
-                try {
-                    FournisseurDatabase fournisseurDB = new FournisseurDatabase(db, null , null);
-                    List<Fournisseur> f = fournisseurDB.findAll();
-
-                    if (f != null) {
-                        // Instead of printing, add all fournisseurs to your observable list backing the UI table
-                        fournisseurData.addAll(f);
-                    } else {
-                        System.out.println("No suppliers found");
-                    }
-                } catch (Exception e) {
-                    System.err.println("Failed to connect to database: " + e.getMessage());
-                }
-
-            } catch (Exception e) {
-                System.err.println("Exception during popup closing " + e.getMessage());
-                e.printStackTrace();
+                fournisseurTable.setRowFactory(tv -> {
+                    TableRow<Fournisseur> row = new TableRow<>();
+                    row.setOnMouseClicked(ev -> {
+                        if (!row.isEmpty() && ev.getClickCount() == 2 &&
+                                ev.getButton() == javafx.scene.input.MouseButton.PRIMARY) {
+                            modifierFournisseur(row.getItem());
+                        }
+                    });
+                    return row;
+                });
             }
-            // fournisseurData.addAll(
-            //     new Fournisseur("Fournisseur A", "123 Rue A", "0123456789", "a@mail.com", "NIF001", "NIS001", "RC001"),
-            //     new Fournisseur("Fournisseur B", "456 Rue B", "0987654321", "b@mail.com", "NIF002", "NIS002", "RC002")
-            // );
 
-            fournisseurTable.setItems(fournisseurData);
+
+
         } catch (Exception e) {
-            System.err.println("Failed to connect to database: " + e.getMessage());
-            return;
+            System.err.println("Failed to initialise controller: " + e.getMessage());
+            e.printStackTrace();
         }
-
     }
+
+    public void setFournisseurData(Fournisseur f) {
+
+        nomField.setText(f.getNom_f());
+        adresseField.setText(f.getAdresse());
+        numeroField.setText(f.getNum_tel());
+        emailField.setText(f.getMail_f());
+        nifField.setText(f.getNIF());
+        nisField.setText(f.getNIS());
+        rcField.setText(f.getRC());
+    }
+
+    @FXML
+    private void modifierFournisseur(Fournisseur f) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/stateMachin/pages/popUps/EditFournisseurPopUP.fxml"));
+            Parent popupRoot = loader.load();
+
+            FournisurController popupController = loader.getController();
+            popupController.setFournisseurData(f);
+            popupController.fournisseurToEdit = f;
+
+            Stage popupStage = new Stage();
+            popupStage.initStyle(StageStyle.UNDECORATED);
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Modifier Fournisseur");
+            popupStage.setScene(new Scene(popupRoot));
+
+            /* --------- BLOCKING call --------- */
+            popupStage.showAndWait();
+            /* --------------------------------- */
+
+            // when we come back, refresh the visible table
+            refreshFournisurData();
+
+        } catch (Exception e) {
+            System.err.println("Error loading popup for editing: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
     @FXML
     private void ProduitButtonSwitch(ActionEvent event) {
         try{
@@ -184,8 +219,8 @@ public class FournisurController extends BaseController {
     @FXML private TextField rcField;
 
     @FXML
-    private void AjouterFournisseurDbAction(ActionEvent event) {
 
+    private void AjouterFournisseurDbAction(ActionEvent event) {
 
         String Nom = nomField.getText();
         String Adresse = adresseField.getText();
@@ -216,6 +251,70 @@ public class FournisurController extends BaseController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void SupprimerFourniseurDbAction(ActionEvent event)  {
+        try{
+            ConfigDatabase db = new ConfigDatabase();
+            db.getConnection();
+            try {
+                FournisseurDatabase fournisseurDB = new FournisseurDatabase(db, null , null);
+                fournisseurDB.remove(fournisseurToEdit);
+                Stage stage = (Stage) closePopup.getScene().getWindow();
+                stage.close();
+                refreshFournisurData();
+                db.closeConnection();
+
+            } catch (Exception e) {
+                System.err.println("Failed to connect to database: " + e.getMessage());
+            }
+
+
+        }catch (Exception e){
+            System.err.println("Exception during closing popup " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    private void ModifierFournisseurDbAction(ActionEvent event) {
+
+
+        String Nom = nomField.getText();
+        String Adresse = adresseField.getText();
+        String NumTel = numeroField.getText();
+        String Mail = emailField.getText();
+        String NIF = nifField.getText();
+        String NIS = nisField.getText();
+        String RC = rcField.getText();
+
+        try{
+            ConfigDatabase db = new ConfigDatabase();
+            db.getConnection();
+
+            Fournisseur fournisseur = new Fournisseur(Nom, Adresse, NumTel, Mail, NIF, NIS, RC);
+            try {
+                FournisseurDatabase fournisseurDB = new FournisseurDatabase(db, null , null);
+                System.out.println("Updating fournisseur: " + fournisseurToEdit);
+
+                fournisseurDB.update(fournisseurToEdit,fournisseur);
+                Stage stage = (Stage) closePopup.getScene().getWindow();
+                stage.close();
+                refreshFournisurData();
+                db.closeConnection();
+
+            } catch (Exception e) {
+                System.err.println("Failed to connect to database: " + e.getMessage());
+            }
+
+
+        }catch (Exception e){
+            System.err.println("Exception during closing popup " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 
 
 
@@ -266,4 +365,6 @@ public class FournisurController extends BaseController {
             System.err.println("Failed to refresh data: " + e.getMessage());
         }
     }
+
+
 }
