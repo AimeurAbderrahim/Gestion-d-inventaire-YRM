@@ -241,6 +241,7 @@ public class FournisurController extends BaseController {
                 Stage stage = (Stage) closePopup.getScene().getWindow();
                 stage.close();
                 refreshFournisurData();
+                db.closeConnection();
 
             } catch (Exception e) {
                 System.err.println("Failed to connect to database: " + e.getMessage());
@@ -334,7 +335,8 @@ public class FournisurController extends BaseController {
             popupStage.setTitle("Popup");
             popupStage.setScene(new Scene(popupRoot));
 
-            popupStage.showAndWait(); // Use show() for non-blocking
+            popupStage.showAndWait();// Use show() for non-blocking
+            refreshFournisurData();
 
         }catch (Exception e){
             System.err.println("Exception during call of AjouterFournisurButton" + e.getMessage());
@@ -354,9 +356,10 @@ public class FournisurController extends BaseController {
         try {
             ConfigDatabase db = new ConfigDatabase();
             db.getConnection();
-
             FournisseurDatabase fournisseurDB = new FournisseurDatabase(db, null , null);
+
             List<Fournisseur> f = fournisseurDB.findAll();
+            System.out.println("testing data connection");
 
             fournisseurData.clear();       // Clear old data
             fournisseurData.addAll(f);     // Add updated list

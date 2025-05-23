@@ -182,10 +182,20 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 	}
 
 	@Override
-	public String generatedIdPK() throws SQLException{
-		long idx = super.countAll();
-		return String.format("%02d" , idx);
+	public String generatedIdPK() throws SQLException {
+		//i adjust here to select the max id_f always
+		String sql = "SELECT MAX(CAST(id_f AS UNSIGNED)) FROM Fournisseur";
+		try (PreparedStatement stmt = this.connection.prepareStatement(sql);
+			 ResultSet rs = stmt.executeQuery()) {
+			if (rs.next()) {
+				int max = rs.getInt(1);
+				return String.format("%02d", max + 1);
+			} else {
+				return "01";
+			}
+		}
 	}
+
 
 	@Override
 	protected void setUpdateParameters(PreparedStatement statement, Fournisseur obj) throws SQLException {
@@ -200,17 +210,19 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 
 	@Override
 	protected String buildUpdateSetClause() {
-		return "adresse = ?, numero_tlph = ?, nom = ?, email = ?, NIF = ?, NIS = ?, RC = ?";
+		//I adjust the names in this methode to fit the database names and also in mapresult
+		return "adresse_fournisseur = ?, numerotlph_fournisseur = ?, nom_fournisseur = ?, email_fournisseur = ?, NIF = ?, NIS = ?, RC = ?";
 	}
 
 	@Override
 	public Fournisseur mapResultSetToEntity(ResultSet result) throws SQLException {
+		//I adjust the names in this methode to fit the database names
 		Fournisseur fournisseur = new Fournisseur();
 		fournisseur.setId_f(result.getString("id_f"));
-		fournisseur.setAdresse(result.getString("adresse"));
-		fournisseur.setNum_tel(result.getString("numero_tlph"));
-		fournisseur.setNom_f(result.getString("nom"));
-		fournisseur.setMail_f(result.getString("email"));
+		fournisseur.setAdresse(result.getString("adresse_fournisseur"));
+		fournisseur.setNum_tel(result.getString("numerotlph_fournisseur"));
+		fournisseur.setNom_f(result.getString("nom_fournisseur"));
+		fournisseur.setMail_f(result.getString("email_fournisseur"));
 		fournisseur.setNIF(result.getString("NIF"));
 		fournisseur.setNIS(result.getString("NIS"));
 		fournisseur.setRC(result.getString("RC"));

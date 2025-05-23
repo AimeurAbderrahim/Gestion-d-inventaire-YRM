@@ -104,10 +104,10 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 	@Override
 	public void update(T oldObj, T newObj) throws OperationFailedException {
 		String sql = "UPDATE " + this.tableName + " SET " + this.buildUpdateSetClause() + " WHERE " + this.idColumn + " = ?";
-
 		try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
 			setUpdateParameters(statement, newObj);
-			statement.setString(this.getUpdateParameterCount(), this.getIdValue(oldObj));
+			//i adjust here cuz ur calling the parameters but u forgot the id_f so if u have 6 parameteres + id_f u have 7 parameters not 6
+			statement.setString(this.getUpdateParameterCount()+1, this.getIdValue(oldObj));
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new OperationFailedException("Failed to update object in " + this.tableName, e);
