@@ -34,10 +34,10 @@ USE project;
 
 CREATE TABLE IF NOT EXISTS Fournisseur (
 	id_f VARCHAR(10) PRIMARY KEY,
-	adresse_fournisseur VARCHAR(255), -- TODO: handle in db
-	numerotlph_fournisseur  VARCHAR(11), -- TODO: handle in db
-	nom_fournisseur   VARCHAR(100) NOT NULL,-- TODO: handle in db
-	email_fournisseur   VARCHAR(100) NOT NULL,-- TODO: handle in db
+	adresse VARCHAR(255),
+	numero_tlph VARCHAR(11),
+	nom VARCHAR(100) NOT NULL,
+	email VARCHAR(100) NOT NULL,
 	NIF VARCHAR(50)	UNIQUE NOT NULL,
 	NIS VARCHAR(50)	UNIQUE NOT NULL,
 	RC VARCHAR(50)  UNIQUE NOT NULL

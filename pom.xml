@@ -25,12 +25,6 @@
 <!--     </build> -->
 
     <dependencies>
-	    <!-- this lib used to send mails for notifications -->
-	    <dependency>
-		    <groupId>com.sun.mail</groupId>
-		    <artifactId>javax.mail</artifactId>
-		    <version>1.6.2</version>
-	    </dependency>
         <!-- Added By Rayden MySQL JDBC Driver -->
         <dependency>
             <groupId>com.mysql</groupId>

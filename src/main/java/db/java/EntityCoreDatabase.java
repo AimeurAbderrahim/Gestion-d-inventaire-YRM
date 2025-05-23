@@ -80,6 +80,7 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 	@Override
 	public void add(T obj) throws OperationFailedException {
 		String sql = "INSERT INTO " + this.tableName + " VALUES (?" + ", ?".repeat(this.getColumnCount() - 1) + ")";
+
 		try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
 			this.setAddParameters(statement, obj);
 			statement.executeUpdate();
@@ -137,9 +138,12 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 
 	@Override
 	public List<T> search(String pattren) throws OperationFailedException {
+		// TODO: handle the search
+		// return this.existsById(this.getIdValue(obj));
 		String sql = "SELECT * FROM " + this.tableName+ " WHERE " + this.getSearchCondition() ;
 		List<T> res = new ArrayList<>();
 		try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
+			// statement.setString(1, this.getIdValue(obj));
 			this.setSearchParameters(statement , pattren);
 			ResultSet result = statement.executeQuery();
 			while(result.next()){
@@ -149,7 +153,9 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		} catch (SQLException e) {
 			throw new OperationFailedException("Failed to remove object from " + this.tableName, e);
 		}
-		return res.isEmpty() ? null : res;
+		if(res.size() == 0)
+			return null;
+		return res;
 	}
 
 	@Override
@@ -159,15 +165,13 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
 			statement.setString(1, id);
 			ResultSet result = statement.executeQuery();
-			return result.next() ? mapResultSetToEntity(result) : null;
-			// if (result.next()) {
-			// 	return mapResultSetToEntity(result);
-			// }
-			// return null;
+			if (result.next()) {
+				return mapResultSetToEntity(result);
+			}
+			return null;
 		} catch (SQLException e) {
 			throw new OperationFailedException("Failed to find object by ID in " + this.tableName, e);
 		}
-		return null; // unreachable
 	}
 	public T atchoChwiyaObjWHakId(String id) throws OperationFailedException{
 		return this.findById(id);
