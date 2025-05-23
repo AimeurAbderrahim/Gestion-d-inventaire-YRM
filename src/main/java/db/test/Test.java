@@ -1,7 +1,8 @@
 package db.test;
 
-import java.util.UUID;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
 
 // test 1
 import db.configuration.ConfigDatabase;
@@ -40,16 +41,24 @@ public class Test {
 			// 1)- fournisseur
 			// Create the database access object
 			FournisseurDatabase fournisseurDB = new FournisseurDatabase(db , null , null);
-			Fournisseur f = fournisseurDB.findById("F101");
-			if(f != null){
-				System.out.println("Found supplier: " + f.getNom_f());
-				System.out.println("Email: " + f.getMail_f());
-			}else{
-				System.out.println("not found");
-			}
-
 			// id generated
-			fournisseurDB.add(new Fournisseur("testname", "1010 Route des Importateurs, Annaba", "0234958234", "test@test.dz", "NIF10456792" , "NIS10456792" , "RC10456792"));
+			// fournisseurDB.add(new Fournisseur("testname", "1010 Route des Importateurs, Annaba", "0234958234", "test@test.dz", "NIF10456792" , "NIS10456792" , "RC10456792"));
+			//
+			List<Fournisseur> o = fournisseurDB.findAll();
+			if(o != null)
+			{
+				for (Fournisseur f : o){
+					System.out.println("f");
+				}
+			}
+			// Fournisseur f = fournisseurDB.findById("F101");
+			// if(f != null){
+			// 	System.out.println("Found supplier: " + f.getNom_f());
+			// 	System.out.println("Email: " + f.getMail_f());
+			// }else{
+			// 	System.out.println("not found");
+			// }
+
 			System.out.println("added");
 			// Or with custom ID column name
 			// FournisseurDatabase fournisseurDB = new FournisseurDatabase("custom_id_column");
@@ -59,10 +68,15 @@ public class Test {
 			System.out.println(error.getMessage());
 			System.exit(0);
 		}
-		// catch(CloseConnectionException err){
-		// 	System.out.println(err.getMessage());
+		// catch(NotNullException error){
+
+		// 	System.out.println(error.getMessage());
 		// 	System.exit(0);
 		// }
+		catch(OperationFailedException err){
+			System.out.println(err.getMessage());
+			System.exit(0);
+		}
 		catch(LoadPropertiesException err){
 			System.out.println(err.getMessage());
 			System.exit(0);

@@ -4,10 +4,13 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.util.List;
+import java.util.ArrayList;
 
 import db.configuration.ConfigDatabase;
 import db.errors.ConnectionFailedException;
 import db.errors.LoadPropertiesException;
+import db.errors.OperationFailedException;
 import testpackage.model.core.Bon;
 
 public class BonDatabase extends EntityCoreDatabase<Bon> {
@@ -104,11 +107,11 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 	 *	NOTE: this method is for filtring Bons 
 	 *	NOTE: this method is special and only for this class
 	 * */
-	public List<Bon> filterBons(boolean isReception) throws OperationFailedException {
+	public List<Bon> filterBons(boolean isBonReception) throws OperationFailedException {
 		String sql = "SELECT * FROM " + this.tableName+ " WHERE bon_type = ?";
 		List<Bon> res = new ArrayList<>();
 		try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
-			statement.setString(1, isBonReception);
+			statement.setBoolean(1, isBonReception);
 			ResultSet result = statement.executeQuery();
 			while(result.next()){
 				Bon obj = mapResultSetToEntity(result);

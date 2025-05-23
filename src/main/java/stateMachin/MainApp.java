@@ -19,17 +19,17 @@ public class MainApp extends Application {
     // }
 
     public MainApp() {
-        ConfigDatabase db = null;
-        try{
-			db = new ConfigDatabase();
-			db.getConnection();
-        }catch(ConnectionFailedException error){
-			System.out.println(error.getMessage());
-			System.exit(0);
-		}catch(LoadPropertiesException err){
-			System.out.println(err.getMessage());
-			System.exit(0);
-		}
+        // ConfigDatabase db = null;
+        // try{
+			// db = new ConfigDatabase();
+			// db.getConnection();
+        // }catch(ConnectionFailedException error){
+			// System.out.println(error.getMessage());
+			// System.exit(0);
+		// }catch(LoadPropertiesException err){
+			// System.out.println(err.getMessage());
+			// System.exit(0);
+		// }
     }
 
     @Override

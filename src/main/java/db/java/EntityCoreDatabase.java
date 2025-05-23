@@ -167,7 +167,7 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		} catch (SQLException e) {
 			throw new OperationFailedException("Failed to find object by ID in " + this.tableName, e);
 		}
-		return null; // unreachable
+		// return null; // unreachable
 	}
 	public T atchoChwiyaObjWHakId(String id) throws OperationFailedException{
 		return this.findById(id);

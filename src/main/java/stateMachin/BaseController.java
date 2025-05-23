@@ -1,5 +1,8 @@
 package stateMachin;
 
+import javafx.fxml.FXML;
+
+import javafx.event.ActionEvent;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -55,4 +58,15 @@ public abstract class BaseController {
     public void onExit() {
         System.out.println(getClass().getSimpleName() + " exited");
     }
+
+    // NOTE: the missing abstract methods that iimplemented by other controllers classes
+    @FXML
+    public abstract void ProduitButtonSwitch(ActionEvent event);
+    @FXML
+    public abstract void FournisseurButtonSwitch(ActionEvent event);
+    @FXML
+    public abstract void BonsButtonSwitch(ActionEvent event);
+    @FXML
+    public abstract void EmplacementButtonSwitch(ActionEvent event);
+
 }

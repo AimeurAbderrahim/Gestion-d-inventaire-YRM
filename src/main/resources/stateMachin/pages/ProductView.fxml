@@ -217,7 +217,7 @@
                                           <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Category" />
                                           <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Type" />
                                           <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="Quantity" />
-                                          <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="f/d" />
+                                          <!-- <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="f/d" /> -->
                                           <TableColumn editable="false" minWidth="110.0" prefWidth="-1.0" text="date de command" />
                                           <TableColumn minWidth="30.0" prefWidth="-1.0" style="-fx-background-color: transparent;" text="">
                                               <graphic>
