@@ -2,6 +2,7 @@ package temp;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -38,10 +39,19 @@ public class ProductsController extends BaseController {
     }
 
 
-
-
-
-
+    // Login controller doesn't have to implements Switch abstract buttons
+    @Override
+    @FXML
+    protected void ProduitButtonSwitch(ActionEvent event) {}
+    @Override
+    @FXML
+    protected void FournisseurButtonSwitch(ActionEvent event) {}
+    @Override
+    @FXML
+    protected void BonsButtonSwitch(ActionEvent event) {}
+    @Override
+    @FXML
+    protected void EmplacementButtonSwitch(ActionEvent event) {}
 
     @Override
     public void onEnter() {

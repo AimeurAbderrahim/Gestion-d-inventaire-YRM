@@ -20,8 +20,9 @@ public class LocationController extends BaseController {
         super(stateMachine);
     }
 
+    @Override
     @FXML
-    private void ProduitButtonSwitch(ActionEvent event) {
+    protected void ProduitButtonSwitch(ActionEvent event) {
         try{
             System.out.println("Changing scene to Products");
             stateMachine.changeScene(EnumScenes.Products, event);
@@ -33,8 +34,9 @@ public class LocationController extends BaseController {
         }
 
     }
+    @Override
     @FXML
-    private void FournisseurButtonSwitch(ActionEvent event) {
+    protected void FournisseurButtonSwitch(ActionEvent event) {
         try{
             System.out.println("Changing scene to Fournisseur");
             stateMachine.changeScene(EnumScenes.Fournisur, event);
@@ -46,8 +48,9 @@ public class LocationController extends BaseController {
         }
 
     }
+    @Override
     @FXML
-    private void BonsButtonSwitch(ActionEvent event) {
+    protected void BonsButtonSwitch(ActionEvent event) {
         try{
             System.out.println("Changing scene to bons");
             stateMachine.changeScene(EnumScenes.Bone, event);
@@ -59,8 +62,9 @@ public class LocationController extends BaseController {
         }
 
     }
+    @Override
     @FXML
-    private void EmplacementButtonSwitch(ActionEvent event) {
+    protected void EmplacementButtonSwitch(ActionEvent event) {
         try{
             System.out.println("Changing scene to Emplacement");
             stateMachine.changeScene(EnumScenes.Location, event);
