@@ -219,9 +219,9 @@
                               <TableColumn fx:id="colNIS" text="NIS" minWidth="100" />
                               <TableColumn fx:id="colRC" text="RC" minWidth="100" />
                               <TableColumn minWidth="30" style="-fx-background-color: transparent;">
-                                    <graphic>
-                                       <CheckBox mnemonicParsing="false" styleClass="CheckBox" />
-                                    </graphic>
+                                 <graphic>
+                                    <CheckBox mnemonicParsing="false" styleClass="CheckBox" />
+                                 </graphic>
                               </TableColumn>
                            </columns>
                            <columnResizePolicy>

@@ -55,14 +55,14 @@ public class FournisurController extends BaseController {
 
     @FXML
     private void initialize() {
-        
+
         try {
             System.err.println("Initializing FournisurController & connecting to database");
-        
+
             if (initialized) return;
 
-            
-            initialized = true; 
+
+            initialized = true;
 
             colNom.setCellValueFactory(new PropertyValueFactory<>("nom_f"));
             colAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
@@ -76,7 +76,7 @@ public class FournisurController extends BaseController {
                 ConfigDatabase db = new ConfigDatabase();
                 db.getConnection();
 
-                try {    
+                try {
                     FournisseurDatabase fournisseurDB = new FournisseurDatabase(db, null , null);
                     List<Fournisseur> f = fournisseurDB.findAll();
 
@@ -99,7 +99,7 @@ public class FournisurController extends BaseController {
             //     new Fournisseur("Fournisseur B", "456 Rue B", "0987654321", "b@mail.com", "NIF002", "NIS002", "RC002")
             // );
 
-        fournisseurTable.setItems(fournisseurData);
+            fournisseurTable.setItems(fournisseurData);
         } catch (Exception e) {
             System.err.println("Failed to connect to database: " + e.getMessage());
             return;
@@ -200,7 +200,7 @@ public class FournisurController extends BaseController {
             db.getConnection();
 
             Fournisseur fournisseur = new Fournisseur(Nom, Adresse, NumTel, Mail, NIF, NIS, RC);
-            try {	
+            try {
                 FournisseurDatabase fournisseurDB = new FournisseurDatabase(db, null , null);
                 fournisseurDB.add(fournisseur);
                 Stage stage = (Stage) closePopup.getScene().getWindow();
