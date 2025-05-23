@@ -1,0 +1,41 @@
+#!/usr/bin/env python3
+
+"""
+    check.py script , i wrote this python script to check if there any missing java files before compiling 
+    this python script is written by rayden
+"""
+
+# compile : mvn clean compile
+# run Test Class : mvn exec:java -Dexec.mainClass="db.test.Test"
+
+import os
+
+def list_all_recursive(root_dir="."):
+    all_items = []
+    for root, dirs, files in os.walk(root_dir):
+        dirs[:] = [d for d in dirs if not d.startswith(".")]
+        all_items.extend([os.path.join(root, directory) for directory in dirs])
+        all_items.extend([os.path.join(root, file) for file in files if not file.startswith(".")])
+    return all_items
+
+def check():
+    all_items = list_all_recursive('.')
+    try:
+        with open(".listsdirs", "r") as f:
+            for line in f:
+                path = line.strip()
+                if not path:
+                    continue
+
+                if os.path.exists(path):
+                    print(f"[+] {path} exists - checked done")
+                else:
+                    print(f"[-] {path} does not exist - missing")
+
+    except FileNotFoundError as error :
+        print(f"Error: {error}")
+    except Exception as e:
+        print(f"Error reading .listsdirs: {str(e)}")
+
+if __name__ == "__main__":
+    check()

@@ -1,0 +1,70 @@
+#RechercheTextFeild, #RechercheTextFeild1 {
+    -fx-background-radius: 30px;
+}
+.Buttons{
+    -fx-border-width: 1px;
+    -fx-border-color: white;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
+    -fx-background-color: white;
+    -fx-font-weight: bold;
+    -fx-font-size: x-large;
+
+}
+.Buttons:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #e0e0e0;
+}
+
+.column-header-background {
+    -fx-padding: 8;
+    -fx-background-color: #00424B;
+    -fx-background-radius: 30px /* Removes the grey header background */
+}
+
+.column-header {
+    -fx-padding: 5;
+    -fx-background-color: transparent; /* Removes individual column backgrounds */
+}
+.column-header .label{
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+    -fx-text-fill: white;
+}
+/* Optional: Remove borders */
+.table-view .column-header,
+.table-view .column-header-background {
+    -fx-border-width: 2;
+}
+.table-row-cell {
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-text-alignment: center;
+    -fx-background-color: transparent;  /* White background */
+    -fx-text-fill: #333333;/* Dark text */
+    -fx-border-color: transparent; /* Light gray border */
+    -fx-border-width: 0 0 0 0; /* Bottom border only */
+    -fx-border-radius: 30px;
+    -fx-background-radius:30px;
+}
+.table-row-cell:filled:hover {
+    -fx-background-color: #444; /* gray background */
+    -fx-text-fill: white; /* text color inside the row */
+    -fx-cursor: hand;
+}
+.table-row-cell:filled:hover .table-cell {
+    -fx-text-fill: white;
+}
+
+.CheckBox{
+    -fx-background-color: transparent;
+    -fx-background-radius: 30px;
+}
+.table-view .table-cell{
+    -fx-background-radius: 30px;
+}
+.table-view {
+    -fx-background-color:  linear-gradient(to bottom, #1F4D54 0%, #44ABBA 20.19%);
+    -fx-background-radius: 30px;
+    -fx-border-color: transparent;
+}

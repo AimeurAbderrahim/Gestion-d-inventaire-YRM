@@ -98,6 +98,9 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
+                <excludes>
+                    <exclude>lib/*.jar</exclude>
+                </excludes>
             </resource>
         </resources>
         <plugins>
@@ -106,8 +109,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                     <source>24</source>
-                     <target>24</target>
+                         <source>24</source>
+                         <target>24</target>
 <!-- 		added by rayden -->
                 <compilerArgs>
                     <arg>--add-modules</arg>
@@ -130,10 +133,13 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>
-                                testpackage.gestiondinventaireyrm/testpackage.gestiondinventaireyrm.HelloApplication
-                            </mainClass>
+                            <mainClass>testpackage.gestiondinventaireyrm/stateMachin.MainApp</mainClass>
                             <launcher>app</launcher>
+			    <jvmArguments>
+				    -XX:+UseG1GC
+				    -XX:MaxGCPauseMillis=100
+				    -Djavafx.preloader=true
+			    </jvmArguments>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
                             <noManPages>true</noManPages>

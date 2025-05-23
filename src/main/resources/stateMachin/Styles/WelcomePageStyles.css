@@ -1,0 +1,75 @@
+/* Base styles */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #0d8e8e, #023f3f);
+}
+
+#RoleName{
+    -fx-font-size: 40px;
+    -fx-font-width: bold;
+    -fx-text-fill: white;
+}
+.main-container {
+    -fx-background-color: transparent;
+}
+
+/* Top bar styling */
+.TopBarIcons {
+    -fx-background-color: transparent;
+    -fx-background-radius: 30px;
+    -fx-cursor: hand;
+}
+
+.TopBarIcons:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Menu button styling - keeping original colors */
+.Button {
+    -fx-background-color:rgba(255, 255, 255, 0.2);
+    -fx-font-color:white;
+    -fx-text-fill: white;
+    -fx-background-radius: 15px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 8, 0, 0, 0);
+    -fx-padding: 10px 60px;
+    -fx-text-alignment: center;
+}
+
+.Button:hover {
+    -fx-background-color: linear-gradient(to right, #031418, #03C8D4);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+/* Background image handling */
+ImageView {
+    -fx-preserve-ratio: false;
+}
+
+/* Responsive font sizes */
+@media (max-width: 800px) {
+    .Button .text {
+        -fx-font-size: 20px;
+    }
+    
+    Label {
+        -fx-font-size: 24px;
+    }
+}
+
+/* Ensure proper sizing for smaller screens */
+@media (max-height: 600px) {
+    .menuContainer {
+        -fx-spacing: 10;
+    }
+    
+    .Button {
+        -fx-padding: 5px 15px;
+    }
+}
+
+/* If no background image exists, use the gradient background */
+AnchorPane {
+    -fx-background-color: linear-gradient(to bottom, #0d8e8e, #023f3f);
+}

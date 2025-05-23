@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="addFournisseurPopUpAnchorPane" minHeight="300.0" minWidth="800.0" styleClass="root" stylesheets="@detailedEmplacement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.FournisurController">
+
+    <children>
+        <BorderPane minHeight="300" minWidth="800.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <VBox spacing="10.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <!-- Replaced GridPane with HBox for better layout control -->
+                        <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="header-box">
+                            <children>
+                                <Label prefHeight="75.0" prefWidth="639.0" styleClass="title-label" text="Modifier ou Supprimer un fournisseur" wrapText="true" HBox.hgrow="ALWAYS">
+                                    <font>
+                                        <Font name="System Bold" size="24.0" />
+                                    </font>
+                                </Label>
+                                <!-- Spacer to push the close button to the right -->
+                                <HBox HBox.hgrow="ALWAYS" />
+                                <Button fx:id="closePopup" mnemonicParsing="false" onAction="#PopupCloseButton" styleClass="close-icon-button">
+                                    <graphic>
+                                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../images/close.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </HBox>
+                        <Separator />
+                        <GridPane hgap="10.0" styleClass="info-grid" vgap="10.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="80.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="200.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="80.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="200.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
+                        <RowConstraints />
+                            </rowConstraints>
+                            <children>
+                                <!-- Row 1 -->
+                                <Label text="Nom" />
+                                <TextField fx:id="nomField" GridPane.columnIndex="1" />
+
+                                <Label text="Adresse" GridPane.columnIndex="2" />
+                                <TextField fx:id="adresseField" GridPane.columnIndex="3" />
+
+                                <!-- Row 2 -->
+                                <Label text="Téléphone" GridPane.rowIndex="1" />
+                                <TextField fx:id="numeroField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                <Label text="Email" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <TextField fx:id="emailField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                                <!-- Row 3 -->
+                                <Label text="NIF" GridPane.rowIndex="2" />
+                                <TextField fx:id="nifField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                <Label text="NIS" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <TextField fx:id="nisField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+
+                                <!-- Row 4 -->
+                                <Label text="RC" GridPane.rowIndex="3" />
+                                <TextField fx:id="rcField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                            </children>
+                        </GridPane>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets bottom="10.0" />
+                    </BorderPane.margin>
+                </VBox>
+            </top>
+
+            <bottom>
+                <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="modifierFournisseurDbButton" mnemonicParsing="false" onAction="#ModifierFournisseurDbAction" styleClass="add-button" text="Modifier"  />
+                        <Button minWidth="150.0" mnemonicParsing="false" styleClass="print-button" text="Supprimer" onAction="#SupprimerFourniseurDbAction">
+                            <font>
+                                <Font size="12.0" />
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" styleClass="close-button" text="Fermer" onAction="#PopupCloseButton" />
+                    </children>
+                    <BorderPane.margin>
+                        <Insets top="15.0" />
+                    </BorderPane.margin>
+                </HBox>
+            </bottom>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </BorderPane>
+    </children>
+</AnchorPane>
