@@ -111,7 +111,7 @@
                            </children>
                         </HBox>
 
-                        <Button fx:id="connexionButton" maxWidth="1.7976931348623157E308" minHeight="60.0" mnemonicParsing="false" onAction="#login" styleClass="login-button" stylesheets="@../Styles/LoginPageStyles.css" text="Se CConnecter" textFill="WHITE">
+                        <Button fx:id="connexionButton" maxWidth="1.7976931348623157E308" minHeight="60.0" mnemonicParsing="false" onAction="#login" styleClass="login-button" stylesheets="@../Styles/LoginPageStyles.css" text="Se Connecter" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>
