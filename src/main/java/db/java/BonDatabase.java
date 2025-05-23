@@ -96,7 +96,29 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 
 	@Override
 	public String getSearchCondition() {
-		return "id_bon LIKE ? OR bon_date LIKE ? OR bon_type LIKE ?";
+		// return "id_bon LIKE ? OR bon_date LIKE ? OR bon_type = ?";
+		return "id_bon LIKE ? OR bon_date LIKE ?";
+	}
+
+	/*
+	 *	NOTE: this method is for filtring Bons 
+	 *	NOTE: this method is special and only for this class
+	 * */
+	public List<Bon> filterBons(boolean isReception) throws OperationFailedException {
+		String sql = "SELECT * FROM " + this.tableName+ " WHERE bon_type = ?";
+		List<Bon> res = new ArrayList<>();
+		try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
+			statement.setString(1, isBonReception);
+			ResultSet result = statement.executeQuery();
+			while(result.next()){
+				Bon obj = mapResultSetToEntity(result);
+				res.add(obj);
+			}
+		} catch (SQLException e) {
+			throw new OperationFailedException("Failed to filter bons from " + this.tableName, e);
+		}
+
+		return res.isEmpty() ? null : res;
 	}
 
 	@Override
@@ -104,7 +126,7 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 		String searchPattern = "%" + keyword + "%";
 		statement.setString(1, searchPattern);
 		statement.setString(2, searchPattern);
-		statement.setString(3, searchPattern);
+		// statement.setString(3, keyword); // keyword might be true or false
 	}
 
 	@Override

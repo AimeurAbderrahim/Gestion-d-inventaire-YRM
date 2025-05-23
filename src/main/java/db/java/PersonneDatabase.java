@@ -42,25 +42,26 @@ public class PersonneDatabase extends EntityCoreDatabase<Personne> {
 
 	@Override
 	protected int getColumnCount() {
-		return 8;
+		return 10;
 	}
 
 	@Override
 	protected int getUpdateParameterCount() {
-		return 7;
+		return 9;
 	}
 
 	@Override
 	protected void setAddParameters(PreparedStatement statement, Personne obj) throws SQLException {
-		statement.setString(1, obj.getId_p());
+		statement.setString(1, this.generatedIdPK());
 		statement.setString(2, obj.getNom());
 		statement.setString(3, obj.getPrenom());
 		statement.setDate(4, java.sql.Date.valueOf(obj.getLocalDate()));
 		statement.setString(5, obj.getEmail());
 		statement.setString(6, obj.getAdresse());
 		statement.setString(7, obj.getNumero_tel_personne());
-		statement.setString(8, obj.getId_emplacement());
-		statement.setString(9, obj.getId_c());
+		statement.setBoolean(8, obj.hasAcc());
+		statement.setString(9, obj.getId_emplacement());
+		statement.setString(10, obj.getId_c());
 	}
 
 	@Override
@@ -71,8 +72,9 @@ public class PersonneDatabase extends EntityCoreDatabase<Personne> {
 		statement.setString(4, obj.getEmail());
 		statement.setString(5, obj.getAdresse());
 		statement.setString(6, obj.getNumero_tel_personne());
-		statement.setString(7, obj.getId_emplacement());
-		statement.setString(8, obj.getId_c());
+		statement.setBoolean(7, obj.hasAcc());
+		statement.setString(8, obj.getId_emplacement());
+		statement.setString(9, obj.getId_c());
 	}
 
 	@Override
