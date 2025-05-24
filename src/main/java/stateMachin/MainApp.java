@@ -6,7 +6,9 @@ import db.errors.ConnectionFailedException;
 import db.errors.LoadPropertiesException;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -44,11 +46,16 @@ public class MainApp extends Application {
 
         stage.setTitle("Resource Management System");
         stage.setFullScreen(false);
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        double screenWidth = screenBounds.getWidth();
+        double screenHeight = screenBounds.getHeight();
         stage.setMinWidth(1280);
         stage.setMinHeight(720);
+        stage.setMaxHeight(1280);
+        stage.setMaxWidth(720);
         stage.setResizable(false);
-//        stage.setX(0);  // Set X coordinate on the screen (left edge)
-//        stage.setY(0);
+        stage.setX(0);  // Set X coordinate on the screen (left edge)
+        stage.setY(0);
         stage.centerOnScreen();
 
 

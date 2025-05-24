@@ -1,0 +1,33 @@
+.CenterAnchorPane{
+    -fx-background-color: white;
+
+}
+.table-view{
+    -fx-background-color:#5A5A5A;
+    -fx-background-radius: 0px;
+}
+.column-header-background {
+    -fx-padding: 8;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px /* Removes the grey header background */
+}
+.table-row-cell {
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-text-alignment: center;
+    -fx-background-color: #D9D9D9;  /* White background */
+    -fx-text-fill: #333333;/* Dark text */
+    -fx-border-color: transparent; /* Light gray border */
+    -fx-border-width: 0 0 0 0; /* Bottom border only */
+    -fx-border-radius: 30px;
+    -fx-background-radius:30px;
+}
+.CompteButton{
+    -fx-background-radius: 0px;
+    -fx-min-width: 200px;
+    -fx-background-color: white;
+}
+.AjouterUnCompte{
+    -fx-min-width: 200px;
+    -fx-background-color: #D9D9D9;
+}

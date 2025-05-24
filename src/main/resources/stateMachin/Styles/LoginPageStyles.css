@@ -23,7 +23,7 @@
 .PasswordTextFeild {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-font-size: 30px;
+    -fx-font-size: 20px;
     -fx-padding: 5px;
 }
 
@@ -58,4 +58,24 @@
     .login-button {
         -fx-font-size: 16px;
     }
+}
+.forgot-button {
+    -fx-cursor: hand;
+    -fx-text-fill: #ff0000;
+
+}
+
+.new-button:hover{
+    -fx-cursor: hand;
+    -fx-text-fill: #017501;
+}
+
+.forgot-button:hover {
+    -fx-cursor: hand;
+    -fx-text-fill: #a80000;
+
+}
+.new-button:hover{
+    -fx-cursor: hand;
+    -fx-text-fill: #005700;
 }

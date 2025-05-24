@@ -56,7 +56,10 @@ public class AuthunticationVerification {
 		// size of comptes must be one because username is unique 
 		List<Compte> comptes = null;
 		try{
+
 			comptes = compte.search(this.username);
+			System.out.println(comptes.getFirst().getMot_de_passe()+comptes.getFirst().getNom_utilisateur());
+
 			if(comptes == null || comptes.isEmpty())	return false;
 		}catch(OperationFailedException error){
 			// DEBUG ...
@@ -65,7 +68,8 @@ public class AuthunticationVerification {
 		}
 		String hashedPassword = getHash256String(this.password);
 		if(hashedPassword != null){
-			return hashedPassword.equals(comptes.get(0).getMot_de_passe());
+			System.out.println(hashedPassword.equals(comptes.getFirst().getMot_de_passe()));
+			return hashedPassword.equals(comptes.getFirst().getMot_de_passe());
 		}
 		return false;
 	}

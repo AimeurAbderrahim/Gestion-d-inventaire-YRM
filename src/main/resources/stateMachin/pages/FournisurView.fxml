@@ -157,7 +157,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <HBox minHeight="50.0" spacing="5.0">
+                        <HBox minHeight="50.0" prefHeight="50.0" prefWidth="911.0" spacing="5.0">
                            <children>
                               <StackPane>
                                  <children>
@@ -184,7 +184,7 @@
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                                  <HBox.margin>
-                                    <Insets left="500.0" />
+                                    <Insets />
                                  </HBox.margin>
                               </Button>
                            </children>

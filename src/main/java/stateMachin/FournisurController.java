@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -122,10 +123,12 @@ public class FournisurController extends BaseController {
             popupController.fournisseurToEdit = f;
 
             Stage popupStage = new Stage();
-            popupStage.initStyle(StageStyle.UNDECORATED);
+            Scene scene = new Scene(popupRoot);
+            scene.setFill(Color.TRANSPARENT); // important
+            popupStage.initStyle(StageStyle.TRANSPARENT);
             popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setTitle("Modifier Fournisseur");
-            popupStage.setScene(new Scene(popupRoot));
+            popupStage.setScene(scene);
 
             /* --------- BLOCKING call --------- */
             popupStage.showAndWait();
@@ -324,16 +327,16 @@ public class FournisurController extends BaseController {
     private void AjouterFournisurButton(ActionEvent event) {
         try{
             System.out.println("Opening popup for adding Fournisseur");
+            Stage popupStage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/addFournisseurPopup.fxml"));
             Parent popupRoot = fxmlLoader.load();
-
-            Stage popupStage = new Stage();
-
-            popupStage.initStyle(StageStyle.UNDECORATED);  // removes window decorations
-
+            Scene scene = new Scene(popupRoot);
+            scene.setFill(Color.TRANSPARENT); // important
+            popupStage.initStyle(StageStyle.TRANSPARENT);
+//            popupStage.initStyle(StageStyle.UNDECORATED);  // removes window decorations
             popupStage.initModality(Modality.APPLICATION_MODAL); // Block input to other windows
             popupStage.setTitle("Popup");
-            popupStage.setScene(new Scene(popupRoot));
+            popupStage.setScene(scene);
 
             popupStage.showAndWait();// Use show() for non-blocking
             refreshFournisurData();

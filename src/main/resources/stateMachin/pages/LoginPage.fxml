@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<StackPane styleClass="main-container" stylesheets="@../Styles/LoginPageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.LoginController">
+<StackPane minHeight="1080.0" minWidth="1920.0" styleClass="main-container" stylesheets="@../Styles/LoginPageStyles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.LoginController">
    <children>
       <!-- Background image that fills the screen -->
       <ImageView fx:id="Background" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
@@ -26,9 +26,9 @@
       </ImageView>
 
       <!-- Login form container -->
-      <VBox alignment="CENTER" fillWidth="false" maxHeight="600.0" maxWidth="500.0" minHeight="400.0" minWidth="300.0" prefHeight="500.0" prefWidth="400.0" StackPane.alignment="CENTER">
+      <VBox alignment="CENTER" fillWidth="false" StackPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="ConnexionStyle" maxHeight="500.0" maxWidth="400.0" minHeight="400.0" minWidth="300.0" prefHeight="500.0" prefWidth="400.0" styleClass="login-container" stylesheets="@../Styles/LoginPageStyles.css">
+            <AnchorPane fx:id="ConnexionStyle" styleClass="login-container" stylesheets="@../Styles/LoginPageStyles.css">
                <children>
                   <VBox alignment="TOP_CENTER" layoutX="35.0" layoutY="39.0" spacing="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
                      <children>
@@ -61,9 +61,9 @@
                      </children>
                   </VBox>
 
-                  <VBox alignment="CENTER" spacing="25.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+                  <VBox alignment="CENTER" layoutX="60.0" layoutY="140.0" prefHeight="346.0" prefWidth="320.0" spacing="25.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="120.0">
                      <children>
-                        <HBox alignment="CENTER" minHeight="75.0" prefHeight="75.0" prefWidth="322.0" styleClass="UsernameContainer" stylesheets="@../Styles/LoginPageStyles.css">
+                        <HBox alignment="CENTER" minHeight="75.0" prefHeight="75.0" prefWidth="301.0" styleClass="UsernameContainer" stylesheets="@../Styles/LoginPageStyles.css">
                            <children>
                               <ImageView fitHeight="52.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -73,9 +73,9 @@
                                     <Insets left="15.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <TextField fx:id="usernameField" alignment="CENTER" focusTraversable="false" promptText="Nom d'utilisateur" styleClass="UsernameTextField" stylesheets="@../Styles/LoginPageStyles.css" HBox.hgrow="ALWAYS">
+                              <TextField fx:id="usernameField" alignment="CENTER" focusTraversable="false" prefHeight="57.0" prefWidth="212.0" promptText="Nom d'utilisateur" styleClass="UsernameTextField" stylesheets="@../Styles/LoginPageStyles.css" HBox.hgrow="ALWAYS">
                                  <font>
-                                    <Font size="27.0" />
+                                    <Font size="20.0" />
                                  </font>
                                  <opaqueInsets>
                                     <Insets top="10.0" />
@@ -111,13 +111,26 @@
                            </children>
                         </HBox>
 
-                        <Button fx:id="connexionButton" maxWidth="1.7976931348623157E308" minHeight="60.0" mnemonicParsing="false" onAction="#login" styleClass="login-button" stylesheets="@../Styles/LoginPageStyles.css" text="Se CConnecter" textFill="WHITE">
+                        <Button fx:id="connexionButton" maxWidth="1.7976931348623157E308" minHeight="60.0" mnemonicParsing="false" onAction="#login" styleClass="login-button" stylesheets="@../Styles/LoginPageStyles.css" text="Se Connecter" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>
                         </Button>
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="231.0" style="-fx-background-color: transparent;" styleClass="forgot-button" text="Mot de passe oublier" textFill="RED" underline="true">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Button>
                      </children>
                   </VBox>
+                  <Button layoutX="104.0" layoutY="500.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="231.0" style="-fx-background-color: transparent;" styleClass="new-button" text="Créer un compte" textFill="#017501" onAction="#newAccount">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>

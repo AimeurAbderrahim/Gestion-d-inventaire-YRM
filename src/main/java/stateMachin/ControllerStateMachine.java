@@ -23,6 +23,8 @@ public class ControllerStateMachine {
         this.primaryStage = primaryStage;
         this.scenes = new HashMap<>();
         this.controllers = new HashMap<>();
+        primaryStage.setMinWidth(1920);
+        primaryStage.setMinHeight(1080);
 
         // Initialize all scenes
         initializeScenes();

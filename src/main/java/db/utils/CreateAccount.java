@@ -1,9 +1,5 @@
 package db.utils;
 
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Connection;
 import java.io.UnsupportedEncodingException;
 
 import java.security.MessageDigest;
@@ -21,15 +17,17 @@ public class CreateAccount {
 
 	private String username;
 	private String password;
+	private Roles Role;
 	private CompteDatabase compte;
 
-	public CreateAccount(String username , String password){
+	public CreateAccount(String username , String password,Roles Role){
 		try{
 			this.compte = new CompteDatabase(null , null);
 		}catch(ConnectionFailedException | LoadPropertiesException error){
 			this.compte = null;
 		}
 		this.username = username;
+		this.Role = Role;
 		this.password = password;
 	}
 
@@ -49,13 +47,13 @@ public class CreateAccount {
 		}
 	}
 
-	public void login(){
+	public void SignUp(){
 		try{
-			Compte forLogin = new Compte();
-			forLogin.setNom_utilisateur(this.username);
-			forLogin.setMot_de_passe(this.getHash256String(this.password));
-			forLogin.setRoles(Roles.ADMINISTRATEUR);
-			this.compte.add(forLogin);	
+			Compte forSignUp = new Compte();
+			forSignUp.setNom_utilisateur(this.username);
+			forSignUp.setMot_de_passe(this.getHash256String(this.password));
+			forSignUp.setRoles(this.Role);
+			this.compte.add(forSignUp);
 		}catch(NullPointerException error){
 			// database init failed
 			System.out.println("init Create Account" + error.getMessage());
