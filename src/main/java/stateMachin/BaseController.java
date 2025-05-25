@@ -2,8 +2,6 @@ package stateMachin;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.fxml.FXML;
-import javafx.event.ActionEvent;
 
 public abstract class BaseController {
     protected ControllerStateMachine stateMachine;
@@ -57,12 +55,4 @@ public abstract class BaseController {
     public void onExit() {
         System.out.println(getClass().getSimpleName() + " exited");
     }
-    @FXML
-    protected abstract void ProduitButtonSwitch(ActionEvent event);
-    @FXML
-    protected abstract void FournisseurButtonSwitch(ActionEvent event);
-    @FXML
-    protected abstract void BonsButtonSwitch(ActionEvent event);
-    @FXML
-    protected abstract void EmplacementButtonSwitch(ActionEvent event);
 }
