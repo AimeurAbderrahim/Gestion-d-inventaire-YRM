@@ -200,7 +200,7 @@ public class FournisurController extends BaseController {
     @FXML private Button closePopup;
 
     @FXML
-    private void PopupCloseButton(ActionEvent event) {
+    public void PopupCloseButton(ActionEvent event) {
         try{
             System.out.println("Closing popup");
             Stage stage = (Stage) closePopup.getScene().getWindow();
@@ -370,6 +370,11 @@ public class FournisurController extends BaseController {
         } catch (Exception e) {
             System.err.println("Failed to refresh data: " + e.getMessage());
         }
+    }
+    WelcomeController settings = new WelcomeController();
+    @FXML
+    private void SettingsButton(ActionEvent event) {
+        settings.SettingsButtonPopUp(event);
     }
 
 

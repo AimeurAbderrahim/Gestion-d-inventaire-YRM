@@ -10,11 +10,12 @@ import db.errors.OperationFailedException;
 import db.errors.ConnectionFailedException;
 import db.errors.LoadPropertiesException;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import testpackage.model.enumeration.Roles;
 import testpackage.model.core.Compte;
 
 public class CreateAccount {
-
 	private String username;
 	private String password;
 	private Roles Role;

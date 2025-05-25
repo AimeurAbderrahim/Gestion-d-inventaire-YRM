@@ -49,17 +49,8 @@
                      </font>
                   </Label>
 
-                  <Button fx:id="SettingsButton" minHeight="56.0" minWidth="87.0" styleClass="TopBarIcons">
-                     <graphic>
-                        <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/notification.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
 
-                  <Button fx:id="LogoutButton" minHeight="56.0" minWidth="87.0" styleClass="TopBarIcons">
+                  <Button fx:id="SettingsButton" minHeight="56.0" minWidth="87.0" styleClass="TopBarIcons" onAction="#SettingsButtonPopUp">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" preserveRatio="true">
                            <image>

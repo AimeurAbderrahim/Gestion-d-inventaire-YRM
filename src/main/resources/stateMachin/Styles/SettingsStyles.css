@@ -20,7 +20,10 @@
     -fx-border-color: transparent; /* Light gray border */
     -fx-border-width: 0 0 0 0; /* Bottom border only */
     -fx-border-radius: 30px;
-    -fx-background-radius:30px;
+    -fx-background-radius:0px;
+}
+.table-row-cell:selected {
+    -fx-background-color: #5A5A5A;
 }
 .CompteButton{
     -fx-background-radius: 0px;

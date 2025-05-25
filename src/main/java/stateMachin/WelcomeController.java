@@ -1,11 +1,37 @@
 package stateMachin;
 
+import db.configuration.ConfigDatabase;
+import db.java.CompteDatabase;
+import db.java.FournisseurDatabase;
+import db.utils.CreateAccount;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import testpackage.model.core.Compte;
+import testpackage.model.core.Fournisseur;
+import testpackage.model.enumeration.Roles;
+import testpackage.model.core.Compte;
+
+import java.util.List;
 
 public class WelcomeController extends BaseController {
+    public TextField nomDutilisateurField;
+    public TextField motDePasseField;
+    public ComboBox<String> RoleCombobox;
+    @FXML
+    private TableView<Compte> CompteTable;
 
+    private final ObservableList<Compte> Comptedata = FXCollections.observableArrayList();
     private boolean initialized = false;
     public WelcomeController() {
         super();
@@ -73,5 +99,135 @@ public class WelcomeController extends BaseController {
         }
 
     }
+    @FXML
+    private TableColumn<Compte, String> ID_Compte ;
+    @FXML
+    private TableColumn<Compte, String> Nom_Dutilisateur;
+    @FXML
+    private TableColumn<Compte, String> Mot_De_Passe;
+    @FXML
+    private TableColumn<Compte, String> Role;
+
+    @FXML
+    public void initialize() {
+        System.out.println("WelcomeController initialized");
+        try {
+            if (CompteTable != null) {
+                ID_Compte.setCellValueFactory(new PropertyValueFactory<>("id_c"));
+                Nom_Dutilisateur.setCellValueFactory(new PropertyValueFactory<>("nom_utilisateur"));
+                Mot_De_Passe.setCellValueFactory(new PropertyValueFactory<>("mot_de_passe"));
+                Role.setCellValueFactory(new PropertyValueFactory<>("roles")); // use exact getter name
+
+                refreshCompteData();
+                CompteTable.setItems(Comptedata);
+                CompteTable.setRowFactory(tv -> {
+                    TableRow<Compte> row = new TableRow<>();
+                    row.setOnMouseClicked(ev -> {
+                        if (!row.isEmpty() && ev.getClickCount() == 2 &&
+                                ev.getButton() == javafx.scene.input.MouseButton.PRIMARY) {
+                                ModifierOuSuprimerUnCompte(row.getItem());
+                        }
+                    });
+                    return row;
+                });
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to initialise controller: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
+
+    @FXML
+    public void SettingsButtonPopUp(ActionEvent event) {
+        try {
+            System.out.println("Opening popup for Settings");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/SettingsPage.fxml"));
+            Parent popupRoot = loader.load();
+
+            Stage popupStage = new Stage();
+            popupStage.initStyle(StageStyle.TRANSPARENT);
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Settings");
+            popupStage.setScene(new Scene(popupRoot, Color.TRANSPARENT));
+            popupStage.centerOnScreen();
+            popupStage.showAndWait();
+
+            // No need to refresh here — handled by initialize()
+        } catch (Exception e) {
+            System.err.println("Error opening Settings popup: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void refreshCompteData() {
+
+        try {
+            ConfigDatabase db = new ConfigDatabase();
+            db.getConnection();
+            CompteDatabase compteDB = new CompteDatabase(db, null , null);
+
+            List<Compte> c = compteDB.findAll();
+            System.out.println("testing data connection");
+
+            Comptedata.clear();       // Clear old data
+            Comptedata.addAll(c);     // Add updated list
+
+        } catch (Exception e) {
+            System.err.println("Failed to refresh data: " + e.getMessage());
+        }
+    }
+    @FXML private Button closePopup;
+    @FXML
+    private void closepopup(ActionEvent event) {
+        Stage stage = (Stage) closePopup.getScene().getWindow();
+        stage.close();
+    }
+
+    private void ModifierOuSuprimerUnCompte(Compte compte) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/CompteEdit.fxml")); // ✅ FIXED
+            Parent popupRoot = loader.load();
+
+            AddCompteController controller = loader.getController();
+            controller.setEditMode(compte);
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.initStyle(StageStyle.TRANSPARENT);
+            popupStage.setScene(new Scene(popupRoot));
+            popupStage.showAndWait();
+
+            refreshCompteData();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @FXML
+    private void AjouterCompteButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/AddComptePopUp.fxml"));
+            Parent popupRoot = loader.load();
+
+            AddCompteController controller = loader.getController(); // no need to call anything
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.initStyle(StageStyle.TRANSPARENT);
+            popupStage.setScene(new Scene(popupRoot));
+            popupStage.showAndWait();
+
+            refreshCompteData();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
-//

@@ -23,7 +23,7 @@
 <?import java.lang.String?>
 
 
-<AnchorPane fx:id="addFournisseurPopUpAnchorPane" minHeight="300.0" minWidth="800.0" pickOnBounds="false" styleClass="root" stylesheets="@detailedEmplacement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.FournisurController">
+<AnchorPane fx:id="addFournisseurPopUpAnchorPane" minHeight="300.0" minWidth="800.0" pickOnBounds="false" styleClass="root" stylesheets="@detailedEmplacement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.AddCompteController">
    <children>
       <BorderPane minHeight="300" minWidth="800.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -37,7 +37,7 @@
                            </font>
                         </Label>
                         <HBox HBox.hgrow="ALWAYS" />
-                        <Button fx:id="closePopup" mnemonicParsing="false" onAction="#PopupCloseButton" styleClass="close-icon-button">
+                        <Button fx:id="closePopup" mnemonicParsing="false" onAction="#close" styleClass="close-icon-button">
                            <graphic>
                               <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -64,19 +64,20 @@
                      </rowConstraints>
                      <children>
                         <Label styleClass="info-label" text="Nom d'utilisateur" />
-                        <TextField fx:id="nomD'utilisateurField" GridPane.columnIndex="1" />
+                        <TextField fx:id="nomDutilisateurField" GridPane.columnIndex="1" />
                         <Label styleClass="info-label" text="Role" GridPane.columnIndex="2" />
                         <Label styleClass="info-label" text="Mot de passe" GridPane.rowIndex="1" />
                         <TextField fx:id="motDePasseField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                         <ComboBox fx:id="" prefHeight="39.0" prefWidth="211.0" style="-fx-background-color: white;" GridPane.columnIndex="3" >
+                         <ComboBox fx:id="roleComboBox" prefHeight="39.0" prefWidth="211.0" style="-fx-background-color: white;" GridPane.columnIndex="3" >
                              <items>
                                  <FXCollections fx:factory="observableArrayList">
-                                     <String fx:value="Option 1" />
-                                     <String fx:value="Option 2" />
-                                     <String fx:value="Option 3" />
+                                    <String fx:value="ADMINISTRATEUR" />
+                                    <String fx:value="SECRETAIRE" />
+                                    <String fx:value="MAGASINIER" />
+                                    <String fx:value="CLIENT" />
                                  </FXCollections>
                              </items>
-                         </ComboBox>>
+                         </ComboBox>
                      </children>
                   </GridPane>
                </children>
@@ -88,13 +89,13 @@
          <bottom>
             <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="modifierFournisseurDbButton" mnemonicParsing="false" onAction="#ModifierFournisseurDbAction" styleClass="add-button" text="Modifier" />
-                  <Button minWidth="150.0" mnemonicParsing="false" onAction="#SupprimerFourniseurDbAction" styleClass="print-button" text="Supprimer">
+                  <Button fx:id="saveButton" mnemonicParsing="false"  styleClass="add-button" text="Modifier" onAction="#saveAccount" />
+                  <Button  mnemonicParsing="false"  styleClass="print-button" text="Supprimer" onAction="#deleteAccount">
                      <font>
                         <Font size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#PopupCloseButton" styleClass="close-button" text="Fermer" />
+                  <Button mnemonicParsing="false" onAction="#close" styleClass="close-button" text="Fermer"/>
                </children>
                <BorderPane.margin>
                   <Insets top="15.0" />
