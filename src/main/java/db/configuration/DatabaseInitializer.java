@@ -23,7 +23,7 @@
  */
 
 
-// TODO: this is not important
+// TODO: this shit is not important
 package db.configuration;
 
 import java.io.FileReader;
@@ -60,7 +60,7 @@ public class DatabaseInitializer {
 				throw new ExecuteStatementException("cannot drop database project");
 			}
 		}catch(SQLException error){
-			throw new OperationFailedException("ERROR: " , error);
+			throw new OperationFailedException("fuck off" , error);
 		}
 	}
 	/**

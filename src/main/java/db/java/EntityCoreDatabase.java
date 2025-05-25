@@ -153,7 +153,7 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 		} catch (SQLException e) {
 			throw new OperationFailedException("Failed to remove object from " + this.tableName, e);
 		}
-		if(res.isEmpty())
+		if(res.size() == 0)
 			return null;
 		return res;
 	}
