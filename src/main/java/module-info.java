@@ -16,6 +16,7 @@ module testpackage.gestiondinventaireyrm {
 	requires net.synedra.validatorfx;
 	requires org.kordamp.ikonli.javafx;
 	requires org.kordamp.bootstrapfx.core;
+	requires java.mail;
 
 	opens testpackage.gestiondinventaireyrm to javafx.fxml;
 
@@ -24,6 +25,7 @@ module testpackage.gestiondinventaireyrm {
 	opens db.test to javafx.fxml;
 	opens db.java to javafx.fxml;
 	opens stateMachin to javafx.fxml;
+	opens java.mail to javafx.fxml;
 
 	exports testpackage.gestiondinventaireyrm;
 

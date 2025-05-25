@@ -18,7 +18,7 @@
  *  	    // Execute database operations
  *  	}
  *
- *   @author Souane Abdenour , Berrached Maroua
+ *   @author Souane Abdenour (rayden) , Berrached Maroua (marvi)
  */
 
 package db.configuration;
