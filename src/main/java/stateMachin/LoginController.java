@@ -73,17 +73,4 @@ public class LoginController extends BaseController {
             passwordField.clear();
         }
     }
-    // Login controller doesn't have to implements Switch abstract buttons
-    @Override
-    @FXML
-    protected void ProduitButtonSwitch(ActionEvent event) {}
-    @Override
-    @FXML
-    protected void FournisseurButtonSwitch(ActionEvent event) {}
-    @Override
-    @FXML
-    protected void BonsButtonSwitch(ActionEvent event) {}
-    @Override
-    @FXML
-    protected void EmplacementButtonSwitch(ActionEvent event) {}
 }

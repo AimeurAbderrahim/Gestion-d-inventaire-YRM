@@ -26,11 +26,6 @@
 
     <dependencies>
         <!-- Added By Rayden MySQL JDBC Driver -->
-	    <dependency>
-		    <groupId>com.sun.mail</groupId>
-		    <artifactId>javax.mail</artifactId>
-		    <version>1.6.2</version>
-	    </dependency>
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
@@ -124,8 +119,8 @@
 
 <!-- 		i changed to 17 because my jdk is old -->
 <!-- 		TODO: upgrade my jdk -->
-<!--                   <source>17</source> -->
-<!--                   <target>17</target> -->
+                       <!-- <source>17</source>
+                       <target>17</target> -->
 		  <!-- 		  /////////////// -->
                 </configuration>
             </plugin>
