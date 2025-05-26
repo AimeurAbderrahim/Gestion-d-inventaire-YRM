@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS Bon (
 	bon_type BOOLEAN ,
 	id_emplacement VARCHAR(10),
 	id_f VARCHAR(10),
-	FOREIGN KEY (id_emplacement) REFERENCES Emplacement(id_emplacement),
-	FOREIGN KEY (id_f) REFERENCES Fournisseur(id_f)
+	FOREIGN KEY (id_emplacement) REFERENCES Emplacement(id_emplacement) ON DELETE CASCADE,
+	FOREIGN KEY (id_f) REFERENCES Fournisseur(id_f) ON DELETE CASCADE
 );
 
 /**
@@ -83,8 +83,8 @@ CREATE TABLE IF NOT EXISTS rattacher (
 	id_f varchar(10),
 	id_bon varchar(10),
 	PRIMARY KEY (id_f, id_bon),
-	FOREIGN KEY (id_f) REFERENCES Fournisseur(id_f),
-	FOREIGN KEY (id_bon) REFERENCES Bon(id_bon)
+	FOREIGN KEY (id_f) REFERENCES Fournisseur(id_f) ON DELETE CASCADE,
+	FOREIGN KEY (id_bon) REFERENCES Bon(id_bon) ON DELETE CASCADE
 );
 
 /**
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS ProduitModele (
 	designation VARCHAR(255) NOT NULL ,
 	categorie ENUM('INFORMATIQUE' , 'BUREAUTIQUE' , 'RESEAU' , 'TELECOMMUNICATION' , 'STOCKAGE' , 'AUTRE') NOT NULL ,
 	id_bon VARCHAR(10) NOT NULL,
-	FOREIGN KEY (id_bon) REFERENCES Bon(id_bon)
+	FOREIGN KEY (id_bon) REFERENCES Bon(id_bon) ON DELETE CASCADE
 );
 
 /**
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS ProduitArticle (
 	quantite_global INT NOT NULL DEFAULT 0,
 	date_dachat DATE NOT NULL,
 	id_modele VARCHAR(10) NOT NULL,
-	FOREIGN KEY (id_modele) REFERENCES ProduitModele(id_modele),
+	FOREIGN KEY (id_modele) REFERENCES ProduitModele(id_modele) ON DELETE CASCADE,
 	CONSTRAINT chk_quantite CHECK (quantite_global >= 0)
 );
 
@@ -129,8 +129,8 @@ CREATE TABLE IF NOT EXISTS Inventorier (
 	id_bon VARCHAR(10) NOT NULL,
 	quantite INT NOT NULL,
 	PRIMARY KEY (id_modele, id_bon),
-	FOREIGN KEY (id_modele) REFERENCES ProduitModele(id_modele),
-	FOREIGN KEY (id_bon) REFERENCES Bon(id_bon),
+	FOREIGN KEY (id_modele) REFERENCES ProduitModele(id_modele) ON DELETE CASCADE,
+	FOREIGN KEY (id_bon) REFERENCES Bon(id_bon) ON DELETE CASCADE,
 	CONSTRAINT chk_quantite_positive CHECK (quantite > 0)
 );
 
@@ -159,12 +159,12 @@ CREATE TABLE IF NOT EXISTS Personne (
 	nom VARCHAR(100) NOT NULL,
 	prenom VARCHAR(100) NOT NULL,
 	date_naissance DATE NOT NULL,
-	email VARCHAR(100) NOT NULL,
+	email VARCHAR(100) UNIQUE NOT NULL,
 	adresse VARCHAR(255),
 	numero_tlph VARCHAR(20),
 	avoir_compte BOOLEAN DEFAULT FALSE,
 	id_emplacement varchar(10),
 	id_c varchar(10),
-	FOREIGN KEY (id_emplacement) REFERENCES Emplacement(id_emplacement),
-	FOREIGN KEY (id_c) REFERENCES Compte(id_c)
+	FOREIGN KEY (id_emplacement) REFERENCES Emplacement(id_emplacement) ON DELETE CASCADE,
+	FOREIGN KEY (id_c) REFERENCES Compte(id_c) ON DELETE CASCADE
 );

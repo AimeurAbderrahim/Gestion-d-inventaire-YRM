@@ -17,11 +17,15 @@ import db.errors.LoadPropertiesException;
 
 import testpackage.model.core.Compte;
 
+import stateMachin.Session;
+
 public class AuthunticationVerification {
 
 	private String username; 
 	private String password;
 	private CompteDatabase compte;
+
+	private Compte currentCompt;
 
 	public AuthunticationVerification(String username , String password){
 		try{
@@ -31,6 +35,12 @@ public class AuthunticationVerification {
 		}
 		this.username = username;
 		this.password = password;
+
+		this.currentCompt = null;
+	}
+
+	public Compte getCurrentCompte() {
+		return this.currentCompt;
 	}
 
 	private String getHash256String(String password){
@@ -58,19 +68,39 @@ public class AuthunticationVerification {
 		try{
 
 			comptes = compte.search(this.username);
-			System.out.println(comptes.getFirst().getMot_de_passe()+comptes.getFirst().getNom_utilisateur());
-
 			if(comptes == null || comptes.isEmpty())	return false;
 		}catch(OperationFailedException error){
-			// DEBUG ...
-			System.out.println("auth check op failed error : " + error.getMessage());
 			return false;
 		}
 		String hashedPassword = getHash256String(this.password);
 		if(hashedPassword != null){
-			System.out.println(hashedPassword.equals(comptes.getFirst().getMot_de_passe()));
-			return hashedPassword.equals(comptes.getFirst().getMot_de_passe());
+			Session.login(comptes.get(0));
+			return hashedPassword.equals(comptes.get(0).getMot_de_passe());
 		}
 		return false;
+	}
+
+	public boolean newPassword(String pass){
+		try {
+			List<Compte> comptes = compte.search(username);
+
+			if (comptes == null || comptes.isEmpty()) {
+				return false;
+			}
+
+			Compte original = comptes.get(0);
+			Compte updated = new Compte();
+			updated.setId_c(original.getId_c());
+			updated.setNom_utilisateur(original.getNom_utilisateur());
+			updated.setMot_de_passe(getHash256String(pass));
+			updated.setRoles(original.getRoles());
+
+			compte.update(original, updated);
+			Session.login(updated);
+			return true;
+
+		} catch (OperationFailedException e) {
+			return false;
+		}
 	}
 }

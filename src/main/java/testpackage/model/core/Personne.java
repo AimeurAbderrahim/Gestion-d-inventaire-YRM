@@ -14,13 +14,14 @@ public class Personne {
 	private String adresse ;
 	private String mail_P ;
 	private String numero_tel_personne ;
+	private boolean hasAccount;
 
 	private String id_emplacement;
 	private String id_c;
 
 	public Personne(){}
 
-	public Personne(String nom, String prenom, LocalDate date_naissance_P, String adresse, String email, String numero_tel_personne, Emplacement emplacement) throws NotNullException {
+	public Personne(String nom, String prenom, LocalDate date_naissance_P, String adresse, String email, String numero_tel_personne, boolean hasAccount, String emplacement , String id_c) throws NotNullException {
 		if(
 				(numero_tel_personne	==	null 	&& 	email	==	null) 	|| 
 				nom			==	null 					|| 
@@ -35,7 +36,18 @@ public class Personne {
 		this.adresse = adresse;
 		this.mail_P = email;
 		this.numero_tel_personne = numero_tel_personne;
-		// this.id_p = implementsId();
+		this.hasAccount = hasAccount;
+		this.id_emplacement = emplacement;
+		this.id_c = id_c ;
+	}
+
+
+	public void setAccount(boolean value){
+		this.hasAccount = value;
+	}
+
+	public boolean hasAccount(){
+		return this.hasAccount;
 	}
 
 	public String getId_emplacement(){
@@ -55,8 +67,8 @@ public class Personne {
 		return id_p;
 	}
 
-	public void setId_p(String id_p) {
-		this.id_p = id_p;
+	public void setId_p(String id) {
+		this.id_p = id;
 	}
 
 	public String getNom() {

@@ -17,15 +17,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import java.lang.String?>
 
-
-<AnchorPane fx:id="newAccountAnchorpane" minHeight="300.0" minWidth="800.0" pickOnBounds="false" styleClass="root" stylesheets="@detailedEmplacement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.AddCompteController">
+<AnchorPane fx:id="newAccountAnchorpane" minHeight="400.0" minWidth="800.0" pickOnBounds="false" styleClass="root" stylesheets="@detailedEmplacement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.AddCompteController">
    <children>
-      <BorderPane minHeight="300" minWidth="800.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane minHeight="400" minWidth="800.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <VBox spacing="10.0" BorderPane.alignment="CENTER">
                <children>
@@ -59,25 +55,51 @@
                      <rowConstraints>
                         <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                        <RowConstraints />
-                        <RowConstraints />
+                        <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label styleClass="info-label" text="Nom d'utilisateur" />
                         <TextField fx:id="nomDutilisateurField" GridPane.columnIndex="1" />
                         <Label styleClass="info-label" text="Role" GridPane.columnIndex="2" />
+                        <ComboBox fx:id="roleComboBox" prefWidth="200.0" promptText="Sélectionner un Role" GridPane.columnIndex="3">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="ADMINISTRATEUR" />
+                                    <String fx:value="SECRETAIRE" />
+                                    <String fx:value="MAGASINIER" />
+                                    <String fx:value="CLIENT" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                        
                         <Label styleClass="info-label" text="Mot de passe" GridPane.rowIndex="1" />
                         <TextField fx:id="motDePasseField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                         <ComboBox prefHeight="39.0" prefWidth="211.0" promptText="Selectioner un Role" style="-fx-background-color: white;" GridPane.columnIndex="3" fx:id="roleComboBox">
-                             <items>
-                                 <FXCollections fx:factory="observableArrayList">
-                                     <String fx:value="ADMINISTRATEUR" />
-                                     <String fx:value="SECRETAIRE" />
-                                     <String fx:value="MAGASINIER" />
-                                     <String fx:value="CLIENT" />
-                                 </FXCollections>
-                             </items>
-                         </ComboBox>
+
+			<!-- this is the new fields i have created for the personne -->
+                        <Label styleClass="info-label" text="Nom" GridPane.rowIndex="2" />
+                        <TextField fx:id="nomField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        
+                        <Label styleClass="info-label" text="Prénom" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <TextField fx:id="prenomField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        
+                        <Label styleClass="info-label" text="Date de naissance" GridPane.rowIndex="3" />
+                        <TextField fx:id="dateNaissanceField" promptText="(YYYY-MM-DD)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        
+                        <Label styleClass="info-label" text="Email" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <TextField fx:id="emailField" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        
+                        <Label styleClass="info-label" text="Adresse" GridPane.rowIndex="4" />
+                        <TextField fx:id="adresseField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        
+                        <Label styleClass="info-label" text="Téléphone" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <TextField fx:id="numeroTelField" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        
+                        <Label styleClass="info-label" text="Code Emplacement" GridPane.rowIndex="5" />
+                        <TextField fx:id="emplacementCodeField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+			<!-- end ... -->
                      </children>
                   </GridPane>
                </children>

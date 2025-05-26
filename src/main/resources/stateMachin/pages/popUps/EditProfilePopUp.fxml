@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- rayden was here lmok -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="300.0" minWidth="500.0" styleClass="root" 
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="stateMachin.EditProfileController">
+   <children>
+      <BorderPane minHeight="300" minWidth="500.0" styleClass="border-pane">
+         <top>
+            <VBox spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="Edit Profile" styleClass="title-label">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <VBox spacing="10" alignment="CENTER_LEFT">
+               <children>
+                  <Label text="Username:"/>
+                  <TextField fx:id="usernameField" promptText="Enter username"/>
+                  <Label text="Nom:"/>
+                  <TextField fx:id="nomField" promptText="Enter nom"/>
+                  <Label text="Prenom:"/>
+                  <TextField fx:id="prenomField" promptText="Enter prenom"/>
+                  <Label text="Email:"/>
+                  <TextField fx:id="emailField" promptText="Enter email"/>
+                  <Label text="Date de naissance:"/>
+                  <TextField fx:id="dateNaissanceField" promptText="YYYY-MM-DD"/>
+                  <Label text="Adresse:"/>
+                  <TextField fx:id="adresseField" promptText="Enter adresse"/>
+                  <Label text="Téléphone:"/>
+                  <TextField fx:id="telephoneField" promptText="Enter numéro telephone"/>
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0"/>
+               </padding>
+            </VBox>
+         </center>
+         <bottom>
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+               <children>
+                  <Button text="Save" onAction="#saveChanges" styleClass="save-button"/>
+                  <Button text="Cancel" onAction="#close"/>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" right="20.0"/>
+               </padding>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

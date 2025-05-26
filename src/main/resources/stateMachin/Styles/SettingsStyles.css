@@ -1,36 +1,98 @@
-.CenterAnchorPane{
-    -fx-background-color: white;
-
+.InfoButton {
+    -fx-background-radius: 0px;
+    -fx-min-width: 200px;
+    -fx-background-color: #E8E8E8;
 }
-.table-view{
-    -fx-background-color:#5A5A5A;
+
+.info-box {
+    -fx-padding: 15;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.user-header {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2A5058;
+}
+
+.user-info {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.CompteButton {
+    -fx-background-radius: 0px;
+    -fx-min-width: 200px;
+    -fx-background-color: white;
+}
+.CenterAnchorPane {
+    -fx-background-color: white;
+}
+
+.table-view {
+    -fx-background-color: #5A5A5A;
     -fx-background-radius: 0px;
 }
+
 .column-header-background {
     -fx-padding: 8;
     -fx-background-color: transparent;
-    -fx-background-radius: 0px /* Removes the grey header background */
 }
+
 .table-row-cell {
     -fx-font-weight: bold;
-    -fx-font-size: 20;
-    -fx-text-alignment: center;
-    -fx-background-color: #D9D9D9;  /* White background */
-    -fx-text-fill: #333333;/* Dark text */
-    -fx-border-color: transparent; /* Light gray border */
-    -fx-border-width: 0 0 0 0; /* Bottom border only */
-    -fx-border-radius: 30px;
-    -fx-background-radius:0px;
+    -fx-font-size: 14px;
+    -fx-background-color: #D9D9D9;
+    -fx-text-fill: #333333;
+    -fx-border-color: transparent;
 }
+
 .table-row-cell:selected {
     -fx-background-color: #5A5A5A;
 }
-.CompteButton{
-    -fx-background-radius: 0px;
-    -fx-min-width: 200px;
-    -fx-background-color: white;
+
+.user-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2A5058;
 }
-.AjouterUnCompte{
+
+.user-info {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 5 0 5 0;
+}
+
+.edit-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-min-width: 155px;
+}
+
+.edit-button:hover {
+    -fx-background-color: #45a049;
+}
+
+.AjouterUnCompte {
     -fx-min-width: 200px;
     -fx-background-color: #D9D9D9;
+    -fx-background-radius: 5;
+}
+.password-button {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-min-width: 155px;
+}
+
+.password-button:hover {
+    -fx-background-color: #1976D2;
 }
