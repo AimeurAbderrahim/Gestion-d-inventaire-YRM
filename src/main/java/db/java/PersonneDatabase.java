@@ -42,25 +42,26 @@ public class PersonneDatabase extends EntityCoreDatabase<Personne> {
 
 	@Override
 	protected int getColumnCount() {
-		return 8;
+		return 10;
 	}
 
 	@Override
 	protected int getUpdateParameterCount() {
-		return 7;
+		return 9;
 	}
 
 	@Override
 	protected void setAddParameters(PreparedStatement statement, Personne obj) throws SQLException {
-		statement.setString(1, obj.getId_p());
+		statement.setString(1, this.generatedIdPK());
 		statement.setString(2, obj.getNom());
 		statement.setString(3, obj.getPrenom());
 		statement.setDate(4, java.sql.Date.valueOf(obj.getLocalDate()));
 		statement.setString(5, obj.getEmail());
 		statement.setString(6, obj.getAdresse());
 		statement.setString(7, obj.getNumero_tel_personne());
-		statement.setString(8, obj.getId_emplacement());
-		statement.setString(9, obj.getId_c());
+		statement.setBoolean(8, obj.hasAccount());
+		statement.setString(9, obj.getId_emplacement());
+		statement.setString(10, obj.getId_c());
 	}
 
 	@Override
@@ -71,13 +72,14 @@ public class PersonneDatabase extends EntityCoreDatabase<Personne> {
 		statement.setString(4, obj.getEmail());
 		statement.setString(5, obj.getAdresse());
 		statement.setString(6, obj.getNumero_tel_personne());
-		statement.setString(7, obj.getId_emplacement());
-		statement.setString(8, obj.getId_c());
+		statement.setBoolean(7, obj.hasAccount());
+		statement.setString(8, obj.getId_emplacement());
+		statement.setString(9, obj.getId_c());
 	}
 
 	@Override
 	protected String buildUpdateSetClause() {
-		return "nom = ?, prenom = ?, date_naissance = ?, email = ?, adresse = ?, numero_tlph = ?, id_emplacement = ?, id_c = ?";
+		return "nom = ?, prenom = ?, date_naissance = ?, email = ?, adresse = ?, numero_tlph = ? , avoir_compte = ?, id_emplacement = ?, id_c = ?";
 	}
 
 	@Override
@@ -90,6 +92,7 @@ public class PersonneDatabase extends EntityCoreDatabase<Personne> {
 		personne.setEmail(result.getString("email"));
 		personne.setAdresse(result.getString("adresse"));
 		personne.setNumero_tel_personne(result.getString("numero_tlph"));
+		personne.setAccount(result.getBoolean("avoir_compte"));
 		personne.setId_emplacement(result.getString("id_emplacement"));
 		personne.setId_c(result.getString("id_c"));
 		return personne;

@@ -1,4 +1,3 @@
-/* Main Popup Styling */
 .root {
   -fx-border-radius: 25px;
   -fx-background-radius: 25px;
@@ -8,7 +7,6 @@
   -fx-padding: 20px;
 }
 
-/* TextField Styling */
 .Text-Field {
     -fx-background-color: #008b9c;
     -fx-background-radius: 5px;
@@ -24,8 +22,6 @@
     -fx-alignment: center;
     -fx-prompt-text-fill: white;
 }
-
-/* Button Styling */
 .button {
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
@@ -37,7 +33,6 @@
     -fx-pref-height: 38px;
 }
 
-/* Cancel Button */
 .button:first-child {
     -fx-background-color: #f0f0f0;
     -fx-text-fill: #333333;
@@ -50,7 +45,6 @@
     -fx-cursor: hand;
 }
 
-/* Confirm Button */
 .button:last-child {
     -fx-background-color: #008b9c;
     -fx-text-fill: white;
@@ -62,14 +56,12 @@
 
 }
 
-/* GridPane Styling */
 .grid-pane {
     -fx-hgap: 10px;
     -fx-vgap: 20px;
     -fx-alignment: center;
 }
 
-/* AnchorPane Styling */
 .anchor-pane {
     -fx-background-radius: 25px;
 }
