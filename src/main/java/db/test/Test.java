@@ -36,8 +36,8 @@ public class Test {
 				FournisseurDatabase fournisseurDB = new FournisseurDatabase(db , null , null);
 				Fournisseur f = fournisseurDB.findById("F101");
 				if(f != null){
-					System.out.println("Found supplier: " + f.getNom_f());
-					System.out.println("Email: " + f.getMail_f());
+					System.out.println("Found supplier: " + f.getNom());
+					System.out.println("Email: " + f.getEmail());
 				}else{
 					System.out.println("not found");
 				}
@@ -64,8 +64,8 @@ public class Test {
 		// 	// FournisseurDatabase fournisseurDB = new FournisseurDatabase(db , null , null);
 		// 	// Fournisseur f = fournisseurDB.findById("F101");
 		// 	// if(f != null){
-		// 	// 	System.out.println("Found supplier: " + f.getNom_f());
-		// 	// 	System.out.println("Email: " + f.getMail_f());
+		// 	// 	System.out.println("Found supplier: " + f.getNom());
+		// 	// 	System.out.println("Email: " + f.getEmail());
 		// 	// }else{
 		// 	// 	System.out.println("not found");
 		// 	// }

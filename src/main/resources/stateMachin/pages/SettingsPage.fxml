@@ -70,17 +70,17 @@
 					<children>
 						<VBox spacing="10" layoutX="-3.0" layoutY="20.0">
 							<children>
-								<Button mnemonicParsing="false" prefWidth="155.0" 
-									styleClass="CompteButton" text="Compte" 
+								<Button mnemonicParsing="false" prefWidth="155.0"
+									styleClass="CompteButton" text="Compte"
 									onAction="#showCompteTable"/>
-								<Button mnemonicParsing="false" prefWidth="155.0" 
-									styleClass="InfoButton" text="Info" 
+								<Button mnemonicParsing="false" prefWidth="155.0"
+									styleClass="InfoButton" text="Info"
 									onAction="#showUserInfo"/>
-								<Button mnemonicParsing="false" prefWidth="155.0" 
-									styleClass="edit-button" text="Edit Profile" 
+								<Button mnemonicParsing="false" prefWidth="155.0"
+									styleClass="edit-button" text="Edit Profile"
 									onAction="#editCurrentUser"/>
-								<Button mnemonicParsing="false" prefWidth="155.0" 
-									styleClass="password-button" text="Change Password" 
+								<Button mnemonicParsing="false" prefWidth="155.0"
+									styleClass="password-button" text="Change Password"
 									onAction="#changePassword"/>
 							</children>
 						</VBox>

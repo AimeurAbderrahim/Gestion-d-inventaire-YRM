@@ -1,6 +1,6 @@
 package stateMachin;
 
-enum EnumScenes {
+public enum EnumScenes {
     Bone,
     Fournisur,
     Location,

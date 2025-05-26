@@ -54,9 +54,9 @@ public class EditProfileController {
 			nomField.setText(currentPersonne.getNom());
 			prenomField.setText(currentPersonne.getPrenom());
 			emailField.setText(currentPersonne.getEmail());
-			dateNaissanceField.setText(currentPersonne.getLocalDate().toString());
+			dateNaissanceField.setText(currentPersonne.getDate_naissance().toString());
 			adresseField.setText(currentPersonne.getAdresse());
-			telephoneField.setText(currentPersonne.getNumero_tel_personne());
+			telephoneField.setText(currentPersonne.getNumero_tlph());
 		}
 	}
 
@@ -74,12 +74,12 @@ public class EditProfileController {
 			currentPersonne.setPrenom(prenomField.getText());
 			currentPersonne.setEmail(emailField.getText());
 			currentPersonne.setAdresse(adresseField.getText());
-			currentPersonne.setNumero_tel_personne(telephoneField.getText());
+			currentPersonne.setNumero_tlph(telephoneField.getText());
 
 			// Handle date parsing
 			try {
 				LocalDate birthDate = LocalDate.parse(dateNaissanceField.getText());
-				currentPersonne.setLocalDate(birthDate);
+				currentPersonne.setDate_naissance(birthDate);
 			} catch (DateTimeParseException e) {
 				showAlert("Invalid date format. Use YYYY-MM-DD");
 				return;

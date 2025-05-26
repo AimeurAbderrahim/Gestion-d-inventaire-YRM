@@ -35,5 +35,9 @@ module testpackage.gestiondinventaireyrm {
 	exports temp;
 	opens temp to javafx.fxml;
 	opens testpackage.model.core to javafx.base;
+    exports stateMachin.FourC;
+    opens stateMachin.FourC to javafx.fxml;
+    exports stateMachin.EmpC;
+    opens stateMachin.EmpC to javafx.fxml;
 
 }
