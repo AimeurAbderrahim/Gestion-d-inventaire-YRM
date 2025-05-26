@@ -3,53 +3,45 @@ package testpackage.model.core;
 import testpackage.model.errors.NotNullException;
 
 public class Fournisseur {
-	private String id_f ;
-	private String nom_f ;
-	private String adresse ;
-	private String num_tel ;
-	private String mail_f ;
+	private String id_f;
+	private String nom;
+	private String adresse;
+	private String numero_tlph;
+	private String email;
 	private String NIF;
 	private String NIS;
 	private String RC;
 
-	public Fournisseur(){}
-	public Fournisseur(String nom_f, String adresse, String num_tel, String mail_f, String NIF, String NIS, String RC) throws NotNullException {
-		if(
-				(num_tel	==	null && mail_f	==	null) 	|| 
-				nom_f		==	null 				|| 
-				NIF		==	null 				|| 
-				NIS		==	null 				|| 
-				RC		==	null
-		){
+	public Fournisseur() {}
+
+	public Fournisseur(String nom, String adresse, String numero_tlph, String email, String NIF, String NIS, String RC) throws NotNullException {
+		if ((numero_tlph == null && email == null) ||
+				nom == null || NIF == null || NIS == null || RC == null) {
 			throw new NotNullException("Manque d'information Fournisseur");
 		}
-		this.nom_f = nom_f;
+		this.nom = nom;
 		this.adresse = adresse;
-		this.num_tel = num_tel;
-		this.mail_f = mail_f;
+		this.numero_tlph = numero_tlph;
+		this.email = email;
 		this.NIF = NIF;
 		this.NIS = NIS;
 		this.RC = RC;
-		// for test
-		// this.id_f = implementsId();
 	}
-
 
 	public String getId_f() {
 		return id_f;
 	}
 
-	// NOTE: this method is useless
 	public void setId_f(String id_f) {
 		this.id_f = id_f;
 	}
 
-	public String getNom_f() {
-		return nom_f;
+	public String getNom() {
+		return nom;
 	}
 
-	public void setNom_f(String nom_f) {
-		this.nom_f = nom_f;
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 	public String getAdresse() {
@@ -60,20 +52,20 @@ public class Fournisseur {
 		this.adresse = adresse;
 	}
 
-	public String getNum_tel() {
-		return num_tel;
+	public String getNumero_tlph() {
+		return numero_tlph;
 	}
 
-	public void setNum_tel(String num_tel) {
-		this.num_tel = num_tel;
+	public void setNumero_tlph(String numero_tlph) {
+		this.numero_tlph = numero_tlph;
 	}
 
-	public String getMail_f() {
-		return mail_f;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMail_f(String mail_f) {
-		this.mail_f = mail_f;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getNIF() {

@@ -1,38 +1,21 @@
 package db.java;
 
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Connection;
-
 import db.configuration.ConfigDatabase;
 import db.errors.ConnectionFailedException;
-import db.errors.LoadPropertiesException;
 import testpackage.model.core.Personne;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PersonneDatabase extends EntityCoreDatabase<Personne> {
 
-	public PersonneDatabase(String idCol, String tableName) throws ConnectionFailedException, LoadPropertiesException {
-		super(
-				(idCol == null) ? "id_p" : idCol,
-				(tableName == null) ? "Personne" : tableName
-		     );
+	public PersonneDatabase(ConfigDatabase config, String idCol, String tableName) throws ConnectionFailedException {
+		super(config, idCol == null ? "id_p" : idCol, tableName == null ? "Personne" : tableName);
 	}
 
 	public PersonneDatabase(Connection conn, String idCol, String tableName) throws ConnectionFailedException {
-		super(
-				conn,
-				(idCol == null) ? "id_p" : idCol,
-				(tableName == null) ? "Personne" : tableName
-		     );
-	}
-
-	public PersonneDatabase(ConfigDatabase conn, String idCol, String tableName) throws ConnectionFailedException {
-		super(
-				conn,
-				(idCol == null) ? "id_p" : idCol,
-				(tableName == null) ? "Personne" : tableName
-		     );
+		super(conn, idCol == null ? "id_p" : idCol, tableName == null ? "Personne" : tableName);
 	}
 
 	@Override
@@ -51,51 +34,65 @@ public class PersonneDatabase extends EntityCoreDatabase<Personne> {
 	}
 
 	@Override
-	protected void setAddParameters(PreparedStatement statement, Personne obj) throws SQLException {
-		statement.setString(1, this.generatedIdPK());
-		statement.setString(2, obj.getNom());
-		statement.setString(3, obj.getPrenom());
-		statement.setDate(4, java.sql.Date.valueOf(obj.getLocalDate()));
-		statement.setString(5, obj.getEmail());
-		statement.setString(6, obj.getAdresse());
-		statement.setString(7, obj.getNumero_tel_personne());
-		statement.setBoolean(8, obj.hasAccount());
-		statement.setString(9, obj.getId_emplacement());
-		statement.setString(10, obj.getId_c());
+	protected void setAddParameters(PreparedStatement stmt, Personne p) throws SQLException {
+		stmt.setString(1, generatedIdPK());
+		stmt.setString(2, p.getNom());
+		stmt.setString(3, p.getPrenom());
+		stmt.setDate(4, Date.valueOf(p.getDate_naissance()));
+		stmt.setString(5, p.getEmail());
+		stmt.setString(6, p.getAdresse());
+		stmt.setString(7, p.getNumero_tlph());
+		stmt.setBoolean(8, p.isAvoir_compte());
+		stmt.setString(9, p.getId_emplacement());
+		stmt.setString(10, p.getId_c());
 	}
 
 	@Override
-	protected void setUpdateParameters(PreparedStatement statement, Personne obj) throws SQLException {
-		statement.setString(1, obj.getNom());
-		statement.setString(2, obj.getPrenom());
-		statement.setDate(3, java.sql.Date.valueOf(obj.getLocalDate()));
-		statement.setString(4, obj.getEmail());
-		statement.setString(5, obj.getAdresse());
-		statement.setString(6, obj.getNumero_tel_personne());
-		statement.setBoolean(7, obj.hasAccount());
-		statement.setString(8, obj.getId_emplacement());
-		statement.setString(9, obj.getId_c());
+	protected void setUpdateParameters(PreparedStatement stmt, Personne p) throws SQLException {
+		stmt.setString(1, p.getNom());
+		stmt.setString(2, p.getPrenom());
+		stmt.setDate(3, Date.valueOf(p.getDate_naissance()));
+		stmt.setString(4, p.getEmail());
+		stmt.setString(5, p.getAdresse());
+		stmt.setString(6, p.getNumero_tlph());
+		stmt.setBoolean(7, p.isAvoir_compte());
+		stmt.setString(8, p.getId_emplacement());
+		stmt.setString(9, p.getId_c());
 	}
 
 	@Override
 	protected String buildUpdateSetClause() {
-		return "nom = ?, prenom = ?, date_naissance = ?, email = ?, adresse = ?, numero_tlph = ? , avoir_compte = ?, id_emplacement = ?, id_c = ?";
+		return "nom = ?, prenom = ?, date_naissance = ?, email = ?, adresse = ?, numero_tlph = ?, avoir_compte = ?, id_emplacement = ?, id_c = ?";
 	}
 
 	@Override
-	public Personne mapResultSetToEntity(ResultSet result) throws SQLException {
-		Personne personne = new Personne();
-		personne.setId_p(result.getString("id_p"));
-		personne.setNom(result.getString("nom"));
-		personne.setPrenom(result.getString("prenom"));
-		personne.setLocalDate(result.getDate("date_naissance").toLocalDate());
-		personne.setEmail(result.getString("email"));
-		personne.setAdresse(result.getString("adresse"));
-		personne.setNumero_tel_personne(result.getString("numero_tlph"));
-		personne.setAccount(result.getBoolean("avoir_compte"));
-		personne.setId_emplacement(result.getString("id_emplacement"));
-		personne.setId_c(result.getString("id_c"));
-		return personne;
+	public Personne mapResultSetToEntity(ResultSet rs) throws SQLException {
+		Personne p = new Personne();
+		p.setId_p(rs.getString("id_p"));
+		p.setNom(rs.getString("nom"));
+		p.setPrenom(rs.getString("prenom"));
+		p.setDate_naissance(rs.getDate("date_naissance").toLocalDate());
+		p.setEmail(rs.getString("email"));
+		p.setAdresse(rs.getString("adresse"));
+		p.setNumero_tlph(rs.getString("numero_tlph"));
+		p.setAvoir_compte(rs.getBoolean("avoir_compte"));
+		p.setId_emplacement(rs.getString("id_emplacement"));
+		p.setId_c(rs.getString("id_c"));
+		return p;
+	}
+
+	@Override
+	public String generatedIdPK() throws SQLException {
+		String sql = "SELECT MAX(CAST(SUBSTRING(id_p, 2) AS UNSIGNED)) FROM Personne";
+		try (PreparedStatement stmt = connection.prepareStatement(sql);
+			 ResultSet rs = stmt.executeQuery()) {
+			if (rs.next()) {
+				int max = rs.getInt(1);
+				return "P" + String.format("%03d", max + 1);
+			} else {
+				return "P001";
+			}
+		}
 	}
 
 	@Override
@@ -105,15 +102,11 @@ public class PersonneDatabase extends EntityCoreDatabase<Personne> {
 
 	@Override
 	public void setSearchParameters(PreparedStatement statement, String keyword) throws SQLException {
-		String searchPattern = "%" + keyword + "%";
-		statement.setString(1, searchPattern);
-		statement.setString(2, searchPattern);
-		statement.setString(3, searchPattern);
+		String pattern = "%" + keyword + "%";
+		statement.setString(1, pattern);
+		statement.setString(2, pattern);
+		statement.setString(3, pattern);
 	}
 
-	@Override
-	public String generatedIdPK() throws SQLException {
-		long idx = super.countAll();
-		return "PER" + String.format("%03d", idx);
-	}
+
 }

@@ -1,23 +1,20 @@
 package testpackage.model.core;
 
-import testpackage.model.enumeration.TypeSalle;
-import testpackage.model.enumeration.Services;
-
 public class Emplacement {
-	private String id_emplacement ;
-	private TypeSalle typeSalle ;
-	private double superficie ;
-	private int bureau ;
-	private Services service ;
-
+	private String id_emplacement;
+	private String type_salle;
+	private double superficie;
+	private int bureau;
+	private String nom_service;
 
 	public Emplacement() {}
-	public Emplacement(String id_emplacement, TypeSalle typeSalle, double superficie, int bureau, Services service) throws NullPointerException {
+
+	public Emplacement(String id_emplacement, String type_salle, double superficie, int bureau, String nom_service) {
 		this.id_emplacement = id_emplacement;
-		this.typeSalle = typeSalle;
+		this.type_salle = type_salle;
 		this.superficie = superficie;
 		this.bureau = bureau;
-		this.service = service;
+		this.nom_service = nom_service;
 	}
 
 	public String getId_emplacement() {
@@ -28,12 +25,12 @@ public class Emplacement {
 		this.id_emplacement = id_emplacement;
 	}
 
-	public TypeSalle getTypeSalle() {
-		return typeSalle;
+	public String getType_salle() {
+		return type_salle;
 	}
 
-	public void setTypeSalle(TypeSalle typeSalle) {
-		this.typeSalle = typeSalle;
+	public void setType_salle(String type_salle) {
+		this.type_salle = type_salle;
 	}
 
 	public double getSuperficie() {
@@ -52,12 +49,11 @@ public class Emplacement {
 		this.bureau = bureau;
 	}
 
-	public Services getService() {
-		return service;
+	public String getNom_service() {
+		return nom_service;
 	}
 
-	public void setService(Services service) {
-		this.service = service;
+	public void setNom_service(String nom_service) {
+		this.nom_service = nom_service;
 	}
-
 }

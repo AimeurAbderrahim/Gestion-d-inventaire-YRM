@@ -17,7 +17,7 @@ import java.util.Map;
 public class ControllerStateMachine {
     private Stage primaryStage;
     private Map<EnumScenes, Scene> scenes;
-    private Map<EnumScenes, BaseController> controllers;
+    public Map<EnumScenes, BaseController> controllers;
     private BaseController currentController;
 
     public ControllerStateMachine(Stage primaryStage) {

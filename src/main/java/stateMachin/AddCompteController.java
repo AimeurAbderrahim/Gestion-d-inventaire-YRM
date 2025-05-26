@@ -111,10 +111,10 @@ public class AddCompteController {
 				Personne personne = new Personne();
 				personne.setNom(nom);
 				personne.setPrenom(prenom);
-				personne.setLocalDate(naissanceDate);
+				personne.setDate_naissance(naissanceDate);
 				personne.setEmail(email);
 				personne.setAdresse(adresse);
-				personne.setNumero_tel_personne(telephone);
+				personne.setNumero_tlph(telephone);
 				personne.setId_emplacement(emplacementCode);
 
 				// that might be dangerouse but i find this way to get id
