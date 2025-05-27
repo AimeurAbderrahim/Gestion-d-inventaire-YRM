@@ -51,7 +51,7 @@ public class BonPopUpController {
     }
 
     @FXML
-    private void onValidate() {
+    private void Confirm() {
         try {
             Bon bon = new Bon();
             bon.setDateBon(LocalDateTime.from(dateField.getValue().atStartOfDay()));

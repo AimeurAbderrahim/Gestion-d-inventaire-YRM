@@ -33,7 +33,7 @@ public class Bon {
 		this.valid = value;
 	}
 
-	public void isValid(){
+	public boolean isValid(){
 		return this.valid;
 	}
 

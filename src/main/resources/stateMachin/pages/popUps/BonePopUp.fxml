@@ -19,6 +19,6 @@
         </VBox>
         <Button layoutX="225.0" layoutY="298.0" onAction="#onDelete" text="Supprimer" />
         <Button layoutX="392.0" layoutY="298.0" onAction="#onCancel" text="Annuler" />
-        <Button layoutX="62.0" layoutY="298.0" onAction="#onValidate" text="Valider" />
+        <Button layoutX="62.0" layoutY="298.0" onAction="#Confirm" text="Confirm" />
     </children>
 </AnchorPane>

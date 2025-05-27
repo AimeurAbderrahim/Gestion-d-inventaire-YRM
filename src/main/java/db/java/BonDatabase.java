@@ -4,10 +4,13 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import db.configuration.ConfigDatabase;
 import db.errors.ConnectionFailedException;
 import db.errors.LoadPropertiesException;
+import db.errors.OperationFailedException;
 import testpackage.model.core.Bon;
 
 public class BonDatabase extends EntityCoreDatabase<Bon> {
@@ -117,7 +120,7 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 		return null;
 	}
 
-	public List<Bon> filterByValid(boolean valid) throws OperationFailedException{
+	public List<Bon> filterByValid(boolean valid) throws OperationFailedException {
 		
 		String sql = "SELECT * FROM " + super.tableName+ " WHERE is_valid = ?";
 		List<Bon> res = new ArrayList<>();
@@ -131,7 +134,7 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 		} catch (SQLException e) {
 			throw new OperationFailedException("Failed to remove object from " + this.tableName, e);
 		}
-		if(res.isEmpty() == 0)
+		if(res.isEmpty())
 			return null;
 		return res;
 	}
@@ -150,7 +153,7 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 		} catch (SQLException e) {
 			throw new OperationFailedException("Failed to remove object from " + this.tableName, e);
 		}
-		if(res.isEmpty() == 0)
+		if(res.isEmpty())
 			return null;
 		return res;
 	}
