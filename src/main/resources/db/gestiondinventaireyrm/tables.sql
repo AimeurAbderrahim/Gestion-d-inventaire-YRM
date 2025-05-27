@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS Bon (
 	id_bon varchar(10) PRIMARY KEY,
 	bon_date DATE NOT NULL,
 	bon_type BOOLEAN ,
+	is_valid BOOLEAN, -- is done or not
 	id_emplacement VARCHAR(10),
 	id_f VARCHAR(10),
 	FOREIGN KEY (id_emplacement) REFERENCES Emplacement(id_emplacement) ON DELETE CASCADE,

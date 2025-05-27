@@ -6,15 +6,17 @@ public class Bon {
 	private String id_bon;
 	private LocalDateTime dateBon;
 	private boolean type;
+	private boolean valid;
 
 	private String id_f;
 	private String id_emplacement;
 
 	public Bon(){
 		this.type = false;
+		this.valid = false;
 	}
 
-	public Bon(String id_bon , LocalDateTime dateBon , boolean type , String id){
+	public Bon(String id_bon , LocalDateTime dateBon , boolean type , boolean valid, String id){
 		this.id_bon = id_bon;
 		this.dateBon = dateBon;
 		if(type == false){
@@ -24,6 +26,15 @@ public class Bon {
 			this.id_f = id;
 			this.id_emplacement = null;
 		}
+		this.valid = valid ;
+	}
+
+	public void setValid(boolean value){
+		this.valid = value;
+	}
+
+	public void isValid(){
+		return this.valid;
 	}
 
 	public void setId_f(String id){
