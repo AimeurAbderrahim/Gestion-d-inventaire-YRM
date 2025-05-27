@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 import db.configuration.ConfigDatabase;
 import db.errors.ConnectionFailedException;
@@ -14,12 +16,14 @@ import db.errors.OperationFailedException;
 import testpackage.model.core.Bon;
 
 public class BonDatabase extends EntityCoreDatabase<Bon> {
+	private static final Logger LOGGER = Logger.getLogger(BonDatabase.class.getName());
 
 	public BonDatabase(String idCol, String tableName) throws ConnectionFailedException, LoadPropertiesException {
 		super(
 				(idCol == null) ? "id_bon" : idCol,
 				(tableName == null) ? "Bon" : tableName
 		     );
+		LOGGER.info("BonDatabase initialized with table: " + this.tableName);
 	}
 
 	public BonDatabase(Connection conn, String idCol, String tableName) throws ConnectionFailedException {
@@ -28,6 +32,7 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 				(idCol == null) ? "id_bon" : idCol,
 				(tableName == null) ? "Bon" : tableName
 		     );
+		LOGGER.info("BonDatabase initialized with existing connection");
 	}
 
 	public BonDatabase(ConfigDatabase conn, String idCol, String tableName) throws ConnectionFailedException {
@@ -36,6 +41,7 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 				(idCol == null) ? "id_bon" : idCol,
 				(tableName == null) ? "Bon" : tableName
 		     );
+		LOGGER.info("BonDatabase initialized with config connection");
 	}
 
 	@Override
@@ -55,35 +61,49 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 
 	@Override
 	protected void setAddParameters(PreparedStatement statement, Bon obj) throws SQLException {
-		// generated ID
-		long idx = super.countAll();
-		String key = null;
-		if(obj.isBonReception()){
-			key = "R" + obj.getReferenceId() + String.format("03%d" , idx);
-		}else{
-			key = "S";
-		}
-		statement.setString(1, key);
+		try {
+			// generated ID
+			long idx = super.countAll();
+			String key = null;
+			if(obj.isBonReception()){
+				key = "R" + obj.getReferenceId() + String.format("03%d", idx);
+			} else {
+				key = "S";
+			}
+			statement.setString(1, key);
+			statement.setTimestamp(2, java.sql.Timestamp.valueOf(obj.getDateBon()));
+			statement.setBoolean(3, obj.isBonReception());
+			statement.setBoolean(4, obj.isValid());
+			if (obj.isBonReception()) {
+				statement.setString(5, null); // id_emplacement
+				statement.setString(6, obj.getId_f());
+			} else {
+				statement.setString(5, obj.getId_emplacement());
+				statement.setString(6, null); // id_f
+			}
 
-		statement.setTimestamp(2, java.sql.Timestamp.valueOf(obj.getDateBon()));
-		statement.setBoolean(3, obj.isBonReception());
-		statement.setBoolean(4, obj.isValid());
-		if (obj.isBonReception()) {
-			statement.setString(5, null); // id_emplacement
-			statement.setString(6, obj.getId_f());
-		} else {
-			statement.setString(5, obj.getId_emplacement());
-			statement.setString(6, null); // id_f
+			LOGGER.info(String.format("Preparing to add bon: ID=%s, Type=%s, Valid=%b", 
+				key, obj.isBonReception() ? "Reception" : "Sortie", obj.isValid()));
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Error setting add parameters", e);
+			throw e;
 		}
-		//statement.setString(5, obj.getReferenceId());
 	}
 
 	@Override
 	protected void setUpdateParameters(PreparedStatement statement, Bon obj) throws SQLException {
-		statement.setTimestamp(1, java.sql.Timestamp.valueOf(obj.getDateBon()));
-		statement.setBoolean(2, obj.isBonReception());
-		statement.setBoolean(3, obj.isValid());
-		statement.setString(4, obj.getReferenceId());
+		try {
+			statement.setTimestamp(1, java.sql.Timestamp.valueOf(obj.getDateBon()));
+			statement.setBoolean(2, obj.isBonReception());
+			statement.setBoolean(3, obj.isValid());
+			statement.setString(4, obj.getReferenceId());
+
+			LOGGER.info(String.format("Preparing to update bon: ID=%s, Type=%s, Valid=%b", 
+				obj.getIdBon(), obj.isBonReception() ? "Reception" : "Sortie", obj.isValid()));
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Error setting update parameters", e);
+			throw e;
+		}
 	}
 
 	@Override
@@ -93,20 +113,29 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 
 	@Override
 	public Bon mapResultSetToEntity(ResultSet result) throws SQLException {
-		Bon bon = new Bon();
-		bon.setIdBon(result.getString("id_bon"));
-		bon.setDateBon(result.getTimestamp("bon_date").toLocalDateTime());
-		bon.setType(result.getBoolean("bon_type"));
-		bon.setValid(result.getBoolean("is_valid"));
-		// Handle reference ID based on type
-		if (bon.isBonReception()) {
-			bon.setId_f(result.getString("id_f"));
-			bon.setId_emplacement(null);
-		} else {
-			bon.setId_f(null);
-			bon.setId_emplacement(result.getString("id_emplacement"));
+		try {
+			Bon bon = new Bon();
+			bon.setIdBon(result.getString("id_bon"));
+			bon.setDateBon(result.getTimestamp("bon_date").toLocalDateTime());
+			bon.setType(result.getBoolean("bon_type"));
+			bon.setValid(result.getBoolean("is_valid"));
+			// Handle reference ID based on type
+			if (bon.isBonReception()) {
+				bon.setId_f(result.getString("id_f"));
+				bon.setId_emplacement(null);
+			} else {
+				bon.setId_f(null);
+				bon.setId_emplacement(result.getString("id_emplacement"));
+			}
+
+			LOGGER.fine(String.format("Mapped result set to bon: ID=%s, Type=%s, Valid=%b",
+				bon.getIdBon(), bon.isBonReception() ? "Reception" : "Sortie", bon.isValid()));
+
+			return bon;
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Error mapping result set to entity", e);
+			throw e;
 		}
-		return bon;
 	}
 
 	@Override
@@ -116,10 +145,16 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 
 	@Override
 	public void setSearchParameters(PreparedStatement statement, String keyword) throws SQLException {
-		String searchPattern = "%" + keyword + "%";
-		statement.setString(1, searchPattern);
-		statement.setString(2, searchPattern);
-		statement.setString(3, searchPattern);
+		try {
+			String searchPattern = "%" + keyword + "%";
+			statement.setString(1, searchPattern);
+			statement.setString(2, searchPattern);
+			statement.setString(3, searchPattern);
+			LOGGER.fine("Set search parameters with keyword: " + keyword);
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Error setting search parameters", e);
+			throw e;
+		}
 	}
 
 	@Override
@@ -128,40 +163,42 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 	}
 
 	public List<Bon> filterByValid(boolean valid) throws OperationFailedException {
-		
-		String sql = "SELECT * FROM " + super.tableName+ " WHERE is_valid = ?";
-		List<Bon> res = new ArrayList<>();
-		try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
-			statement.setBoolean(1, valid);
-			ResultSet result = statement.executeQuery();
-			while(result.next()){
-				Bon obj = mapResultSetToEntity(result);
-				res.add(obj);
+		try {
+			String sql = "SELECT * FROM " + super.tableName + " WHERE is_valid = ?";
+			List<Bon> res = new ArrayList<>();
+			try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
+				statement.setBoolean(1, valid);
+				ResultSet result = statement.executeQuery();
+				while(result.next()){
+					Bon obj = mapResultSetToEntity(result);
+					res.add(obj);
+				}
 			}
-		} catch (SQLException e) {
-			throw new OperationFailedException("Failed to remove object from " + this.tableName, e);
+			LOGGER.info(String.format("Found %d bons with valid=%b", res.size(), valid));
+			return res.isEmpty() ? null : res;
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Error filtering bons by valid status", e);
+			throw new OperationFailedException("Failed to filter bons by valid status", e);
 		}
-		if(res.isEmpty())
-			return null;
-		return res;
 	}
 
-	public List<Bon> filterByType(boolean type) throws OperationFailedException{
-		
-		String sql = "SELECT * FROM " + super.tableName+ " WHERE bon_type = ?";
-		List<Bon> res = new ArrayList<>();
-		try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
-			statement.setBoolean(1, type);
-			ResultSet result = statement.executeQuery();
-			while(result.next()){
-				Bon obj = mapResultSetToEntity(result);
-				res.add(obj);
+	public List<Bon> filterByType(boolean type) throws OperationFailedException {
+		try {
+			String sql = "SELECT * FROM " + super.tableName + " WHERE bon_type = ?";
+			List<Bon> res = new ArrayList<>();
+			try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
+				statement.setBoolean(1, type);
+				ResultSet result = statement.executeQuery();
+				while(result.next()){
+					Bon obj = mapResultSetToEntity(result);
+					res.add(obj);
+				}
 			}
-		} catch (SQLException e) {
-			throw new OperationFailedException("Failed to remove object from " + this.tableName, e);
+			LOGGER.info(String.format("Found %d bons with type=%s", res.size(), type ? "Reception" : "Sortie"));
+			return res.isEmpty() ? null : res;
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE, "Error filtering bons by type", e);
+			throw new OperationFailedException("Failed to filter bons by type", e);
 		}
-		if(res.isEmpty())
-			return null;
-		return res;
 	}
 }

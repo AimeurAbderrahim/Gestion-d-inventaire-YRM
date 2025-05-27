@@ -25,7 +25,6 @@ module testpackage.gestiondinventaireyrm {
 	opens stateMachin to javafx.fxml;
 
 	exports testpackage.gestiondinventaireyrm;
-
 	exports db.configuration;
 	exports db.errors;
 	exports db.test;

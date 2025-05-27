@@ -70,7 +70,7 @@ public class FournisurController extends BaseController {
 
     private void openEditPopup(Fournisseur fournisseur) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/EditFournisseurPopUp.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/EditFournisseurPopUP.fxml"));
             Parent root = loader.load();
 
             EditFournisseurController controller = loader.getController();

@@ -21,6 +21,22 @@
     -fx-padding: 6px 10px;
 }
 
+.combo-box {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-font-size: 14px;
+    -fx-padding: 4px 8px;
+}
+
+.combo-box .list-cell {
+    -fx-padding: 4px 8px;
+}
+
+.check-box {
+    -fx-font-size: 14px;
+}
+
 .button {
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
@@ -35,4 +51,20 @@
 .button:hover {
     -fx-background-color: #008b9c;
     -fx-text-fill: white;
+}
+
+/* Additional styles for the product type popup */
+.check-box .box {
+    -fx-background-color: white;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-border-color: #cccccc;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #008b9c;
 }

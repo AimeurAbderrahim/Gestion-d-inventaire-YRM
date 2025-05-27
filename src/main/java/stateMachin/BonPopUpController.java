@@ -113,8 +113,8 @@ public class BonPopUpController {
             showInfo("Succès", "Bon enregistré et article ajouté/mis à jour.");
             close();
         } catch (Exception e) {
-            showError("Erreur", "Impossible d’enregistrer : " + e.getMessage());
-            System.err.println("Impossible d’enregistrer : " + e.getMessage());
+            showError("Erreur", "Impossible d'enregistrer : " + e.getMessage());
+            System.err.println("Impossible d'enregistrer : " + e.getMessage());
         }
     }
 
