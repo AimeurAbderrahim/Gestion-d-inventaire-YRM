@@ -10,10 +10,10 @@
             <Label text="Ajouter / Modifier un Bon de Reception">
                 <font><Font name="System Bold" size="20.0" /></font>
             </Label>
-
-            <TextField fx:id="idBonField" promptText="ID Bon" styleClass="Text-Field" />
-            <DatePicker fx:id="dateField" promptText="Date" />
-            <ComboBox fx:id="emplacementCombo" promptText="Fournisseur" />
+            <DatePicker fx:id="dateField" prefHeight="32.0" prefWidth="264.0" promptText="Date" />
+            <ComboBox fx:id="emplacementCombo" prefHeight="32.0" prefWidth="264.0" promptText="Fournisseur" />
+            <TextField fx:id="quantite" prefHeight="32.0" prefWidth="264.0" promptText="Quantite" />
+            <TextField fx:id="id_modele_" prefHeight="32.0" prefWidth="264.0" promptText="ID modele" />
 
             <HBox alignment="CENTER" spacing="10" />
         </VBox>

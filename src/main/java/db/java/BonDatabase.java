@@ -45,12 +45,12 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 
 	@Override
 	protected int getColumnCount() {
-		return 5;
+		return 6;
 	}
 
 	@Override
 	protected int getUpdateParameterCount() {
-		return 4;
+		return 5;
 	}
 
 	@Override
@@ -68,7 +68,14 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 		statement.setTimestamp(2, java.sql.Timestamp.valueOf(obj.getDateBon()));
 		statement.setBoolean(3, obj.isBonReception());
 		statement.setBoolean(4, obj.isValid());
-		statement.setString(5, obj.getReferenceId());
+		if (obj.isBonReception()) {
+			statement.setString(5, null); // id_emplacement
+			statement.setString(6, obj.getId_f());
+		} else {
+			statement.setString(5, obj.getId_emplacement());
+			statement.setString(6, null); // id_f
+		}
+		//statement.setString(5, obj.getReferenceId());
 	}
 
 	@Override

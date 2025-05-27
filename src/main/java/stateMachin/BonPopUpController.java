@@ -4,6 +4,7 @@ import db.configuration.ConfigDatabase;
 import db.java.BonDatabase;
 import db.java.FournisseurDatabase;
 import db.java.ProduitArticleDatabase;
+import db.java.ProduitModeleDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import testpackage.model.core.Bon;
 import testpackage.model.core.Fournisseur;
 import testpackage.model.core.ProduitArticle;
+import testpackage.model.core.ProduitModel;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -21,7 +23,8 @@ import java.util.stream.Collectors;
 
 public class BonPopUpController {
 
-    @FXML private TextField idBonField;
+    @FXML private TextField id_modele_;
+    @FXML private TextField quantite;
     @FXML private DatePicker dateField;
     @FXML private ComboBox<String> emplacementCombo;
 
@@ -44,27 +47,39 @@ public class BonPopUpController {
     public void setBon(Bon bon) {
         this.currentBon = bon;
         if (bon != null) {
-            idBonField.setText(bon.getIdBon());
+            //idBonField.setText(bon.getIdBon());
             dateField.setValue(bon.getDateBon().toLocalDate());
             emplacementCombo.setValue(bon.isBonReception() ? bon.getId_f() : bon.getId_emplacement());
+            //quantite.
         }
     }
 
     @FXML
     private void Confirm() {
         try {
+            ConfigDatabase db = new ConfigDatabase();
             Bon bon = new Bon();
             bon.setDateBon(LocalDateTime.from(dateField.getValue().atStartOfDay()));
             bon.setType(true); // réception
-            bon.setId_f(emplacementCombo.getValue());
+            bon.setValid(false);
+//            FournisseurDatabase fd = new FournisseurDatabase(db , null , null);
+//            List<Fournisseur> f = fd.search(emplacementCombo.getValue());
+//            if(f == null){
+//                showError("ERROR" , "no fournisser has this value");
+//                System.err.println("no fournisser has this value");
+//                return;
+//            }
+            // RC unique
+            //bon.setId_f(String.valueOf(f.get(0)));
+            bon.setId_f("01"); // test
 
-            BonDatabase bonDB = new BonDatabase((ConfigDatabase) null, null, null);
+            BonDatabase bonDB = new BonDatabase(db, null, null);
             bonDB.add(bon);
 
             // ID du produit modèle lié au bon
             String idModele = bon.getReferenceId();
 
-            ProduitArticleDatabase articleDB = new ProduitArticleDatabase((ConfigDatabase) null, null, null);
+            ProduitArticleDatabase articleDB = new ProduitArticleDatabase(db, null, null);
             List<ProduitArticle> articles = articleDB.findAll();
 
             ProduitArticle existant = articles.stream()
@@ -77,13 +92,21 @@ public class BonPopUpController {
                 existant.setQuantite_global(nouvelleQuantite);
                 articleDB.update(existant, existant);
             } else {
+                ProduitModeleDatabase pmdl = new ProduitModeleDatabase(db , null , null);
+                ProduitModel modele_list = pmdl.findById(String.valueOf(id_modele_));
+                if(modele_list == null){
+                    showError("ERROR" , "there's no id modele is available");
+                }
                 ProduitArticle article = new ProduitArticle();
-                article.setId_article(articleDB.generatedIdPK());
+                //article.setId_article(articleDB.generatedIdPK());
                 article.setNom_article("Article " + idModele);
                 article.setQuantite_global(1);
                 article.setDate_dachat(LocalDate.now());
                 article.setDate_peremption(LocalDate.now().plusYears(1));
-                article.setId_modele(idModele);
+                //article.setId_modele(idModele);
+
+                article.setId_modele(String.valueOf(modele_list.getId_modele())); // this modele reffrence is getten from the modele id the user specified
+                System.err.println(article);
                 articleDB.add(article);
             }
 
@@ -91,6 +114,7 @@ public class BonPopUpController {
             close();
         } catch (Exception e) {
             showError("Erreur", "Impossible d’enregistrer : " + e.getMessage());
+            System.err.println("Impossible d’enregistrer : " + e.getMessage());
         }
     }
 
@@ -98,8 +122,9 @@ public class BonPopUpController {
     private void onDelete() {
         if (currentBon != null) {
             try {
-                BonDatabase db = new BonDatabase((ConfigDatabase) null, null, null);
-                db.remove(currentBon);
+                ConfigDatabase db = new ConfigDatabase();
+                BonDatabase bondb = new BonDatabase(db, null, null);
+                bondb.remove(currentBon);
                 close();
             } catch (SQLException e) {
                 showError("Erreur", "Suppression impossible: " + e.getMessage());
@@ -115,7 +140,7 @@ public class BonPopUpController {
     }
 
     private void close() {
-        Stage stage = (Stage) idBonField.getScene().getWindow();
+        Stage stage = (Stage) emplacementCombo.getScene().getWindow();
         stage.close();
     }
 
