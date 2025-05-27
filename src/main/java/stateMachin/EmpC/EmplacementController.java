@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import stateMachin.BaseController;
+import stateMachin.EmpC.AddEmplacementController;
 import stateMachin.EnumScenes;
 import stateMachin.WelcomeController;
 import testpackage.model.core.Emplacement;
@@ -81,7 +82,7 @@ public class EmplacementController extends BaseController {
             Stage popupStage = new Stage();
             popupStage.setScene(new Scene(popupRoot));
             popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.initStyle(StageStyle.UTILITY);
+            popupStage.initStyle(StageStyle.UNDECORATED); // ✅ Enlève la barre du haut
             popupStage.setTitle("Ajouter un emplacement");
             popupStage.showAndWait();
 
@@ -112,7 +113,7 @@ public class EmplacementController extends BaseController {
             Stage popupStage = new Stage();
             popupStage.setScene(new Scene(popupRoot));
             popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.initStyle(StageStyle.UTILITY);
+            popupStage.initStyle(StageStyle.UNDECORATED); // ✅ Enlève la barre du haut
             popupStage.setTitle("Modifier un emplacement");
             popupStage.showAndWait();
 
@@ -178,7 +179,7 @@ public class EmplacementController extends BaseController {
     }
 
     @FXML
-    private void SettingsButton(ActionEvent event) {
+    public void SettingsButton(ActionEvent event) {
         try {
             WelcomeController welcome = (WelcomeController) stateMachine.controllers.get(EnumScenes.Welcome);
             if (welcome != null) {

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane stylesheets="@bone.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.BoneController">
+<AnchorPane stylesheets="@bone.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.BonesortieController">
    <children>
       <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -151,7 +151,7 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" spacing="1.0" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BASELINE" GridPane.vgrow="ALWAYS">
                                        <children>
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="nav-button" text="Reception" HBox.hgrow="ALWAYS">
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#BondeButtonSwitch" styleClass="nav-button" text="Reception" HBox.hgrow="ALWAYS">
                                              <HBox.margin>
                                                 <Insets top="10.0" />
                                              </HBox.margin>
@@ -159,7 +159,7 @@
                                                 <Font size="24.0" />
                                              </font>
                                           </Button>
-                                          <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#BondeSortieButtonSwitch" styleClass="nav-button" text="Sortie" HBox.hgrow="ALWAYS">
+                                          <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="51.0" prefWidth="230.0" styleClass="nav-button" text="Sortie" HBox.hgrow="ALWAYS">
                                              <HBox.margin>
                                                 <Insets right="10.0" top="10.0" />
                                              </HBox.margin>
@@ -217,7 +217,7 @@
                                           <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Category" />
                                           <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" sortable="false" text="Type" />
                                           <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="Quantity" />
-                                          <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="Fournisseur" />
+                                          <TableColumn editable="false" minWidth="80.0" prefWidth="-1.0" text="Emplacement" />
                                           <TableColumn editable="false" minWidth="110.0" prefWidth="-1.0" text="date de command" />
                                           <TableColumn minWidth="30.0" prefWidth="-1.0" styleClass="checkbox-column" text="">
                                              <graphic>

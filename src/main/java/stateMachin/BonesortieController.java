@@ -6,16 +6,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 
-public class BoneController extends BaseController {
-     private boolean initialized = false;
+public class BonesortieController extends BaseController {
+    private boolean initialized = false;
 
     // Default constructor for FXML loader
-    public BoneController() {
+    public BonesortieController() {
         super();
     }
 
     // Constructor for manual instantiation
-    public BoneController(ControllerStateMachine stateMachine) {
+    public BonesortieController(ControllerStateMachine stateMachine) {
         super(stateMachine);
     }
 
@@ -23,7 +23,7 @@ public class BoneController extends BaseController {
     private void initialize() {
         if (initialized) return;
 
-        System.out.println("Initializing BoneController");
+        System.out.println("Initializing BonesortieController");
 
 
         initialized = true;
@@ -82,10 +82,10 @@ public class BoneController extends BaseController {
 
     }
     @FXML
-    private void BondeSortieButtonSwitch(ActionEvent event) {
+    private void BondeButtonSwitch(ActionEvent event) {
         try{
-            System.out.println("Changing scene to Bon de sortie");
-            stateMachine.changeScene(EnumScenes.Bondesortie, event);
+            System.out.println("Changing scene to Bon de reception ");
+            stateMachine.changeScene(EnumScenes.Bone, event);
             System.out.println("Scene change initiated");
 
         }catch (Exception e){

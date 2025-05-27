@@ -252,7 +252,7 @@ public class WelcomeController extends BaseController {
 						if (!row.isEmpty() && ev.getClickCount() == 2 &&
 								ev.getButton() == javafx.scene.input.MouseButton.PRIMARY) {
 							ModifierOuSuprimerUnCompte(row.getItem());
-								}
+						}
 					});
 					return row;
 				});
@@ -295,7 +295,7 @@ public class WelcomeController extends BaseController {
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-						"/stateMachin/pages/popUps/EditProfilePopUp.fxml"));
+					"/stateMachin/pages/popUps/EditProfilePopUp.fxml"));
 			Parent popupRoot = loader.load();
 
 			EditProfileController controller = loader.getController();
@@ -326,7 +326,7 @@ public class WelcomeController extends BaseController {
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-						"/stateMachin/pages/popUps/ChangePasswordPopUp.fxml"));
+					"/stateMachin/pages/popUps/ChangePasswordPopUp.fxml"));
 			Parent popupRoot = loader.load();
 
 			ChangePasswordController controller = loader.getController();
