@@ -38,5 +38,7 @@ module testpackage.gestiondinventaireyrm {
     opens stateMachin.FourC to javafx.fxml;
     exports stateMachin.EmpC;
     opens stateMachin.EmpC to javafx.fxml;
+    exports stateMachin.setting;
+    opens stateMachin.setting to javafx.fxml;
 
 }

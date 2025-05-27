@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- rayden was here lmok -->
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="300.0" minWidth="500.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.setting.ajouterPersonneControler">
+   <children>
+      <BorderPane minHeight="300" minWidth="500.0" styleClass="border-pane">
+         <top>
+            <VBox spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label styleClass="title-label" text="Ajouter Personne" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="15.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </top>
+         <center>
+            <VBox alignment="CENTER_LEFT" spacing="10">
+               <children>
+                  <Label text="Nom:" />
+                  <TextField fx:id="nomField" promptText="Enter nom" />
+                  <Label text="Prenom:" />
+                  <TextField fx:id="prenomField" promptText="Enter prenom" />
+                  <Label text="Email:" />
+                  <TextField fx:id="emailField" promptText="Enter email" />
+                  <Label text="Date de naissance:" />
+                  <TextField fx:id="dateNaissanceField" promptText="YYYY-MM-DD" />
+                  <Label text="Adresse:" />
+                  <TextField fx:id="adresseField" promptText="Enter adresse" />
+                  <Label text="Téléphone:" />
+                  <TextField fx:id="telephoneField" promptText="Enter numéro telephone" />
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </VBox>
+         </center>
+         <bottom>
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+               <children>
+                  <Button onAction="#saveChanges" styleClass="save-button" text="Ajouter " />
+                  <Button onAction="#close" text="Cancel" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" right="20.0" top="10.0" />
+               </padding>
+            </HBox>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

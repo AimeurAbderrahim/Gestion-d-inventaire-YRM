@@ -6,19 +6,19 @@
 
 <AnchorPane prefHeight="407.0" prefWidth="580.0" stylesheets="@AddEmplacementPopUp.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.BonPopUpController">
     <children>
-        <VBox alignment="CENTER" layoutX="106.0" layoutY="29.0" prefHeight="226.0" prefWidth="422.0" spacing="15" AnchorPane.leftAnchor="106.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="29.0">
-            <Label text="Ajouter / Modifier un Bon de Sortie">
+        <VBox alignment="CENTER" layoutX="62.0" layoutY="6.0" prefHeight="226.0" prefWidth="498.0" spacing="15" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="6.0">
+            <Label text="Ajouter / Modifier un Bon de Reception">
                 <font><Font name="System Bold" size="20.0" /></font>
             </Label>
 
             <TextField fx:id="idBonField" promptText="ID Bon" styleClass="Text-Field" />
             <DatePicker fx:id="dateField" promptText="Date" />
-            <ComboBox fx:id="emplacementCombo" promptText="Emplacement" />
+            <ComboBox fx:id="emplacementCombo" promptText="Fournisseur" />
 
             <HBox alignment="CENTER" spacing="10" />
         </VBox>
-          <Button layoutX="222.0" layoutY="287.0" onAction="#onValidate" text="Valider" />
-          <Button layoutX="389.0" layoutY="287.0" onAction="#onDelete" text="Supprimer" />
-          <Button layoutX="62.0" layoutY="287.0" onAction="#onCancel" text="Annuler" />
+        <Button layoutX="225.0" layoutY="298.0" onAction="#onDelete" text="Supprimer" />
+        <Button layoutX="392.0" layoutY="298.0" onAction="#onCancel" text="Annuler" />
+        <Button layoutX="62.0" layoutY="298.0" onAction="#onValidate" text="Valider" />
     </children>
 </AnchorPane>

@@ -152,11 +152,7 @@ public class EmplacementController extends BaseController {
         }
     }
 
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(message);
-        alert.showAndWait();
-    }
+
 
     @FXML
     private void ProduitButtonSwitch(ActionEvent event) {

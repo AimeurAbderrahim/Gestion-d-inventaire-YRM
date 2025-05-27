@@ -1,4 +1,4 @@
-package stateMachin;
+package stateMachin.setting;
 
 import db.configuration.ConfigDatabase;
 import db.java.CompteDatabase;

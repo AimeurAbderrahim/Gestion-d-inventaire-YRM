@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="300.0" minWidth="800.0" prefHeight="558.0" prefWidth="1074.0" styleClass="root" stylesheets="@popUps/detailedEmplacement.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.PersonSettingController">
+	<children>
+		<BorderPane minHeight="300" minWidth="800.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<top>
+				<VBox spacing="10.0" BorderPane.alignment="CENTER">
+					<children>
+						<HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="header-box">
+							<children>
+								<Label styleClass="title-label" text="Settings" wrapText="true" HBox.hgrow="ALWAYS">
+									<font>
+										<Font name="System Bold" size="24.0" />
+									</font>
+								</Label>
+								<HBox HBox.hgrow="ALWAYS" />
+								<Button fx:id="closePopup" minWidth="90.0" mnemonicParsing="false" onAction="#closepopup" prefWidth="90.0" styleClass="close-icon-button">
+									<graphic>
+										<ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+											<image>
+												<Image url="@../images/close.png" />
+											</image>
+										</ImageView>
+									</graphic>
+								</Button>
+							</children>
+						</HBox>
+						<Separator />
+					</children>
+					<BorderPane.margin>
+						<Insets bottom="10.0" />
+					</BorderPane.margin>
+				</VBox>
+			</top>
+			<center>
+				<AnchorPane prefHeight="361.0" prefWidth="776.0" styleClass="CenterAnchorPane" stylesheets="@../Styles/SettingsStyles.css" BorderPane.alignment="CENTER">
+					<children>
+                  <VBox alignment="TOP_RIGHT" layoutX="15.0" layoutY="12.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+      
+      
+      						<TableView fx:id="personneTable" prefHeight="340.0" prefWidth="761.0" stylesheets="@../Styles/SettingsStyles.css">
+      							<columns>
+      								<TableColumn fx:id="ID_Personne" prefWidth="75.0" text="ID Personne" />
+      								<TableColumn fx:id="Nom" prefWidth="150.0" text="Nom" />
+      								<TableColumn fx:id="Prenom" prefWidth="100.0" text="Prenome" />
+      								<TableColumn fx:id="DateNaissance" prefWidth="100.0" text="Date de Naissance" />
+      								<TableColumn fx:id="Email" prefWidth="100.0" text="Email" />
+      								<TableColumn fx:id="Adresse" prefWidth="100.0" text="Adresse" />
+      								<TableColumn fx:id="NumTlf" prefWidth="100.0" text="Numero de Telephone" />
+      								<TableColumn fx:id="AvoirComte" prefWidth="100.0" text="Avoir un Compte" />
+      							</columns>
+      							<columnResizePolicy>
+      								<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      							</columnResizePolicy>
+      						</TableView>
+      
+      						<Button mnemonicParsing="false" onAction="#AjouterPersonButton" prefWidth="193.0" styleClass="AjouterUnCompte" stylesheets="@../Styles/SettingsStyles.css" text="Ajouter un personne" />
+                     </children>
+                  </VBox>
+					</children>
+				</AnchorPane>
+			</center>
+			<!-- Left Panel -->
+			<left>
+				<AnchorPane prefHeight="361.0" prefWidth="164.0" BorderPane.alignment="CENTER">
+					<children>
+						<VBox layoutX="-3.0" layoutY="20.0" spacing="10">
+							<children>
+								<Button mnemonicParsing="false" onAction="#gotoComptescene" prefWidth="155.0" styleClass="CompteButton" text="Compte" />
+								<Button mnemonicParsing="false"  prefWidth="155.0" styleClass="CompteButton" text="Personne" />
+
+								<Button mnemonicParsing="false" onAction="#editCurrentUser" prefWidth="155.0" styleClass="edit-button" text="Edit Profile" />
+								<Button mnemonicParsing="false" onAction="#changePassword" prefWidth="155.0" styleClass="password-button" text="Change Password" />
+							</children>
+						</VBox>
+					</children>
+				</AnchorPane>
+			</left>
+		</BorderPane>
+	</children>
+</AnchorPane>

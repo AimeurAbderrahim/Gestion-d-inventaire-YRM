@@ -167,9 +167,5 @@ public class FournisurController extends BaseController {
         stateMachine.changeScene(EnumScenes.Location, event);
     }
 
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(message);
-        alert.showAndWait();
-    }
+
 }
