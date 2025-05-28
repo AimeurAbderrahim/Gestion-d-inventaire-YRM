@@ -152,7 +152,7 @@
                            <children>
                               <StackPane>
                                  <children>
-                                    <TextField fx:id="RechercheTextFeild1" alignment="CENTER" minHeight="50.0" minWidth="442.0" promptText="Recherche" stylesheets="@../Styles/ProduitPageStyles.css">
+                                    <TextField fx:id="searchField" alignment="CENTER" minHeight="50.0" minWidth="442.0" promptText="Recherche" stylesheets="@../Styles/ProduitPageStyles.css">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>

@@ -193,7 +193,7 @@
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <TextField promptText="Recherche" styleClass="search-field">
+                                    <TextField fx:id="searchField" promptText="Recherche" styleClass="search-field">
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>

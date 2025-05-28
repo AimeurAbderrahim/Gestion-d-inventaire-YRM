@@ -40,6 +40,7 @@ public class BonSortieController extends BaseController {
     @FXML private TableColumn<Bon, String> emplacementColumn;
     @FXML private TableColumn<Bon, String> dateColumn;
     @FXML private TableColumn<Bon, String> statusColumn;
+    @FXML private TextField searchField;
 
     public BonSortieController() {
         super();
@@ -52,6 +53,7 @@ public class BonSortieController extends BaseController {
     @FXML
     private void initialize() {
         if (initialized) return;
+        initialized = true;
 
         LOGGER.info("Initializing BonSortieController");
 
@@ -107,6 +109,21 @@ public class BonSortieController extends BaseController {
                 }
             });
 
+            // Add search functionality
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    bonTable.setItems(bonData);
+                } else {
+                    ObservableList<Bon> filteredList = FXCollections.observableArrayList();
+                    for (Bon bon : bonData) {
+                        if (matchesSearch(bon, newValue.toLowerCase())) {
+                            filteredList.add(bon);
+                        }
+                    }
+                    bonTable.setItems(filteredList);
+                }
+            });
+
             // Set table items
             bonTable.setItems(bonData);
 
@@ -121,25 +138,36 @@ public class BonSortieController extends BaseController {
                 return row;
             });
 
-            initialized = true;
+            // Load initial data
             loadBonData();
+            
+            LOGGER.info("BonSortieController initialized successfully");
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Error initializing controller", e);
-            showError("Error", "Failed to initialize: " + e.getMessage());
+            showError("Error", "Failed to initialize the view: " + e.getMessage());
         }
+    }
+
+    private boolean matchesSearch(Bon bon, String searchText) {
+        return bon.getIdBon().toLowerCase().contains(searchText) ||
+               bon.getDateBon().format(dateFormatter).toLowerCase().contains(searchText) ||
+               bon.getId_emplacement().toLowerCase().contains(searchText) ||
+               String.valueOf(bon.getQuantite()).contains(searchText) ||
+               (bon.isValid() ? "validé" : "en attente").contains(searchText);
     }
 
     private void loadBonData() {
         try {
             LOGGER.info("Loading bon data");
-            List<Bon> bons = bonDB.filterByType(false); // false for bon de sortie
+            List<Bon> bons = bonDB.filterByType(false); // false for Bon de Sortie
+            bonData.clear();
             if (bons != null) {
-                bonData.clear();
                 bonData.addAll(bons);
-                LOGGER.info("Loaded " + bons.size() + " bons");
             }
+            bonTable.setItems(bonData);
+            LOGGER.info("Loaded " + (bons != null ? bons.size() : 0) + " bons");
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Error loading bon data", e);
+            LOGGER.log(Level.SEVERE, "Error loading bons", e);
             showError("Error", "Failed to load bons: " + e.getMessage());
         }
     }

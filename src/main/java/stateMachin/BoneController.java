@@ -27,6 +27,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
@@ -36,6 +37,7 @@ import java.util.HashMap;
 public class BoneController extends BaseController {
     private static final Logger LOGGER = Logger.getLogger(BoneController.class.getName());
     private boolean initialized = false;
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @FXML private TableView<Bon> bonTable;
     @FXML private TableColumn<Bon, String> codeColumn;
@@ -43,6 +45,7 @@ public class BoneController extends BaseController {
     @FXML private TableColumn<Bon, String> fournisseurColumn;
     @FXML private TableColumn<Bon, LocalDate> dateColumn;
     @FXML private TableColumn<Bon, String> statusColumn;
+    @FXML private TextField searchField;
 
     private final ObservableList<Bon> bonData = FXCollections.observableArrayList();
     private BonDatabase bonDB;
@@ -157,6 +160,21 @@ public class BoneController extends BaseController {
                 return row;
             });
 
+            // Add search functionality
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    bonTable.setItems(bonData);
+                } else {
+                    ObservableList<Bon> filteredList = FXCollections.observableArrayList();
+                    for (Bon bon : bonData) {
+                        if (matchesSearch(bon, newValue.toLowerCase())) {
+                            filteredList.add(bon);
+                        }
+                    }
+                    bonTable.setItems(filteredList);
+                }
+            });
+
             // Set table data
             bonTable.setItems(bonData);
             
@@ -168,6 +186,15 @@ public class BoneController extends BaseController {
             LOGGER.log(Level.SEVERE, "Error initializing BoneController", e);
             showError("Error", "Failed to initialize the form: " + e.getMessage());
         }
+    }
+
+    private boolean matchesSearch(Bon bon, String searchText) {
+        String fournisseurName = fournisseurNames.getOrDefault(bon.getId_f(), "");
+        return bon.getIdBon().toLowerCase().contains(searchText) ||
+               bon.getDateBon().format(dateFormatter).toLowerCase().contains(searchText) ||
+               fournisseurName.toLowerCase().contains(searchText) ||
+               String.valueOf(bon.getQuantite()).contains(searchText) ||
+               (bon.isValid() ? "accepté" : "en attente").contains(searchText);
     }
 
     private void loadBonData() {

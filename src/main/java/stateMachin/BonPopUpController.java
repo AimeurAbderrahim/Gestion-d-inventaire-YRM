@@ -2,172 +2,214 @@ package stateMachin;
 
 import db.configuration.ConfigDatabase;
 import db.java.BonDatabase;
-import db.java.EmplacementDatabase;
-import db.java.ProduitModeleDatabase;
+import db.java.FournisseurDatabase;
 import db.java.ProduitArticleDatabase;
+import db.java.ProduitModeleDatabase;
 import db.java.InventorierDatabase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.scene.Node;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.paint.Color;
 import testpackage.model.core.Bon;
-import testpackage.model.core.Emplacement;
-import testpackage.model.core.ProduitModel;
+import testpackage.model.core.Fournisseur;
 import testpackage.model.core.ProduitArticle;
+import testpackage.model.core.ProduitModel;
 import testpackage.model.core.Inventorier;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class BonPopUpController {
-    private static final Logger LOGGER = Logger.getLogger(BonPopUpController.class.getName());
 
     @FXML private ComboBox<String> produitTypeCombo;
     @FXML private TextField quantite;
     @FXML private DatePicker dateField;
     @FXML private ComboBox<String> emplacementCombo;
-    @FXML private Button closeButton;
 
+    private Bon currentBon;
     private BoneController parentController;
-    private final ObservableList<String> emplacementNames = FXCollections.observableArrayList();
+    private final ObservableList<String> fournisseurNames = FXCollections.observableArrayList();
     private final ObservableList<String> produitTypes = FXCollections.observableArrayList();
-    private Map<String, String> emplacementNameToId = new HashMap<>();
+    private Map<String, String> fournisseurNameToId = new HashMap<>();
     private Map<String, ProduitModel> produitTypeToModel = new HashMap<>();
-
-    @FXML
-    private void initialize() {
-        // Add window drag functionality
-        Node root = closeButton.getScene().getRoot();
-        root.setOnMousePressed(event -> {
-            root.setUserData(new double[]{event.getSceneX(), event.getSceneY()});
-        });
-        root.setOnMouseDragged(event -> {
-            double[] start = (double[]) root.getUserData();
-            Stage stage = (Stage) closeButton.getScene().getWindow();
-            stage.setX(event.getScreenX() - start[0]);
-            stage.setY(event.getScreenY() - start[1]);
-        });
-
-        // Add shadow effect
-        root.setEffect(new DropShadow(10, Color.gray(0, 0.2)));
-
-        loadData();
-    }
-
-    private void loadData() {
-        try {
-            ConfigDatabase db = new ConfigDatabase();
-            
-            // Load emplacements
-            EmplacementDatabase emplacementDB = new EmplacementDatabase(db, null, null);
-            List<Emplacement> emplacements = emplacementDB.findAll();
-            emplacementNames.clear();
-            emplacementNameToId.clear();
-            for (Emplacement e : emplacements) {
-                emplacementNames.add(e.getNom());
-                emplacementNameToId.put(e.getNom(), e.getId_emplacement());
-            }
-            emplacementCombo.setItems(emplacementNames);
-
-            // Load product types
-            ProduitModeleDatabase produitDB = new ProduitModeleDatabase(db, null, null);
-            List<ProduitModel> produits = produitDB.findAll();
-            produitTypes.clear();
-            produitTypeToModel.clear();
-            for (ProduitModel p : produits) {
-                produitTypes.add(p.getDesignation());
-                produitTypeToModel.put(p.getDesignation(), p);
-            }
-            produitTypeCombo.setItems(produitTypes);
-
-        } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Error loading data", e);
-            showError("Error", "Failed to load data: " + e.getMessage());
-        }
-    }
 
     public void setParentController(BoneController controller) {
         this.parentController = controller;
     }
 
     @FXML
-    private void onCancel() {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
+    public void initialize() {
+        try {
+            // Load fournisseurs
+            ConfigDatabase db = new ConfigDatabase();
+            FournisseurDatabase fournisseurDB = new FournisseurDatabase(db, null, null);
+            List<Fournisseur> fournisseurs = fournisseurDB.findAll();
+            
+            // Map fournisseur names to IDs and populate combo box
+            fournisseurs.forEach(f -> {
+                String displayName = f.getNom() + " (" + f.getRC() + ")";
+                fournisseurNames.add(displayName);
+                fournisseurNameToId.put(displayName, f.getId_f());
+            });
+            emplacementCombo.setItems(fournisseurNames);
+
+            // Load product types
+            ProduitModeleDatabase produitDB = new ProduitModeleDatabase(db, null, null);
+            List<ProduitModel> produitModels = produitDB.findAll();
+            
+            // Map product names and populate combo box
+            produitModels.forEach(p -> {
+                String displayName = p.getDesignation() + " (" + p.getCategorie() + ")";
+                produitTypes.add(displayName);
+                produitTypeToModel.put(displayName, p);
+            });
+            produitTypeCombo.setItems(produitTypes);
+
+        } catch (Exception e) {
+            showError("Erreur", "Impossible de charger les données: " + e.getMessage());
+        }
+    }
+
+    public void setBon(Bon bon) {
+        this.currentBon = bon;
+        if (bon != null) {
+            dateField.setValue(bon.getDateBon().toLocalDate());
+            
+            // Find and select the correct fournisseur
+            fournisseurNames.stream()
+                .filter(name -> fournisseurNameToId.get(name).equals(bon.getId_f()))
+                .findFirst()
+                .ifPresent(name -> emplacementCombo.setValue(name));
+        }
     }
 
     @FXML
     private void Confirm() {
         try {
-            // Validate inputs
             if (dateField.getValue() == null) {
-                showError("Error", "Please select a date");
+                showError("Erreur", "Veuillez sélectionner une date");
                 return;
             }
             if (emplacementCombo.getValue() == null) {
-                showError("Error", "Please select a fournisseur");
+                showError("Erreur", "Veuillez sélectionner un fournisseur");
                 return;
             }
             if (produitTypeCombo.getValue() == null) {
-                showError("Error", "Please select a product type");
+                showError("Erreur", "Veuillez sélectionner un type de produit");
                 return;
             }
             if (quantite.getText().isEmpty()) {
-                showError("Error", "Please enter a quantity");
+                showError("Erreur", "Veuillez entrer une quantité");
                 return;
             }
 
-            // Create new Bon
             ConfigDatabase db = new ConfigDatabase();
-            BonDatabase bonDB = new BonDatabase(db, null, null);
             
-            Bon newBon = new Bon();
-            newBon.setDateBon(LocalDateTime.now());
-            newBon.setBonReception(true);
-            newBon.setValid(false);
-            newBon.setId_f(emplacementNameToId.get(emplacementCombo.getValue()));
-            newBon.setQuantite(Integer.parseInt(quantite.getText()));
+            // Get selected product model first
+            ProduitModel selectedModel = produitTypeToModel.get(produitTypeCombo.getValue());
+            
+            // Create new bon
+            Bon bon = new Bon();
+            bon.setDateBon(LocalDateTime.from(dateField.getValue().atStartOfDay()));
+            bon.setType(true); // réception
+            bon.setValid(false);
+            bon.setId_f(fournisseurNameToId.get(emplacementCombo.getValue()));
 
-            // Generate unique ID
-            String id = "R" + System.currentTimeMillis();
-            newBon.setIdBon(id);
+            // Set the quantity
+            int quantiteValue = Integer.parseInt(quantite.getText());
+            bon.setQuantite(quantiteValue);
 
-            // Save to database
-            bonDB.add(newBon);
+            // Set the product model ID as reference
+            bon.setReferenceId(selectedModel.getId_modele());
 
+            // Generate bon ID
+            BonDatabase bonDB = new BonDatabase(db, null, null);
+            long idx = bonDB.countAll();
+            String bonId = "R" + selectedModel.getId_modele() + String.format("03%d", idx);
+            bon.setIdBon(bonId);
+
+            // Add bon to database
+            bonDB.add(bon);
+            
             // Create Inventorier record
             InventorierDatabase inventorierDB = new InventorierDatabase(db, null, null);
             Inventorier inventorier = new Inventorier();
-            inventorier.setId_bon(id);
-            inventorier.setId_type(produitTypeToModel.get(produitTypeCombo.getValue()).getId_type());
+            inventorier.setId_bon(bonId);
+            inventorier.setId_modele(selectedModel.getId_modele());
+            inventorier.setQuantite(quantiteValue);
             inventorierDB.add(inventorier);
 
-            // Refresh parent and close
+            // Refresh the parent controller's table
             if (parentController != null) {
                 parentController.refreshTable();
             }
-            onCancel();
 
+            showInfo("Succès", "Bon créé avec succès. Le stock sera mis à jour après validation.");
+            close();
         } catch (NumberFormatException e) {
-            showError("Error", "Invalid quantity format");
+            showError("Erreur", "La quantité doit être un nombre valide");
         } catch (Exception e) {
-            LOGGER.log(Level.SEVERE, "Error saving bon", e);
-            showError("Error", "Failed to save: " + e.getMessage());
+            showError("Erreur", "Impossible d'enregistrer : " + e.getMessage());
+            System.err.println("Impossible d'enregistrer : " + e.getMessage());
         }
+    }
+
+    @FXML
+    private void onDelete() {
+        if (currentBon != null) {
+            try {
+                ConfigDatabase db = new ConfigDatabase();
+                
+                // Delete Inventorier record first (due to foreign key constraint)
+                InventorierDatabase inventorierDB = new InventorierDatabase(db, null, null);
+                List<Inventorier> inventoryRecords = inventorierDB.findAll();
+                Inventorier toDelete = inventoryRecords.stream()
+                    .filter(i -> i.getId_bon().equals(currentBon.getIdBon()))
+                    .findFirst()
+                    .orElse(null);
+                
+                if (toDelete != null) {
+                    inventorierDB.remove(toDelete);
+                }
+                
+                // Then delete the bon
+                BonDatabase bondb = new BonDatabase(db, null, null);
+                bondb.remove(currentBon);
+                close();
+            } catch (SQLException e) {
+                showError("Erreur", "Suppression impossible: " + e.getMessage());
+            } catch (Exception e) {
+                showError("Erreur", "Problème : " + e.getMessage());
+            }
+        }
+    }
+
+    @FXML
+    private void onCancel() {
+        close();
+    }
+
+    private void close() {
+        Stage stage = (Stage) emplacementCombo.getScene().getWindow();
+        stage.close();
     }
 
     private void showError(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
-        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private void showInfo(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
         alert.setContentText(content);
         alert.showAndWait();
     }
