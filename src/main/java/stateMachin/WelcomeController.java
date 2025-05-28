@@ -2,8 +2,6 @@ package stateMachin;
 
 import db.configuration.ConfigDatabase;
 import db.java.CompteDatabase;
-import db.java.FournisseurDatabase;
-import db.utils.CreateAccount;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,15 +15,15 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import stateMachin.setting.AddCompteController;
+import stateMachin.setting.ChangePasswordController;
+import stateMachin.setting.EditProfileController;
 import testpackage.model.core.Compte;
-import testpackage.model.core.Fournisseur;
-import testpackage.model.enumeration.Roles;
-import testpackage.model.core.Compte;
-
-import stateMachin.ChangePasswordController;
+import testpackage.model.core.Personne;
 
 import java.io.IOException;
-import javafx.scene.layout.StackPane;
+
+import java.time.LocalDate;
 import java.util.List;
 
 public class WelcomeController extends BaseController {
@@ -113,11 +111,29 @@ public class WelcomeController extends BaseController {
 	private TableColumn<Compte, String> Role;
 
 	@FXML
+	private TableColumn<Personne, String> ID_Personne;
+	@FXML
+	private TableColumn<Personne, String> Nom;
+	@FXML
+	private TableColumn<Personne, String> Prenom;
+	@FXML
+	private TableColumn<Personne, LocalDate> DateNaissance;
+	@FXML
+	private TableColumn<Personne, String> Email;
+	@FXML
+	private TableColumn<Personne, String> Adresse;
+	@FXML
+	private TableColumn<Personne, String> NumTlf;
+	@FXML
+	private TableColumn<Personne, Boolean> AvoirComte;
+
+
+	@FXML
 	public void SettingsButtonPopUp(ActionEvent event) {
 		try {
 			System.out.println("Opening popup for Settings");
 
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/SettingsPage.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/CompteSettingsPage.fxml"));
 			Parent popupRoot = loader.load();
 
 			Stage popupStage = new Stage();
@@ -136,7 +152,10 @@ public class WelcomeController extends BaseController {
 	}
 
 
-
+	@FXML
+	private void logOut(ActionEvent event) {
+		stateMachine.changeScene(EnumScenes.Login, event);
+	}
 	private void refreshCompteData() {
 		try {
 			ConfigDatabase db = new ConfigDatabase();
@@ -215,10 +234,10 @@ public class WelcomeController extends BaseController {
 		}
 	}
 
-	@FXML private StackPane infoPanel;
-	@FXML private Label currentUsername;
-	@FXML private Label currentUserRole;
-	@FXML private Label currentUserId;
+//	@FXML private StackPane infoPanel;
+//	@FXML private Label currentUsername;
+//	@FXML private Label currentUserRole;
+//	@FXML private Label currentUserId;
 
 	private void updateCurrentUserInfo() {
 		Compte currentUser = getCurrentUser();
@@ -252,7 +271,7 @@ public class WelcomeController extends BaseController {
 						if (!row.isEmpty() && ev.getClickCount() == 2 &&
 								ev.getButton() == javafx.scene.input.MouseButton.PRIMARY) {
 							ModifierOuSuprimerUnCompte(row.getItem());
-								}
+						}
 					});
 					return row;
 				});
@@ -266,10 +285,17 @@ public class WelcomeController extends BaseController {
 
 	// Add these class variables
 	private boolean showingUserInfo = false;
+	private boolean showingPersonneInfo = false;
 
 	@FXML
 	private void showCompteTable(ActionEvent event) {
 		showingUserInfo = false;
+		refreshCompteData();
+	}
+
+	@FXML
+	private void showPersonneTable(ActionEvent event) {
+		showingPersonneInfo = false;
 		refreshCompteData();
 	}
 
@@ -295,7 +321,7 @@ public class WelcomeController extends BaseController {
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-						"/stateMachin/pages/popUps/EditProfilePopUp.fxml"));
+					"/stateMachin/pages/popUps/EditProfilePopUp.fxml"));
 			Parent popupRoot = loader.load();
 
 			EditProfileController controller = loader.getController();
@@ -326,7 +352,7 @@ public class WelcomeController extends BaseController {
 
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(
-						"/stateMachin/pages/popUps/ChangePasswordPopUp.fxml"));
+					"/stateMachin/pages/popUps/ChangePasswordPopUp.fxml"));
 			Parent popupRoot = loader.load();
 
 			ChangePasswordController controller = loader.getController();
@@ -349,9 +375,5 @@ public class WelcomeController extends BaseController {
 		return Session.getCurrentUser();
 	}
 
-	private void showAlert(String message) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setHeaderText(message);
-		alert.showAndWait();
-	}
+
 }

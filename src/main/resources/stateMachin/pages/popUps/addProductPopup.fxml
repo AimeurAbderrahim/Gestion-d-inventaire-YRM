@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="stateMachin.AddProductController"
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-color: white; -fx-background-radius: 10;">
+    
+    <VBox spacing="10" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" 
+          AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20">
+        
+        <Label text="Ajouter Nouveau Produit" style="-fx-font-size: 20; -fx-font-weight: bold;"/>
+        
+        <GridPane vgap="10" hgap="10">
+            <padding>
+                <Insets top="20" />
+            </padding>
+
+            <Label text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="nomField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+            <Label text="Quantité:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="quantiteField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+            <Label text="Date de péremption:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <DatePicker fx:id="datePeremptionPicker" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+            <Label text="Date d'achat:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <DatePicker fx:id="dateAchatPicker" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+            <Label text="Modèle:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextField fx:id="modeleField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        </GridPane>
+
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="20" />
+            </padding>
+            <Button text="Annuler" onAction="#handleCancel" 
+                    style="-fx-background-color: #ff4444; -fx-text-fill: white;"/>
+            <Button text="Ajouter" onAction="#handleAdd" 
+                    style="-fx-background-color: #44ff44; -fx-text-fill: white;"/>
+        </HBox>
+    </VBox>
+</AnchorPane> 

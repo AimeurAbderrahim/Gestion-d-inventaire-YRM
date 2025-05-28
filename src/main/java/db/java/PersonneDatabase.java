@@ -44,7 +44,12 @@ public class PersonneDatabase extends EntityCoreDatabase<Personne> {
 		stmt.setString(7, p.getNumero_tlph());
 		stmt.setBoolean(8, p.isAvoir_compte());
 		stmt.setString(9, p.getId_emplacement());
-		stmt.setString(10, p.getId_c());
+		if (p.getId_c() == null || p.getId_c().isEmpty()) {
+			stmt.setNull(10, java.sql.Types.VARCHAR);
+		} else {
+			stmt.setString(10, p.getId_c());
+		}
+
 	}
 
 	@Override

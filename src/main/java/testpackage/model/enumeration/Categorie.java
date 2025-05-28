@@ -1,10 +1,10 @@
 package testpackage.model.enumeration;
 
 public enum Categorie {
-	PEDAGOGIQUE,
-	MOBILIER,
 	INFORMATIQUE,
+	BUREAUTIQUE,
 	RESEAU,
-	MULTIMEDIA,
-	ACCESSOIRES
+	TELECOMMUNICATION,
+	STOCKAGE,
+	AUTRE
 }

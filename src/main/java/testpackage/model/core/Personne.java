@@ -1,61 +1,66 @@
 package testpackage.model.core;
 
+import javafx.beans.property.*;
 import java.time.LocalDate;
 
 public class Personne {
-	private String id_p;
-	private String nom;
-	private String prenom;
-	private LocalDate date_naissance;
-	private String email;
-	private String adresse;
-	private String numero_tlph;
-	private boolean avoir_compte;
-	private String id_emplacement;
-	private String id_c; // clé étrangère vers Compte
+
+	private final StringProperty id_p = new SimpleStringProperty();
+	private final StringProperty nom = new SimpleStringProperty();
+	private final StringProperty prenom = new SimpleStringProperty();
+	private final ObjectProperty<LocalDate> date_naissance = new SimpleObjectProperty<>();
+	private final StringProperty email = new SimpleStringProperty();
+	private final StringProperty adresse = new SimpleStringProperty();
+	private final StringProperty numero_tlph = new SimpleStringProperty();
+	private final BooleanProperty avoir_compte = new SimpleBooleanProperty();
+	private final StringProperty id_emplacement = new SimpleStringProperty();
+	private final StringProperty id_c = new SimpleStringProperty();
 
 	public Personne() {}
 
-	public Personne(String nom, String prenom, LocalDate date_naissance, String email, String adresse,
-					String numero_tlph, boolean avoir_compte, String id_emplacement, String id_c) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.date_naissance = date_naissance;
-		this.email = email;
-		this.adresse = adresse;
-		this.numero_tlph = numero_tlph;
-		this.avoir_compte = avoir_compte;
-		this.id_emplacement = id_emplacement;
-		this.id_c = id_c;
+	public Personne(String id_p, String nom, String prenom, String email, boolean avoirCompte) {
+		setId_p(id_p);
+		setNom(nom);
+		setPrenom(prenom);
+		setEmail(email);
+		setAvoir_compte(avoirCompte);
 	}
 
-	public String getId_p() { return id_p; }
-	public void setId_p(String id_p) { this.id_p = id_p; }
+	// ---- JavaFX Properties (pour TableView) ----
+	public StringProperty idProperty() { return id_p; }
+	public StringProperty nomProperty() { return nom; }
+	public StringProperty prenomProperty() { return prenom; }
+	public StringProperty emailProperty() { return email; }
+	public BooleanProperty avoirCompteProperty() { return avoir_compte; }
 
-	public String getNom() { return nom; }
-	public void setNom(String nom) { this.nom = nom; }
+	// ---- Getters et Setters classiques (pour DAO) ----
+	public String getId_p() { return id_p.get(); }
+	public void setId_p(String id) { this.id_p.set(id); }
 
-	public String getPrenom() { return prenom; }
-	public void setPrenom(String prenom) { this.prenom = prenom; }
+	public String getNom() { return nom.get(); }
+	public void setNom(String n) { this.nom.set(n); }
 
-	public LocalDate getDate_naissance() { return date_naissance; }
-	public void setDate_naissance(LocalDate date_naissance) { this.date_naissance = date_naissance; }
+	public String getPrenom() { return prenom.get(); }
+	public void setPrenom(String p) { this.prenom.set(p); }
 
-	public String getEmail() { return email; }
-	public void setEmail(String email) { this.email = email; }
+	public LocalDate getDate_naissance() { return date_naissance.get(); }
+	public void setDate_naissance(LocalDate d) { this.date_naissance.set(d); }
 
-	public String getAdresse() { return adresse; }
-	public void setAdresse(String adresse) { this.adresse = adresse; }
+	public String getEmail() { return email.get(); }
+	public void setEmail(String e) { this.email.set(e); }
 
-	public String getNumero_tlph() { return numero_tlph; }
-	public void setNumero_tlph(String numero_tlph) { this.numero_tlph = numero_tlph; }
+	public String getAdresse() { return adresse.get(); }
+	public void setAdresse(String a) { this.adresse.set(a); }
 
-	public boolean isAvoir_compte() { return avoir_compte; }
-	public void setAvoir_compte(boolean avoir_compte) { this.avoir_compte = avoir_compte; }
+	public String getNumero_tlph() { return numero_tlph.get(); }
+	public void setNumero_tlph(String n) { this.numero_tlph.set(n); }
 
-	public String getId_emplacement() { return id_emplacement; }
-	public void setId_emplacement(String id_emplacement) { this.id_emplacement = id_emplacement; }
+	public boolean isAvoir_compte() { return avoir_compte.get(); }
+	public void setAvoir_compte(boolean b) { this.avoir_compte.set(b); }
 
-	public String getId_c() { return id_c; }
-	public void setId_c(String id_c) { this.id_c = id_c; }
+	public String getId_emplacement() { return id_emplacement.get(); }
+	public void setId_emplacement(String id) { this.id_emplacement.set(id); }
+
+	public String getId_c() { return id_c.get(); }
+	public void setId_c(String id) { this.id_c.set(id); }
 }

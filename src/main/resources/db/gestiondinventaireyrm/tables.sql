@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS Bon (
 	is_valid BOOLEAN, -- is done or not
 	id_emplacement VARCHAR(10),
 	id_f VARCHAR(10),
+	quantite INT,
 	FOREIGN KEY (id_emplacement) REFERENCES Emplacement(id_emplacement) ON DELETE CASCADE,
 	FOREIGN KEY (id_f) REFERENCES Fournisseur(id_f) ON DELETE CASCADE
 );

@@ -1,7 +1,10 @@
 package stateMachin;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 
 public abstract class BaseController {
     protected ControllerStateMachine stateMachine;
@@ -49,8 +52,17 @@ public abstract class BaseController {
             root.applyCss();
             root.layout();
         }
-    }
 
+    }
+    @FXML
+    private void logOut(ActionEvent event) {
+        stateMachine.changeScene(EnumScenes.Login, event);
+    }
+    public void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(message);
+        alert.showAndWait();
+    }
     // Called when switching away from this controller
     public void onExit() {
         System.out.println(getClass().getSimpleName() + " exited");

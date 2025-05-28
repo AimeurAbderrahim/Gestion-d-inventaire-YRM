@@ -97,7 +97,7 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 
 	@Override
 	public String getSearchCondition() {
-		return "nom LIKE ? OR email LIKE ? OR NIF LIKE ?";
+		return "nom LIKE ? OR email LIKE ? OR NIF LIKE ? OR RC = ? ";
 	}
 
 	@Override
@@ -106,5 +106,6 @@ public class FournisseurDatabase extends EntityCoreDatabase<Fournisseur> {
 		statement.setString(1, pattern);
 		statement.setString(2, pattern);
 		statement.setString(3, pattern);
+		statement.setString(4, pattern);
 	}
 }

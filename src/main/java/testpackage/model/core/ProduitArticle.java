@@ -75,4 +75,16 @@ public class ProduitArticle {
 	public void setId_modele(String id){
 		this.id_modele = id;
 	}
+
+	@Override
+	public String toString() {
+		return "ProduitArticle{" +
+				"id_article='" + id_article + '\'' +
+				", nom='" + nom + '\'' +
+				", quantite_global=" + quantite_global +
+				", date_peremption=" + date_peremption +
+				", date_achat=" + date_achat +
+				", id_modele='" + id_modele + '\'' +
+				'}';
+	}
 }

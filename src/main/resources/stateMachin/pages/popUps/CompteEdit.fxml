@@ -23,7 +23,7 @@
 <?import java.lang.String?>
 
 
-<AnchorPane fx:id="addFournisseurPopUpAnchorPane" minHeight="300.0" minWidth="800.0" pickOnBounds="false" styleClass="root" stylesheets="@detailedEmplacement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.AddCompteController">
+<AnchorPane fx:id="addFournisseurPopUpAnchorPane" minHeight="300.0" minWidth="800.0" pickOnBounds="false" styleClass="root" stylesheets="@detailedEmplacement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.setting.AddCompteController">
    <children>
       <BorderPane minHeight="300" minWidth="800.0" styleClass="border-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>

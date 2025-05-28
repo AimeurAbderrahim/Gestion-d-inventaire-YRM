@@ -33,11 +33,12 @@
       </Label>
       <TableView layoutX="39.0" layoutY="220.0" prefHeight="325.0" prefWidth="833.0" styleClass="Produit-Table">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
+          <TableColumn prefWidth="75.0" text="Id " />
+            <TableColumn prefWidth="75.0" text="Nom " />
+          <TableColumn prefWidth="75.0" text="date peremption" />
+            <TableColumn prefWidth="75.0" text="Quantite globale" />
+            <TableColumn prefWidth="75.0" text="Date d'achat" />
+            <TableColumn prefWidth="75.0" text="" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -13,10 +13,10 @@
          <children>
             <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/package.png" />
+                  <Image url="@../images/product_box.png" />
                </image>
             </ImageView>
-            <Label text="Produit" textFill="WHITE">
+            <Label text="Produits" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>

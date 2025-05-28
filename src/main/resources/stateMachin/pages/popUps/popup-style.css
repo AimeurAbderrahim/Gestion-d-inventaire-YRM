@@ -21,6 +21,22 @@
     -fx-padding: 6px 10px;
 }
 
+.combo-box {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-font-size: 14px;
+    -fx-padding: 4px 8px;
+}
+
+.combo-box .list-cell {
+    -fx-padding: 4px 8px;
+}
+
+.check-box {
+    -fx-font-size: 14px;
+}
+
 .button {
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
@@ -35,4 +51,143 @@
 .button:hover {
     -fx-background-color: #008b9c;
     -fx-text-fill: white;
+}
+
+/* Additional styles for the product type popup */
+.check-box .box {
+    -fx-background-color: white;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 3px;
+    -fx-border-color: #cccccc;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #008b9c;
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.field-label {
+    -fx-font-weight: bold;
+}
+
+.section-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 5 0;
+}
+
+.info-label {
+    -fx-text-fill: #333333;
+}
+
+.accept-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-min-width: 100px;
+    -fx-cursor: hand;
+}
+
+.accept-button:hover {
+    -fx-background-color: #45a049;
+}
+
+.reject-button {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+    -fx-min-width: 100px;
+    -fx-cursor: hand;
+}
+
+.reject-button:hover {
+    -fx-background-color: #da190b;
+}
+
+.close-button {
+    -fx-background-color: #808080;
+    -fx-text-fill: white;
+    -fx-min-width: 100px;
+    -fx-cursor: hand;
+}
+
+.close-button:hover {
+    -fx-background-color: #666666;
+}
+
+/* Status colors for the table */
+.table-row-cell.accepted {
+    -fx-background-color: #c8e6c9;
+}
+
+.table-row-cell.rejected {
+    -fx-background-color: #ffcdd2;
+}
+
+.table-row-cell.accepted:selected {
+    -fx-background-color: #81c784;
+}
+
+.table-row-cell.rejected:selected {
+    -fx-background-color: #ef9a9a;
+}
+
+.text-field, .date-picker, .combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+}
+
+.text-field:focused, .date-picker:focused, .combo-box:focused {
+    -fx-border-color: #3498db;
+}
+
+.button {
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.confirm-button {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #27ae60;
+}
+
+.cancel-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
+
+.cancel-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+.date-picker > .text-field {
+    -fx-background-color: white;
+}
+
+.combo-box {
+    -fx-background-color: white;
+}
+
+.combo-box .list-cell {
+    -fx-padding: 5 10 5 10;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-border-color: #bdc3c7;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #ecf0f1;
 }

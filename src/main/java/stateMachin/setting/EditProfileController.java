@@ -1,4 +1,4 @@
-package stateMachin;
+package stateMachin.setting;
 
 import db.configuration.ConfigDatabase;
 import db.errors.OperationFailedException;
@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import stateMachin.Session;
 import testpackage.model.core.Compte;
 import testpackage.model.core.Personne;
 import java.util.List;
