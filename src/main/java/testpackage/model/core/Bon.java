@@ -7,6 +7,8 @@ public class Bon {
 	private LocalDateTime dateBon;
 	private boolean type;
 	private boolean valid;
+	private int quantite;
+	private String referenceId;
 
 	private String id_f;
 	private String id_emplacement;
@@ -14,6 +16,7 @@ public class Bon {
 	public Bon() {
 		this.type = false;
 		this.valid = false;
+		this.quantite = 0;
 	}
 
 	public Bon(String id_bon, LocalDateTime dateBon, boolean type, boolean valid, String id) {
@@ -27,6 +30,7 @@ public class Bon {
 			this.id_emplacement = null;
 		}
 		this.valid = valid;
+		this.quantite = 0;
 	}
 
 	public void setValid(boolean value) {
@@ -77,11 +81,27 @@ public class Bon {
 		return this.type;
 	}
 
+	public void setReferenceId(String referenceId) {
+		this.referenceId = referenceId;
+	}
+
 	public String getReferenceId() {
-		// NOTE: should parse string to integer
-		if (this.type)
+		if (referenceId != null) {
+			return referenceId;
+		}
+		// Fallback to old behavior
+		if (this.type) {
 			return String.format("02%s", this.id_f);
+		}
 		return this.id_emplacement;
+	}
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+
+	public int getQuantite() {
+		return this.quantite;
 	}
 
 	@Override

@@ -76,7 +76,7 @@ public class EmplacementController extends BaseController {
     @FXML
     private void onAdd(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/AddEmplacement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/addEmplacement.fxml"));
             Parent popupRoot = loader.load();
 
             Stage popupStage = new Stage();
@@ -104,7 +104,7 @@ public class EmplacementController extends BaseController {
 
     private void onEdit(Emplacement emplacement) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/AddEmplacement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/addEmplacement.fxml"));
             Parent popupRoot = loader.load();
 
             AddEmplacementController controller = loader.getController();

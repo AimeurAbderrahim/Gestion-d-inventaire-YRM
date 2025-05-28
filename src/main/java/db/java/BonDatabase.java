@@ -51,26 +51,19 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 
 	@Override
 	protected int getColumnCount() {
-		return 6;
+		return 7;
 	}
 
 	@Override
 	protected int getUpdateParameterCount() {
-		return 5;
+		return 6;
 	}
 
 	@Override
 	protected void setAddParameters(PreparedStatement statement, Bon obj) throws SQLException {
 		try {
-			// generated ID
-			long idx = super.countAll();
-			String key = null;
-			if(obj.isBonReception()){
-				key = "R" + obj.getReferenceId() + String.format("03%d", idx);
-			} else {
-				key = "S";
-			}
-			statement.setString(1, key);
+			// Use the ID that was set on the object
+			statement.setString(1, obj.getIdBon());
 			statement.setTimestamp(2, java.sql.Timestamp.valueOf(obj.getDateBon()));
 			statement.setBoolean(3, obj.isBonReception());
 			statement.setBoolean(4, obj.isValid());
@@ -81,9 +74,10 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 				statement.setString(5, obj.getId_emplacement());
 				statement.setString(6, null); // id_f
 			}
+			statement.setInt(7, obj.getQuantite());
 
-			LOGGER.info(String.format("Preparing to add bon: ID=%s, Type=%s, Valid=%b", 
-				key, obj.isBonReception() ? "Reception" : "Sortie", obj.isValid()));
+			LOGGER.info(String.format("Preparing to add bon: ID=%s, Type=%s, Valid=%b, Quantity=%d", 
+				obj.getIdBon(), obj.isBonReception() ? "Reception" : "Sortie", obj.isValid(), obj.getQuantite()));
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Error setting add parameters", e);
 			throw e;
@@ -96,10 +90,12 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 			statement.setTimestamp(1, java.sql.Timestamp.valueOf(obj.getDateBon()));
 			statement.setBoolean(2, obj.isBonReception());
 			statement.setBoolean(3, obj.isValid());
-			statement.setString(4, obj.getReferenceId());
+			statement.setString(4, obj.getId_emplacement());
+			statement.setString(5, obj.getId_f());
+			statement.setInt(6, obj.getQuantite());
 
-			LOGGER.info(String.format("Preparing to update bon: ID=%s, Type=%s, Valid=%b", 
-				obj.getIdBon(), obj.isBonReception() ? "Reception" : "Sortie", obj.isValid()));
+			LOGGER.info(String.format("Preparing to update bon: ID=%s, Type=%s, Valid=%b, Quantity=%d", 
+				obj.getIdBon(), obj.isBonReception() ? "Reception" : "Sortie", obj.isValid(), obj.getQuantite()));
 		} catch (Exception e) {
 			LOGGER.log(Level.SEVERE, "Error setting update parameters", e);
 			throw e;
@@ -108,7 +104,7 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 
 	@Override
 	protected String buildUpdateSetClause() {
-		return "bon_date = ?, bon_type = ?, is_valid = ?, id_emplacement = ?, id_f = ?";
+		return "bon_date = ?, bon_type = ?, is_valid = ?, id_emplacement = ?, id_f = ?, quantite = ?";
 	}
 
 	@Override
@@ -127,9 +123,10 @@ public class BonDatabase extends EntityCoreDatabase<Bon> {
 				bon.setId_f(null);
 				bon.setId_emplacement(result.getString("id_emplacement"));
 			}
+			bon.setQuantite(result.getInt("quantite"));
 
-			LOGGER.fine(String.format("Mapped result set to bon: ID=%s, Type=%s, Valid=%b",
-				bon.getIdBon(), bon.isBonReception() ? "Reception" : "Sortie", bon.isValid()));
+			LOGGER.fine(String.format("Mapped result set to bon: ID=%s, Type=%s, Valid=%b, Quantity=%d",
+				bon.getIdBon(), bon.isBonReception() ? "Reception" : "Sortie", bon.isValid(), bon.getQuantite()));
 
 			return bon;
 		} catch (Exception e) {

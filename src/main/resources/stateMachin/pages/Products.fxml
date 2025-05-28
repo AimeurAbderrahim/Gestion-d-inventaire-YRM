@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="main-panel" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.ProductsController">
+    <VBox spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="Types de Produits" styleClass="page-title">
+                <font>
+                    <Font name="System Bold" size="24.0" />
+                </font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="200" />
+            <Button onAction="#handleAddProductType" text="Ajouter" styleClass="button-primary" />
+        </HBox>
+
+        <TableView fx:id="productTypeTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="100" />
+                <TableColumn fx:id="designationColumn" text="Désignation" prefWidth="200" />
+                <TableColumn fx:id="categoryColumn" text="Catégorie" prefWidth="150" />
+                <TableColumn fx:id="typeColumn" text="Consommable" prefWidth="100" />
+                <TableColumn fx:id="bonReceptionColumn" text="Bon de Réception" prefWidth="150" />
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100" />
+            </columns>
+            <placeholder>
+                <Label text="Aucun type de produit trouvé" />
+            </placeholder>
+        </TableView>
+    </VBox>
+</AnchorPane> 
