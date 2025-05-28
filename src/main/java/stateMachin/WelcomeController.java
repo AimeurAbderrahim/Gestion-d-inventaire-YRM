@@ -152,7 +152,10 @@ public class WelcomeController extends BaseController {
 	}
 
 
-
+	@FXML
+	private void logOut(ActionEvent event) {
+		stateMachine.changeScene(EnumScenes.Login, event);
+	}
 	private void refreshCompteData() {
 		try {
 			ConfigDatabase db = new ConfigDatabase();

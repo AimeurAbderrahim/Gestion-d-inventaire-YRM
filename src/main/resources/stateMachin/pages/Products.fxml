@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" styleClass="main-panel" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.ProductsController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../Styles/ProduitPageStyles.css" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.ProductsController">
     <VBox spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
         <HBox alignment="CENTER_LEFT" spacing="20">
-            <Label text="Types de Produits" styleClass="page-title">
+            <Label styleClass="page-title" text="Produits Modeles">
                 <font>
                     <Font name="System Bold" size="24.0" />
                 </font>
             </Label>
             <Region HBox.hgrow="ALWAYS" />
-            <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="200" />
-            <Button onAction="#handleAddProductType" text="Ajouter" styleClass="button-primary" />
+            <TextField fx:id="searchField" prefWidth="200" promptText="Rechercher..." />
+            <Button onAction="#handleAddProductType" styleClass="button-primary" text="Ajouter" />
         </HBox>
 
         <TableView fx:id="productTypeTable" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="idColumn" text="ID" prefWidth="100" />
-                <TableColumn fx:id="designationColumn" text="Désignation" prefWidth="200" />
-                <TableColumn fx:id="categoryColumn" text="Catégorie" prefWidth="150" />
-                <TableColumn fx:id="typeColumn" text="Consommable" prefWidth="100" />
-                <TableColumn fx:id="bonReceptionColumn" text="Bon de Réception" prefWidth="150" />
-                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100" />
+                <TableColumn fx:id="idColumn" prefWidth="100" text="ID" />
+                <TableColumn fx:id="designationColumn" prefWidth="200" text="Désignation" />
+                <TableColumn fx:id="categoryColumn" prefWidth="150" text="Catégorie" />
+                <TableColumn fx:id="typeColumn" prefWidth="100" text="Consommable" />
+                <TableColumn fx:id="bonReceptionColumn" prefWidth="150" text="Bon de Réception" />
+                <TableColumn fx:id="actionsColumn" prefWidth="100" text="Actions" />
             </columns>
             <placeholder>
                 <Label text="Aucun type de produit trouvé" />
             </placeholder>
         </TableView>
     </VBox>
-</AnchorPane> 
+</AnchorPane>

@@ -50,7 +50,7 @@ public class BonPopUpController {
             ConfigDatabase db = new ConfigDatabase();
             FournisseurDatabase fournisseurDB = new FournisseurDatabase(db, null, null);
             List<Fournisseur> fournisseurs = fournisseurDB.findAll();
-            
+
             // Map fournisseur names to IDs and populate combo box
             fournisseurs.forEach(f -> {
                 String displayName = f.getNom() + " (" + f.getRC() + ")";
@@ -62,7 +62,7 @@ public class BonPopUpController {
             // Load product types
             ProduitModeleDatabase produitDB = new ProduitModeleDatabase(db, null, null);
             List<ProduitModel> produitModels = produitDB.findAll();
-            
+
             // Map product names and populate combo box
             produitModels.forEach(p -> {
                 String displayName = p.getDesignation() + " (" + p.getCategorie() + ")";
@@ -80,12 +80,12 @@ public class BonPopUpController {
         this.currentBon = bon;
         if (bon != null) {
             dateField.setValue(bon.getDateBon().toLocalDate());
-            
+
             // Find and select the correct fournisseur
             fournisseurNames.stream()
-                .filter(name -> fournisseurNameToId.get(name).equals(bon.getId_f()))
-                .findFirst()
-                .ifPresent(name -> emplacementCombo.setValue(name));
+                    .filter(name -> fournisseurNameToId.get(name).equals(bon.getId_f()))
+                    .findFirst()
+                    .ifPresent(name -> emplacementCombo.setValue(name));
         }
     }
 
@@ -110,10 +110,10 @@ public class BonPopUpController {
             }
 
             ConfigDatabase db = new ConfigDatabase();
-            
+
             // Get selected product model first
             ProduitModel selectedModel = produitTypeToModel.get(produitTypeCombo.getValue());
-            
+
             // Create new bon
             Bon bon = new Bon();
             bon.setDateBon(LocalDateTime.from(dateField.getValue().atStartOfDay()));
@@ -136,7 +136,7 @@ public class BonPopUpController {
 
             // Add bon to database
             bonDB.add(bon);
-            
+
             // Create Inventorier record
             InventorierDatabase inventorierDB = new InventorierDatabase(db, null, null);
             Inventorier inventorier = new Inventorier();
@@ -165,19 +165,19 @@ public class BonPopUpController {
         if (currentBon != null) {
             try {
                 ConfigDatabase db = new ConfigDatabase();
-                
+
                 // Delete Inventorier record first (due to foreign key constraint)
                 InventorierDatabase inventorierDB = new InventorierDatabase(db, null, null);
                 List<Inventorier> inventoryRecords = inventorierDB.findAll();
                 Inventorier toDelete = inventoryRecords.stream()
-                    .filter(i -> i.getId_bon().equals(currentBon.getIdBon()))
-                    .findFirst()
-                    .orElse(null);
-                
+                        .filter(i -> i.getId_bon().equals(currentBon.getIdBon()))
+                        .findFirst()
+                        .orElse(null);
+
                 if (toDelete != null) {
                     inventorierDB.remove(toDelete);
                 }
-                
+
                 // Then delete the bon
                 BonDatabase bondb = new BonDatabase(db, null, null);
                 bondb.remove(currentBon);

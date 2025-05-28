@@ -259,6 +259,10 @@ public class ProductsController extends BaseController {
         super.onEnter();
         loadProductTypes();
     }
+    @FXML
+    private void logOut(ActionEvent event) {
+        stateMachine.changeScene(EnumScenes.Login, event);
+    }
 
     @FXML
     private void SettingsButton(ActionEvent event) {

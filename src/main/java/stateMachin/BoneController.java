@@ -218,6 +218,7 @@ public class BoneController extends BaseController {
         if (initialized) {
             loadBonData(); // Refresh data when entering the screen
         }
+
     }
 
     private void showError(String title, String content) {
@@ -246,7 +247,10 @@ public class BoneController extends BaseController {
     @FXML private void BondeSortieButtonSwitch(ActionEvent event) {
         stateMachine.changeScene(EnumScenes.Bondesortie, event);
     }
-
+    @FXML
+        private void logOut(ActionEvent event) {
+        stateMachine.changeScene(EnumScenes.Login, event);
+    }
     @FXML private void SettingsButton(ActionEvent event) {
         try {
             WelcomeController welcome = (WelcomeController) stateMachine.controllers.get(EnumScenes.Welcome);
