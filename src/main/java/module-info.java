@@ -16,7 +16,6 @@ module testpackage.gestiondinventaireyrm {
 	requires net.synedra.validatorfx;
 	requires org.kordamp.ikonli.javafx;
 	requires org.kordamp.bootstrapfx.core;
-
 	opens testpackage.gestiondinventaireyrm to javafx.fxml;
 
 	opens db.configuration to javafx.fxml;
@@ -26,7 +25,6 @@ module testpackage.gestiondinventaireyrm {
 	opens stateMachin to javafx.fxml;
 
 	exports testpackage.gestiondinventaireyrm;
-
 	exports db.configuration;
 	exports db.errors;
 	exports db.test;
@@ -39,5 +37,7 @@ module testpackage.gestiondinventaireyrm {
     opens stateMachin.FourC to javafx.fxml;
     exports stateMachin.EmpC;
     opens stateMachin.EmpC to javafx.fxml;
+    exports stateMachin.setting;
+    opens stateMachin.setting to javafx.fxml;
 
 }

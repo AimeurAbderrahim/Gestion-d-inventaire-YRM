@@ -51,11 +51,11 @@ public class MainApp extends Application {
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         double screenWidth = screenBounds.getWidth();
         double screenHeight = screenBounds.getHeight();
-        stage.setMinWidth(1280);
-        stage.setMinHeight(720);
-        stage.setMaxHeight(1280);
-        stage.setMaxWidth(720);
-        stage.setResizable(false);
+       // stage.setMinWidth(1280);
+       // stage.setMinHeight(720);
+        //stage.setMaxHeight(1280);
+        //stage.setMaxWidth(720);
+        //stage.setResizable(false);
         stage.setX(0);  // Set X coordinate on the screen (left edge)
         stage.setY(0);
         stage.centerOnScreen();

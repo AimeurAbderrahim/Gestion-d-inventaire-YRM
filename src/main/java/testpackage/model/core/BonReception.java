@@ -1,47 +1,41 @@
 package testpackage.model.core;
 
-import testpackage.model.core.Fournisseur;
-import testpackage.model.core.ProduitModel;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class BonReception {
-	private String id_bonR ;
-	private LocalDateTime dateReception;
-	private boolean etat ;
+	private String id_bon;
+	private LocalDate date_reception;
+	private String id_fournisseur;
 
-	public BonReception() {
-		// this.id_bonR = implementsId();
-	}
-	public String getId_bonR() {
-		return id_bonR;
-	}
+	public BonReception() {}
 
-	public void setId_bonR(String id_bonR) {
-		this.id_bonR = id_bonR;
+	public BonReception(String id_bon, LocalDate date_reception, String id_fournisseur) {
+		this.id_bon = id_bon;
+		this.date_reception = date_reception;
+		this.id_fournisseur = id_fournisseur;
 	}
 
-	public LocalDateTime getDateReception() {
-		return dateReception;
+	public String getId_bon() {
+		return id_bon;
 	}
 
-	public void setDateReception(LocalDateTime dateReception) {
-		this.dateReception = dateReception;
+	public void setId_bon(String id_bon) {
+		this.id_bon = id_bon;
 	}
 
-	public boolean isEtat() {
-		return etat;
+	public LocalDate getDate_reception() {
+		return date_reception;
 	}
 
-	public void setEtat(boolean etat) {
-		this.etat = etat;
-		if (etat){
-			this.dateReception=LocalDateTime.now();
-		}
+	public void setDate_reception(LocalDate date_reception) {
+		this.date_reception = date_reception;
 	}
 
-	// @Override
-	// public String implementsId() {
-	// 	return "R";
-	// }
+	public String getId_fournisseur() {
+		return id_fournisseur;
+	}
+
+	public void setId_fournisseur(String id_fournisseur) {
+		this.id_fournisseur = id_fournisseur;
+	}
 }

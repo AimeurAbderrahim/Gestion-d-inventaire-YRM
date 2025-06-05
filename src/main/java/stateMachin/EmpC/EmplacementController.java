@@ -15,13 +15,17 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import stateMachin.BaseController;
+import stateMachin.EmpC.AddEmplacementController;
 import stateMachin.EnumScenes;
 import stateMachin.WelcomeController;
 import testpackage.model.core.Emplacement;
 
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class EmplacementController extends BaseController {
+    private static final Logger LOGGER = Logger.getLogger(EmplacementController.class.getName());
 
     @FXML private TextField searchField;
     @FXML private TableView<Emplacement> emplacementTable;
@@ -43,6 +47,35 @@ public class EmplacementController extends BaseController {
         colNomService.setCellValueFactory(new PropertyValueFactory<>("nom_service"));
 
         emplacementTable.setItems(emplacementData);
+        
+        // Add search functionality
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null || newValue.isEmpty()) {
+                emplacementTable.setItems(emplacementData);
+            } else {
+                ObservableList<Emplacement> filteredList = FXCollections.observableArrayList();
+                for (Emplacement emplacement : emplacementData) {
+                    if (matchesSearch(emplacement, newValue.toLowerCase())) {
+                        filteredList.add(emplacement);
+                    }
+                }
+                emplacementTable.setItems(filteredList);
+            }
+        });
+
+        setDoubleClickAction();
+        refreshData();
+    }
+
+    private boolean matchesSearch(Emplacement emplacement, String searchText) {
+        return emplacement.getId_emplacement().toLowerCase().contains(searchText) ||
+               emplacement.getType_salle().toLowerCase().contains(searchText) ||
+               String.valueOf(emplacement.getSuperficie()).contains(searchText) ||
+               String.valueOf(emplacement.getBureau()).contains(searchText) ||
+               emplacement.getNom_service().toLowerCase().contains(searchText);
+    }
+
+    private void setDoubleClickAction() {
         emplacementTable.setRowFactory(tv -> {
             TableRow<Emplacement> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -55,33 +88,18 @@ public class EmplacementController extends BaseController {
             });
             return row;
         });
-        refreshData();
-    }
-
-    @FXML
-    private void onSearch() {
-        String keyword = searchField.getText().trim();
-        try {
-            EmplacementDatabase db = new EmplacementDatabase(new ConfigDatabase(), null, null);
-            List<Emplacement> list = keyword.isEmpty() ? db.findAll() : db.search(keyword);
-            emplacementData.clear();
-            emplacementData.addAll(list);
-        } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Erreur lors de la recherche : " + e.getMessage());
-        }
     }
 
     @FXML
     private void onAdd(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/AddEmplacement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/addEmplacement.fxml"));
             Parent popupRoot = loader.load();
 
             Stage popupStage = new Stage();
             popupStage.setScene(new Scene(popupRoot));
             popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.initStyle(StageStyle.UTILITY);
+            popupStage.initStyle(StageStyle.UNDECORATED); // ✅ Enlève la barre du haut
             popupStage.setTitle("Ajouter un emplacement");
             popupStage.showAndWait();
 
@@ -103,7 +121,7 @@ public class EmplacementController extends BaseController {
 
     private void onEdit(Emplacement emplacement) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/AddEmplacement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stateMachin/pages/popUps/addEmplacement.fxml"));
             Parent popupRoot = loader.load();
 
             AddEmplacementController controller = loader.getController();
@@ -112,7 +130,7 @@ public class EmplacementController extends BaseController {
             Stage popupStage = new Stage();
             popupStage.setScene(new Scene(popupRoot));
             popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.initStyle(StageStyle.UTILITY);
+            popupStage.initStyle(StageStyle.UNDECORATED); // ✅ Enlève la barre du haut
             popupStage.setTitle("Modifier un emplacement");
             popupStage.showAndWait();
 
@@ -142,19 +160,16 @@ public class EmplacementController extends BaseController {
 
     private void refreshData() {
         try {
-            EmplacementDatabase db = new EmplacementDatabase(new ConfigDatabase(), null, null);
+            ConfigDatabase configDB = new ConfigDatabase();
+            EmplacementDatabase emplacementDB = new EmplacementDatabase(configDB, null, null);
+            List<Emplacement> emplacements = emplacementDB.findAll();
             emplacementData.clear();
-            emplacementData.addAll(db.findAll());
+            emplacementData.addAll(emplacements);
+            LOGGER.info("Loaded " + emplacements.size() + " emplacements");
         } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Erreur de chargement des emplacements : " + e.getMessage());
+            LOGGER.log(Level.SEVERE, "Error loading emplacements", e);
+            showAlert("Error loading emplacements: " + e.getMessage());
         }
-    }
-
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(message);
-        alert.showAndWait();
     }
 
     @FXML
@@ -178,7 +193,7 @@ public class EmplacementController extends BaseController {
     }
 
     @FXML
-    private void SettingsButton(ActionEvent event) {
+    public void SettingsButton(ActionEvent event) {
         try {
             WelcomeController welcome = (WelcomeController) stateMachine.controllers.get(EnumScenes.Welcome);
             if (welcome != null) {

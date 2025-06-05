@@ -73,24 +73,24 @@ public class ConvertEnum {
 	// categorie
 	public static String convertCategorieToString(Categorie type){
 		switch(type){
-			case PEDAGOGIQUE : return "PEDAGOGIQUE";
-			case MOBILIER : return "MOBILIER";
 			case INFORMATIQUE : return "INFORMATIQUE";
+			case BUREAUTIQUE : return "BUREAUTIQUE";
 			case RESEAU : return "RESEAU";
-			case MULTIMEDIA : return "MULTIMEDIA";
-			case ACCESSOIRES : return "ACCESSOIRES";
+			case TELECOMMUNICATION : return "TELECOMMUNICATION";
+			case STOCKAGE : return "STOCKAGE";
+			case AUTRE : return "AUTRE";
 			default : return "UNREACHABLE";
 		}
 	}
 
 	public static Categorie convertStringToCategorie(String type){
 		switch(type){
-			case "PEDAGOGIQUE" : return Categorie.PEDAGOGIQUE;
-			case "MOBILIER" : return Categorie.MOBILIER;
 			case "INFORMATIQUE" : return Categorie.INFORMATIQUE;
+			case "BUREAUTIQUE" : return Categorie.BUREAUTIQUE;
 			case "RESEAU" : return Categorie.RESEAU;
-			case "MULTIMEDIA" : return Categorie.MULTIMEDIA;
-			case "ACCESSOIRES" : return Categorie.ACCESSOIRES;
+			case "TELECOMMUNICATION" : return Categorie.TELECOMMUNICATION;
+			case "STOCKAGE" : return Categorie.STOCKAGE;
+			case "AUTRE" : return Categorie.AUTRE;
 			default : return null;
 		}
 	}

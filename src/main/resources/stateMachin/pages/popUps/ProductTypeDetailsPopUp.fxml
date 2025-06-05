@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-radius: 25; -fx-border-radius: 25; -fx-border-color: black; -fx-border-width: 1;" styleClass="popup-style.css" stylesheets="@../../styles/popup-style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.ProductTypeDetailsController">
+    <VBox spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <Label text="Détails du Type de Produit" styleClass="popup-title">
+                <font>
+                    <Font name="System Bold" size="24.0" />
+                </font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#handleEditType" text="Modifier" styleClass="button-primary" />
+            <Button onAction="#handleClose" text="Fermer" styleClass="button-secondary" />
+        </HBox>
+
+        <GridPane hgap="15" vgap="10" styleClass="details-grid">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" minWidth="150" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+
+            <Label text="ID:" styleClass="details-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label fx:id="idLabel" styleClass="details-value" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <Label text="Désignation:" styleClass="details-label" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label fx:id="designationLabel" styleClass="details-value" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+            <Label text="Catégorie:" styleClass="details-label" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Label fx:id="categoryLabel" styleClass="details-value" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+            <Label text="Consommable:" styleClass="details-label" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Label fx:id="typeLabel" styleClass="details-value" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+            <Label text="Bon de Réception:" styleClass="details-label" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <Label fx:id="bonReceptionLabel" styleClass="details-value" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        </GridPane>
+
+        <Separator />
+
+        <VBox spacing="10">
+            <Label text="Produits" styleClass="section-title">
+                <font>
+                    <Font name="System Bold" size="18.0" />
+                </font>
+            </Label>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <TextField fx:id="searchField" promptText="Rechercher un produit..." prefWidth="200" />
+                <Button onAction="#handleAddProduct" text="Ajouter un Produit" styleClass="button-primary" />
+            </HBox>
+
+            <TableView fx:id="productsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="productIdColumn" text="ID" prefWidth="100" />
+                    <TableColumn fx:id="productNameColumn" text="Nom" prefWidth="150" />
+                    <TableColumn fx:id="quantityColumn" text="Quantité" prefWidth="100" />
+                    <TableColumn fx:id="purchaseDateColumn" text="Date d'Achat" prefWidth="150" />
+                    <TableColumn fx:id="expiryDateColumn" text="Date de Péremption" prefWidth="150" />
+                    <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100" />
+                </columns>
+                <placeholder>
+                    <Label text="Aucun produit trouvé" />
+                </placeholder>
+            </TableView>
+        </VBox>
+    </VBox>
+</AnchorPane> 

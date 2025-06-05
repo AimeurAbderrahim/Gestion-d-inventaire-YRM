@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #cccccc; -fx-border-width: 1;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stateMachin.BonSortiePopUpController">
+    <children>
+        <VBox alignment="CENTER" spacing="20" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+            <Label text="Ajouter un Bon de Sortie" styleClass="title-label">
+                <font>
+                    <Font name="System Bold" size="24.0" />
+                </font>
+            </Label>
+
+            <VBox spacing="10">
+                <Label text="Date" styleClass="field-label">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <DatePicker fx:id="dateField" prefHeight="40.0" prefWidth="540.0" promptText="Sélectionnez la date" />
+            </VBox>
+
+            <VBox spacing="10">
+                <Label text="Emplacement" styleClass="field-label">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="emplacementCombo" prefHeight="40.0" prefWidth="540.0" promptText="Sélectionnez l'emplacement" />
+            </VBox>
+
+            <VBox spacing="10">
+                <Label text="Type de Produit" styleClass="field-label">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="produitTypeCombo" prefHeight="40.0" prefWidth="540.0" promptText="Sélectionnez le type de produit" />
+            </VBox>
+
+            <VBox spacing="10">
+                <Label text="Quantité" styleClass="field-label">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="quantite" prefHeight="40.0" prefWidth="540.0" promptText="Entrez la quantité" />
+            </VBox>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Confirmer" styleClass="confirm-button" onAction="#Confirm" />
+                <Button text="Annuler" styleClass="cancel-button" onAction="#onCancel" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 import db.configuration.ConfigDatabase;
 import db.errors.ConnectionFailedException;
@@ -42,17 +44,17 @@ public class ProduitArticleDatabase extends EntityCoreDatabase<ProduitArticle> {
 
 	@Override
 	protected int getColumnCount() {
-		return 5;
+		return 6;
 	}
 
 	@Override
 	protected int getUpdateParameterCount() {
-		return 4;
+		return 5;
 	}
 
 	@Override
 	protected void setAddParameters(PreparedStatement statement, ProduitArticle obj) throws SQLException {
-		statement.setString(1, obj.getId_article());
+		statement.setString(1, this.generatedIdPK());
 		statement.setDate(2, java.sql.Date.valueOf(obj.getDate_peremption()));
 		statement.setString(3, obj.getNom_article());
 		statement.setInt(4, obj.getQuantite_global());
@@ -102,5 +104,22 @@ public class ProduitArticleDatabase extends EntityCoreDatabase<ProduitArticle> {
 	public String generatedIdPK() throws SQLException {
 		long idx = super.countAll();
 		return "ART" + String.format("%03d", idx);
+	}
+
+	public List<ProduitArticle> findByModelId(String modelId) throws SQLException {
+		List<ProduitArticle> articles = new ArrayList<>();
+		String query = "SELECT * FROM " + tableName + " WHERE id_modele = ?";
+		
+		try (PreparedStatement statement = connection.prepareStatement(query)) {
+			statement.setString(1, modelId);
+			
+			try (ResultSet result = statement.executeQuery()) {
+				while (result.next()) {
+					articles.add(mapResultSetToEntity(result));
+				}
+			}
+		}
+		
+		return articles;
 	}
 }

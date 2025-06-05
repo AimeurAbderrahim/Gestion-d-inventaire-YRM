@@ -41,7 +41,7 @@ public class ControllerStateMachine {
             loadScene(EnumScenes.Products, "/stateMachin/pages/ProductView.fxml");
             loadScene(EnumScenes.Fournisur, "/stateMachin/pages/FournisurView.fxml");
             loadScene(EnumScenes.Welcome, "/stateMachin/pages/WelcomePage.fxml");
-
+            loadScene(EnumScenes.Bondesortie, "/stateMachin/pages/BonedeSortieView.fxml");
             System.out.println("All scenes initialized successfully");
         } catch (IOException e) {
             System.err.println("Failed to initialize scenes: " + e.getMessage());

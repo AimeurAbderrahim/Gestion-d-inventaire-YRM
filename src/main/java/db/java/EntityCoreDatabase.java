@@ -83,6 +83,7 @@ public abstract class EntityCoreDatabase<T> implements Operation<T> {
 
 		try (PreparedStatement statement = this.connection.prepareStatement(sql)) {
 			this.setAddParameters(statement, obj);
+			System.err.println("rayden was here = " + sql);
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			throw new OperationFailedException("Failed to add object to " + this.tableName + e.getMessage(), e);
